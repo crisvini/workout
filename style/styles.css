@@ -1,0 +1,92 @@
+body {
+    margin: 0px !important;
+}
+
+/* swiper */
+.swiper-container {
+    width: 100vw;
+    height: 100vh;
+    /* margin: 4%; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    background: #FFFFFF;
+}
+
+.swiper-slide {
+    color: #000;
+    overflow-y: auto;
+}
+
+/* swiper */
+
+/* login.html */
+/* .header-login {
+    height: 50%;
+} */
+
+.title-welcome {
+    font-size: 50px;
+    color: #fff7f8;
+}
+
+.mt-header-login {
+    margin-top: 50%;
+}
+
+.link-login {
+    text-decoration: none;
+    color: #fff7f8;
+    font-size: 40px;
+}
+
+.link-login:focus {
+    color: #fff7f8 !important;
+}
+
+/* login.html */
+
+/* Geral */
+
+.bg-black {
+    background-color: #191919 !important;
+}
+
+.form-control {
+    border: 2px solid #232323;
+    border-radius: 20px;
+    background-color: #292929;
+    color: #fff7f8 !important;
+    padding-left: 20px !important;
+    font-size: 35px;
+    height: 100px !important;
+    width: 100%;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #292929;
+    border-color: #e30b5c;
+    outline: 0;
+    box-shadow: none;
+}
+
+.custom-label {
+    font-size: 30px;
+    padding-left: 5% !important;
+    color: #fff7f8;
+}
+
+.btn-primary {
+    background-color: #e30b5c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    height: 100px !important;
+    font-size: 40px !important;
+    color: #fff7f8 !important;
+    width: 100% !important;
+}
+
+.btn-primary:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
