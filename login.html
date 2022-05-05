@@ -18,206 +18,119 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
     <link rel="stylesheet" href="/style/styles.css">
-    <!-- <script src="/js/head.js"></script>
-    <script>
-        window.onload = function () {
-            includeScriptsAndStyles();
-        };
-    </script> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet">
 </head>
 
-<div id="headScripts">
-</div>
+<body class="bg-black">
 
-<body>
-
-    <div class="swiper-container bg-black">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-
-                <div class="container mt-header-login">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <span class="title-welcome">Bem-vindo ao</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <span style="color: #e30b5c; font-weight: bold; font-size: 140px;">Workout</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container mt-header-login">
-                    <div class="row">
-                        <div class="col-12 form-floating">
-                            <input type="text" class="form-control" id="email" placeholder="email@email.com">
-                            <label for="email" class="custom-label">Email</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <input type="password" class="form-control" id="senha" placeholder="senha">
-                            <label for="senha" class="custom-label">Senha</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-primary">Entrar</button>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 text-center">
-                            <span class="link-login" onclick="swiper_horizontal.slideNext();">Não tem uma conta?
-                                Criar</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="login-integrador">
-                    <div class="login background-app" id="login">
-                        <div class="header">
-                            <h1 class="title-wattbank-inicial">Bem-vindo ao</h1>
-                            <img class="logo-principal" src="/images/logos/wattbank/v1/logo5.png" alt="">
-                            <img class="logo-principal-web" src="/images/logos/wattbank/v1/logo3.png" alt="">
-                        </div>
-                        <div class="body-form-pequeno">
-                            <div class="custom-width-botoes">
-                                <button type="button" class="primary-button" id="cadastrar-inicial">Cadastrar</button>
+    <div id="slider" class="carousel slide entire-screen bg-black" data-bs-touch="false" data-bs-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active entire-screen">
+                <div class="div-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <span class="title-welcome">Bem-vindo ao</span>
                             </div>
-                            <div class="w-100"
-                                style="display: flex; justify-content: space-between;margin: 0px auto;width: 80%;">
-                                <div style="width: 40%;">
-                                    <img style="width: 100% !important;" src="/images/logos/wattbank/v1/linha.svg">
-                                </div>
-                                <div style="width: 20%;">
-                                    <p class="small-text"
-                                        style="margin-bottom: 0px !important; line-height: 26px; padding-left: 0px !important;">
-                                        ou</p>
-                                </div>
-                                <div style="width: 40%;">
-                                    <img style="width: 100% !important;" src="/images/logos/wattbank/v1/linha.svg">
-                                </div>
-                            </div>
-                            <div class="custom-width-botoes">
-                                <button type="button" class="secondary-button" id="acessar-inicial"
-                                    style="margin-top: 15px !important;">Acessar</button>
+                        </div>
+                        <div class="row" style="margin-bottom: 15%;">
+                            <div class="col-12 text-center">
+                                <span class="logo-font"
+                                    style="color: #e30b5c; font-weight: bold; font-size: 140px; line-height: normal;">Workout
+                                    <i class="fa-solid fa-dumbbell"></i></span>
                             </div>
                         </div>
                     </div>
-                    <div class="img-login">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 form-floating">
+                                <input type="text" class="form-control" id="email" placeholder="email@email.com"
+                                    maxlength="100">
+                                <label for="email" class="custom-label">Email</label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <i class="fa-solid fa-eye icon-eye d-none" style="font-size: 50px; color: #fff7f8;"
+                                    id="open-eye"></i>
+                                <i class="fa-solid fa-eye-slash icon-eye d-block"
+                                    style="font-size: 50px; color: #fff7f8;" id="closed-eye"></i>
+                                <input type="password" class="form-control" id="senha" placeholder="senha"
+                                    maxlength="8">
+                                <label for="senha" class="custom-label">Senha</label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 text-center">
+                                <span class="link-login" style="text-decoration: underline;"
+                                    onclick="$('#next').click()">Não tem uma conta?
+                                    Criar</span>
+                            </div>
+                        </div>
                     </div>
-                </div> -->
+                </div>
             </div>
-
-            <div class="swiper-slide">
-
-                <div class="container mt-header-login">
+            <div class="carousel-item">
+                <div class="container">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <span class="title-welcome">Bem-vindo ao</span>
+                        <div class="col text-center">
+                            <i class="fa-solid fa-angle-left back-button" onclick="$('#previous').click()"></i>
+                            <span style="color: #e30b5c; font-weight: bold; font-size: 100px;">Workout</span>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <span style="color: #e30b5c; font-weight: bold; font-size: 140px;">Workout</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!-- <div id="s2" class="swiper-slide">
-                <div class="div-menu-web">
-                    <div class="menu-web">
-                        <img class="logo-menu-web" src="/images/logos/wattbank/v1/logo3.png" alt="">
-                        <img class="menu-icon" src="/images/logos/wattbank/v1/ic16.png" alt="">
-                    </div>
-                </div>
-                <div class="menu">
-                    <img class="back-arrow" src="/images/logos/wattbank/v1/ic3.png" alt="" id="back1"
-                        onclick="voltarPagina()">
-                    <img class="logo-menu" src="/images/logos/wattbank/v1/logo6.png" alt="">
-                    <img class="menu-icon" src="/images/logos/wattbank/v1/ic16.png" alt="">
-                </div>
-                <div class="div-responsivo">
-                    <div class="form-responsivo">
-                        <div class="header-secundario-pequeno">
-                            <img class="back-arrow-web" src="/images/logos/wattbank/v1/ic3.png" alt="" id="back1web"
-                                onclick="voltarPagina()">
-                            <h1 class="title-wattbank">Informe o telefone cadastrado</h1>
-                        </div>
-                        <div class="label-form">
-                            <label for="telefone" id="label_telefone_tipo">Tipo telefone</label>
-                        </div>
-                        <div class="body-form-pequeno body-form-web">
-                            <select class="select-card" id="tipo_telefone">
-                                <option value="">Selecione um tipo</option>
-                                <option value="Telefone">Telefone</option>
-                                <option value="Celular">Celular</option>
-                            </select>
-                        </div>
-                        <div class="label-form hidden" id="div_label_telefone_cadastrado">
-                            <label for="telefone_cadastrado" id="label_telefone_cadastrado"></label>
-                        </div>
-                        <div class="body-form-pequeno body-form-web hidden" id="div_telefone_cadastrado">
-                            <input type="tel" id="telefone_cadastrado">
-                        </div>
-                        <div class="btn-principal-web-pequeno">
-                            <button class="primary-button" id="gerar-acesso">Gerar acesso</button>
-                        </div>
-                    </div>
-                    <div class="img-responsivo">
-                        <img class="banner-web" src="/images/logos/wattbank/v1/img3.png" alt="">
                     </div>
                 </div>
             </div>
-
-            <div id="s3" class="swiper-slide">
-                <div class="div-menu-web">
-                    <div class="menu-web">
-                        <img class="logo-menu-web" src="/images/logos/wattbank/v1/logo3.png" alt="">
-                        <img class="menu-icon" src="/images/logos/wattbank/v1/ic16.png" alt="">
-                    </div>
-                </div>
-                <div class="menu">
-                    <img class="back-arrow" src="/images/logos/wattbank/v1/ic3.png" alt="" id="back2"
-                        onclick="voltarPagina()">
-                    <img class="logo-menu" src="/images/logos/wattbank/v1/logo6.png" alt="">
-                    <img class="menu-icon" src="/images/logos/wattbank/v1/ic16.png" alt="">
-                </div>
-                <div class="div-responsivo">
-                    <div class="form-responsivo">
-                        <div class="header-secundario-pequeno">
-                            <img class="back-arrow-web" src="/images/logos/wattbank/v1/ic3.png" alt="" id="back2"
-                                onclick="voltarPagina()">
-                            <h1 class="title-wattbank">Informe o CPF cadastrado</h1>
-                        </div>
-                        <div class="body-form-pequeno body-form-web">
-                            <input type="tel" placeholder="CPF" id="cpf_cadastrado">
-                        </div>
-                        <div class="btn-principal-web-pequeno">
-                            <button class="primary-button" id="logar-button">Gerar acesso</button>
-                        </div>
-                    </div>
-                    <div class="img-responsivo">
-                        <img class="banner-web" src="/images/logos/wattbank/v1/img3.png" alt="">
-                    </div>
-                </div>
-            </div> -->
         </div>
+        <button class="carousel-control-prev d-none" type="button" id="previous" data-bs-target="#slider"
+            data-bs-slide="prev">
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next d-none" type="button" id="next" data-bs-target="#slider"
+            data-bs-slide="next">
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
     <script>
 
-        /* Swiper horizontal Menu */
-        const swiper_horizontal = new Swiper('.swiper-container', {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            nested: true
+        $(document).ready(function () {
+
+            // Hide and show password
+            $("#closed-eye").on('click', function () {
+                $("#closed-eye").removeClass("d-block");
+                $("#closed-eye").addClass("d-none");
+                $("#open-eye").removeClass("d-none");
+                $("#open-eye").addClass("d-block");
+                $("#senha").attr("type", "text");
+            });
+            $("#open-eye").on('click', function () {
+                $("#open-eye").removeClass("d-block");
+                $("#open-eye").addClass("d-none");
+                $("#closed-eye").removeClass("d-none");
+                $("#closed-eye").addClass("d-block");
+                $("#senha").attr("type", "password");
+            });
+
         });
-        swiper_horizontal.allowTouchMove = false;
-        /* ! Swiper horizontal Menu */
+
     </script>
 
 </body>
