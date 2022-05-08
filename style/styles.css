@@ -1,5 +1,3 @@
-/* login.html */
-
 .title-welcome {
     font-size: 50px;
     color: #fff7f8;
@@ -15,12 +13,6 @@
     color: #fff7f8 !important;
 }
 
-/* login.html */
-
-
-
-/* Geral */
-
 body {
     margin: 0px !important;
     font-family: 'Raleway', sans-serif;
@@ -31,7 +23,7 @@ body {
     font-size: 100px;
     position: relative;
     top: 0%;
-    left: -20%;
+    left: -16%;
 }
 
 .icon-eye {
@@ -67,6 +59,11 @@ body {
     box-shadow: none;
 }
 
+.form-check {
+    color: white;
+    font-size: 40px;
+}
+
 .custom-label {
     font-size: 35px;
     padding-left: 5% !important;
@@ -86,6 +83,28 @@ body {
 .btn-primary:focus {
     border: none !important;
     box-shadow: none !important;
+}
+
+.btn-primary-swal {
+    background-color: #e30b5c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 40px !important;
+    color: #fff7f8 !important;
+    width: 100% !important;
+    padding: 30px 40px;
+}
+
+.title-swal {
+    font-size: 80px;
+}
+
+.pop-up-swal {
+    font-size: 40px;
+}
+
+.swal2-popup {
+    border-radius: 20px;
 }
 
 .entire-screen {
@@ -111,4 +130,22 @@ body {
     top: 50%;
     width: 100%;
     transform: translateY(-50%);
+}
+
+.dropdown-menu {
+    padding: 2%;
+    color: #e30b5c;
+}
+
+.alerta-label {
+    color: red !important;
+}
+
+.alerta-input {
+    border: 2px solid red !important;
+}
+
+.form-check-input:checked {
+    background-color: #e30b5c;
+    border-color: #e30b5c;
 }
