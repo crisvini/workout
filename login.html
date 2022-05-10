@@ -237,7 +237,7 @@
 
             // Habilita o botão de login se os campos de login estiverem preenchidos
             $("#email, #senha").on('input', function () {
-                if ($("#email").val() != "" && $("#senha").val() != "") {
+                if ($("#email").val() != "" && $("#senha").val() != "" && validacaoEmail($("#email").val()) != false) {
                     $("#login_btn").attr("disabled", false);
                 } else {
                     $("#login_btn").attr("disabled", true);
@@ -249,6 +249,7 @@
 
                 if ($("#email").val() != "" && $("#senha").val() != "") {
 
+                    // Faz o login se os dados forem válidos
                     if (validacaoEmail($("#email").val()) == false) {
                         Swal.fire({
                             title: 'Ops!',
@@ -326,17 +327,14 @@
                     if (testaCpf($("#cpf").cleanVal()) == false || $("#cpf").val() == "") {
                         $("#cpf").val("");
                         alertaPreenchimento('#cpf', '#label_cpf');
-                        alert(1)
                     }
                     if (diffYearsNow($("#nascimento").val(), 12, 120) == false || $("#nascimento").val() == "") {
                         $("#nascimento").val("");
                         alertaPreenchimento('#nascimento', '#label_nascimento');
-                        alert(2)
                     }
                     if (validacaoEmail($("#cad_email").val()) == false || $("#cad_email").val() == "") {
                         $("#cad_email").val("");
                         alertaPreenchimento('#cad_email', '#label_cad_email');
-                        alert(3)
                     }
                     alertaPreenchimento('#cad_senha', '#label_cad_senha');
                     alertaPreenchimento('#termos', '#label_termos');
