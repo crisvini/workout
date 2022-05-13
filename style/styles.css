@@ -74,6 +74,14 @@ body {
     left: -16%;
 }
 
+.enter-button {
+    color: #fff7f8;
+    font-size: 60px;
+    position: relative;
+    top: 0%;
+    left: -16%;
+}
+
 .icon-eye {
     position: absolute;
     right: 5%;
@@ -196,4 +204,8 @@ body {
 .form-check-input:checked {
     background-color: #e30b5c;
     border-color: #e30b5c;
+}
+
+.br-20 {
+    border-radius: 20px;
 }
