@@ -40,8 +40,8 @@
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container">
-            <div class="row mt-3">
+        <div class="container" style="max-width: 100% !important;">
+            <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
                     <i class="fa-solid fa-angle-left back-button" onclick="load('login.html');"></i>
                     <span class="logo-font"
@@ -50,70 +50,68 @@
                 </div>
             </div>
         </div>
-        <div class="div-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 form-floating">
-                        <select class="form-control" id="plano">
-                            <option value="anual">Anual - R$ 10,00 por mês</option>
-                            <option value="semestral">Semestral - R$ 12,00 por mês</option>
-                            <option value="trimestral">Trimestral - R$ 14,00 por mês</option>
-                            <option value="mensal">Mensal - R$ 15,00 por mês</option>
-                        </select>
-                        <label for="plano" class="custom-label">Plano</label>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 form-floating">
+                    <select class="form-control" id="plano">
+                        <option value="anual">Anual - R$ 10,00 por mês</option>
+                        <option value="semestral">Semestral - R$ 12,00 por mês</option>
+                        <option value="trimestral">Trimestral - R$ 14,00 por mês</option>
+                        <option value="mensal">Mensal - R$ 15,00 por mês</option>
+                    </select>
+                    <label for="plano" class="custom-label">Plano</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <input type="tel" class="form-control" id="numero_cartao" placeholder="Número do cartão"
+                        onchange="alertaPreenchimento('#numero_cartao', '#label_numero_cartao');">
+                    <label for="numero_cartao" class="custom-label" id="label_numero_cartao">Número do
+                        cartão</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <input type="text" class="form-control" id="titular" placeholder="Titular do cartão"
+                        onchange="alertaPreenchimento('#titular', '#label_titular');">
+                    <label for="titular" class="custom-label" id="label_titular">Titular do cartão</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <input type="tel" class="form-control" id="vencimento" placeholder="Vencimento"
+                        onchange="alertaPreenchimento('#vencimento', '#label_vencimento');">
+                    <label for="vencimento" class="custom-label" id="label_vencimento">Vencimento</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <input type="tel" class="form-control" id="cvv" placeholder="CVV"
+                        onchange="alertaPreenchimento('#cvv', '#label_cvv');" maxlength="4">
+                    <label for="cvv" class="custom-label" id="label_cvv">CVV</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <input type="tel" class="form-control" id="cpf_titular" placeholder="CPF do titular"
+                        onchange="alertaPreenchimento('#cpf_titular', '#label_cpf_titular');">
+                    <label for="cpf_titular" class="custom-label" id="label_cpf_titular">CPF do titular</label>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 form-floating">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="termos"
+                            onchange="alertaPreenchimento('#termos', '#label_termos');">
+                        <label class="form-check-label" for="check1">Entendo que é uma cobrança
+                            recorrente e que o plano não pode ser cancelado ou reembolsado durante sua
+                            duração</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <input type="tel" class="form-control" id="numero_cartao" placeholder="Número do cartão"
-                            onchange="alertaPreenchimento('#numero_cartao', '#label_numero_cartao');">
-                        <label for="numero_cartao" class="custom-label" id="label_numero_cartao">Número do
-                            cartão</label>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <input type="text" class="form-control" id="titular" placeholder="Titular do cartão"
-                            onchange="alertaPreenchimento('#titular', '#label_titular');">
-                        <label for="titular" class="custom-label" id="label_titular">Titular do cartão</label>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <input type="tel" class="form-control" id="vencimento" placeholder="Vencimento"
-                            onchange="alertaPreenchimento('#vencimento', '#label_vencimento');">
-                        <label for="vencimento" class="custom-label" id="label_vencimento">Vencimento</label>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <input type="tel" class="form-control" id="cvv" placeholder="CVV"
-                            onchange="alertaPreenchimento('#cvv', '#label_cvv');" maxlength="4">
-                        <label for="cvv" class="custom-label" id="label_cvv">CVV</label>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <input type="tel" class="form-control" id="cpf_titular" placeholder="CPF do titular"
-                            onchange="alertaPreenchimento('#cpf_titular', '#label_cpf_titular');">
-                        <label for="cpf_titular" class="custom-label" id="label_cpf_titular">CPF do titular</label>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="termos"
-                                onchange="alertaPreenchimento('#termos', '#label_termos');">
-                            <label class="form-check-label" for="check1">Entendo que é uma cobrança
-                                recorrente e que o plano não pode ser cancelado ou reembolsado durante sua
-                                duração</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary" id="assinar_btn" disabled>Assinar</button>
-                    </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary" id="assinar_btn" disabled>Assinar</button>
                 </div>
             </div>
         </div>
