@@ -1,33 +1,41 @@
 .color-white {
-    color: #fff7f8;
+    color: #fff7f8 !important;
 }
 
 .color-pink {
-    color: #e30b5c;
+    color: #e30b5c !important;
 }
 
 .color-gray {
-    color: #202020;
+    color: #202020 !important;
+}
+
+.color-light-gray {
+    color: #a59b9c !important;
 }
 
 .color-black {
-    color: #191919;
+    color: #191919 !important;
 }
 
 .bg-white {
-    background-color: #fff7f8;
+    background-color: #fff7f8 !important;
 }
 
 .bg-pink {
-    background-color: #e30b5c;
+    background-color: #e30b5c !important;
 }
 
 .bg-gray {
-    background-color: #202020;
+    background-color: #202020 !important;
+}
+
+.bg-light-gray {
+    background-color: #a59b9c !important;
 }
 
 .bg-black {
-    background-color: #191919;
+    background-color: #191919 !important;
 }
 
 .border-white {
@@ -40,6 +48,10 @@
 
 .border-gray {
     border-color: #202020 !important;
+}
+
+.border-light-gray {
+    border-color: #a59b9c !important;
 }
 
 .border-black {
@@ -151,6 +163,49 @@ body {
     padding: 30px 40px;
 }
 
+.btn-primary-swal-2 {
+    background-color: #e30b5c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 40px !important;
+    color: #fff7f8 !important;
+    padding: 30px 40px;
+}
+
+.btn-secondary {
+    background-color: #a59b9c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    height: 150px !important;
+    font-size: 45px !important;
+    color: #fff7f8 !important;
+    width: 100% !important;
+}
+
+.btn-secondary:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary-swal {
+    background-color: #a59b9c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 40px !important;
+    color: #fff7f8 !important;
+    width: 100% !important;
+    padding: 30px 40px;
+}
+
+.btn-secondary-swal-2 {
+    background-color: #a59b9c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 40px !important;
+    color: #fff7f8 !important;
+    padding: 30px 40px;
+}
+
 .title-swal {
     font-size: 80px;
 }
@@ -208,4 +263,24 @@ body {
 
 .br-20 {
     border-radius: 20px;
+}
+
+.fs-extra-large {
+    font-size: 80px;
+}
+
+.fs-large {
+    font-size: 60px;
+}
+
+.fs-medium {
+    font-size: 50px;
+}
+
+.fs-small {
+    font-size: 35px;
+}
+
+.fs-extra-small {
+    font-size: 30px;
 }
