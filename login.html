@@ -94,8 +94,8 @@
             </div>
 
             <div class="carousel-item entire-screen">
-                <div class="container">
-                    <div class="row mt-3">
+                <div class="container" style="max-width: 100% !important;">
+                    <div class="row fixed-top pt-4 pb-4 bg-black">
                         <div class="col text-center">
                             <i class="fa-solid fa-angle-left back-button" onclick="$('#previous').click()"></i>
                             <span class="logo-font"
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="div-center">
+                <div class="div-center mt-5">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 form-floating">
@@ -269,7 +269,7 @@
                         $("#email").val("");
                         alertaPreenchimento('#email', '#label_email');
                     } else {
-                        load("cadastroDadosPagamento.html");
+                        load("index.html");
                     }
 
                 } else {
