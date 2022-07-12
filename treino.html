@@ -29,13 +29,22 @@
 
     <div class="entire-screen">
         <div class="container h-50vh" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 ps-4 bg-treino br-bt-20 h-100">
-                <div class="col text-start">
+            <div class="row py-4 bg-treino br-bt-20 h-100">
+                <div class="col-12">
                     <div>
                         <i class="fa-solid fa-angle-left back-button-2" onclick="load('home.html');"></i>
                     </div>
-                    <div style="position: absolute; bottom: 51%">
-                        <span class="fs-extra-large color-white pt-5 fw-500">Ficha A</span>
+                </div>
+                <div class="d-flex justify-content-between w-100 mx-0 px-0" style="position: absolute; bottom: 51%">
+                    <div class="col-6 px-2">
+                        <div class="text-start">
+                            <span class="fs-extra-large color-white pt-5 fw-500">Ficha A</span>
+                        </div>
+                    </div>
+                    <div class="col-6 px-2 d-none" id="div_timer">
+                        <div class="text-end">
+                            <span class="color-white fs-extra-large" id="timer">00:00:00</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -273,15 +282,85 @@
             </div>
             <br><br><br><br><br><br><br><br><br>
             <div class="mt-5 bg-gray fixed-bottom border-light-gray">
-                <div class="row py-4 w-50 mx-auto">
-                    <div class="col text-white m-0 text-center color-white" id="btn_comecar_treino"
-                        onclick="load('home.html')">
+                <div class="row py-4 w-50 mx-auto" id="div_btn_comecar_treino">
+                    <div class="col text-white m-0 text-center color-white" id="btn_comecar_treino">
                         <button type="button" class="btn btn-primary w-50">Começar Treino</button>
+                    </div>
+                </div>
+                <div class="row py-4 mx-5 d-none" id="div_btn_pausar_finalizar_treino">
+                    <div class="col-6 m-0 text-start align-self-center" id="btn_pausar_treino">
+                        <i class="fa-regular fa-circle-pause fs-extra-large color-white"></i>
+                    </div>
+                    <div class="col-6 m-0 text-start align-self-center d-none" id="btn_retomar_treino">
+                        <i class="fa-regular fa-circle-play fs-extra-large color-white"></i>
+                    </div>
+                    <div class="col-6 m-0 text-end" id="btn_finalizar_treino">
+                        <span class="fs-large color-white">Finalizar</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="./lib/easyTimer/easytimer.min.js"></script>
+
+    <script>
+
+        // Inicializa o timer
+        var timer = new easytimer.Timer();
+
+        $("#btn_comecar_treino").click(() => {
+            // Inicia o timer
+            timer.start();
+
+            $("#div_btn_comecar_treino").addClass("d-none");
+            $("#div_btn_pausar_finalizar_treino, #div_timer").removeClass("d-none");
+        });
+
+        $("#btn_pausar_treino").click(() => {
+            // Pausa o timer
+            timer.pause();
+            $("#btn_pausar_treino").addClass("d-none");
+            $("#btn_retomar_treino").removeClass("d-none");
+        });
+
+        $("#btn_retomar_treino").click(() => {
+            // Retoma o timer
+            timer.start();
+            $("#btn_pausar_treino").removeClass("d-none");
+            $("#btn_retomar_treino").addClass("d-none");
+        });
+
+        $("#btn_finalizar_treino").click(() => {
+            // Finaliza o timer
+            timer.stop();
+            Swal.fire({
+                title: '',
+                text: 'Tem certeza que deseja finalizar o treino?',
+                icon: 'warning',
+                confirmButtonText: 'Sim',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                width: '90%',
+                background: '#191919',
+                position: 'center',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-primary-swal',
+                    cancelButton: 'btn btn-secondary-swal',
+                    title: 'title-swal',
+                    popup: 'pop-up-swal',
+                    container: 'container-swal'
+                },
+            });
+        });
+
+        // Atualiza o timer a cada segundo
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#timer').html(timer.getTimeValues().toString());
+        });
+
+    </script>
 
 </body>
 
