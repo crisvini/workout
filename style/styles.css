@@ -86,6 +86,11 @@ body {
     left: -16%;
 }
 
+.back-button-2 {
+    color: #e30b5c;
+    font-size: 100px;
+}
+
 .enter-button {
     color: #fff7f8;
     font-size: 60px;
@@ -265,6 +270,22 @@ body {
     border-radius: 20px;
 }
 
+.br-bt-20 {
+    border-radius: 0px 0px 20px 20px;
+}
+
+.br-tp-20 {
+    border-radius: 20px 20px 0px 0px;
+}
+
+.br-st-20 {
+    border-radius: 20px 0px 0px 20px;
+}
+
+.br-ed-20 {
+    border-radius: 0px 20px 20px 0px;
+}
+
 .fs-extra-large {
     font-size: 80px;
 }
@@ -283,4 +304,31 @@ body {
 
 .fs-extra-small {
     font-size: 30px;
+}
+
+.bg-treino {
+    background-image: url(../img/treino_background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.h-25vh {
+    height: 25vh;
+}
+
+.h-50vh {
+    height: 50vh;
+}
+
+.h-75vh {
+    height: 75vh;
+}
+
+.h-100vh {
+    height: 100vh;
+}
+
+.fw-500 {
+    font-weight: 500;
 }
