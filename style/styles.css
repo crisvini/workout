@@ -318,6 +318,62 @@ body {
     background-size: cover;
 }
 
+.bg-abdome {
+    background-image: url(../img/treino-abdome.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-aerobico {
+    background-image: url(../img/treino-aerobico.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-biceps {
+    background-image: url(../img/treino-biceps.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-costas {
+    background-image: url(../img/treino-costas.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-ombro {
+    background-image: url(../img/treino-ombro.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-peito {
+    background-image: url(../img/treino-peito.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-perna {
+    background-image: url(../img/treino-perna.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-triceps {
+    background-image: url(../img/treino-triceps.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .h-25vh {
     height: 25vh;
 }
