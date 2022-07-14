@@ -335,24 +335,26 @@
             // Finaliza o timer
             timer.stop();
             Swal.fire({
-                title: '',
                 text: 'Tem certeza que deseja finalizar o treino?',
                 icon: 'warning',
                 confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
                 showCancelButton: true,
-                cancelButtonText: 'Cancelar',
                 width: '90%',
                 background: '#191919',
                 position: 'center',
-                buttonsStyling: false,
                 customClass: {
-                    confirmButton: 'btn btn-primary-swal',
-                    cancelButton: 'btn btn-secondary-swal',
+                    cancelButton: 'btn btn-primary-swal-2',
+                    confirmButton: 'btn btn-secondary-swal-2',
                     title: 'title-swal',
                     popup: 'pop-up-swal',
-                    container: 'container-swal'
-                },
-            });
+                    container: 'container-swal-html'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    load("home.html");
+                }
+            })
         });
 
         // Atualiza o timer a cada segundo
