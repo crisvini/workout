@@ -10,6 +10,10 @@
     color: #202020 !important;
 }
 
+.color-medium-gray {
+    color: #292929 !important;
+}
+
 .color-light-gray {
     color: #a59b9c !important;
 }
@@ -28,6 +32,10 @@
 
 .bg-gray {
     background-color: #202020 !important;
+}
+
+.bg-medium-gray {
+    background-color: #292929 !important;
 }
 
 .bg-light-gray {
@@ -107,10 +115,6 @@ body {
 
 .logo-font {
     font-family: 'Source Sans Pro', sans-serif;
-}
-
-.bg-black {
-    background-color: #191919 !important;
 }
 
 .form-control {
@@ -372,6 +376,12 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.image-disabled {
+    filter: grayscale(80%);
+    -webkit-filter: grayscale(80%);
+    -moz-filter: grayscale(80%);
 }
 
 .h-25vh {

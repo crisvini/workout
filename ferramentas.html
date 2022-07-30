@@ -38,24 +38,36 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="imc" onclick="load('calculadoraImc.html');">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
-                <div class="col-10 color-white" style="font-size: 60px;">
-                    <span>IMC</span>
-                </div>
-                <div class="col-2 text-end align-self-center">
-                    <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
+                <div class="col-12 color-white fs-large">
+                    <span>Ferramentas</span>
                 </div>
             </div>
-        </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="hidratacao"
-            onclick="load('calculadoraHidratacao.html');">
-            <div class="row">
-                <div class="col-10 color-white" style="font-size: 60px;">
-                    <span>Hidratação</span>
+            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none"
+                onclick="load('calculadoraImc.html');" id="imc">
+                <div class="color-white d-flex flex-column fs-small fw-500">
+                    <div class="row">
+                        <div class="col-10 color-white fs-medium">
+                            <span>IMC</span>
+                        </div>
+                        <div class="col-2 text-end align-self-center">
+                            <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-2 text-end align-self-center">
-                    <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
+            </div>
+            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none"
+                onclick="load('calculadoraHidratacao.html');" id="hidratacao">
+                <div class="color-white d-flex flex-column fs-small fw-500">
+                    <div class="row">
+                        <div class="col-10 color-white fs-medium">
+                            <span>Hidratação</span>
+                        </div>
+                        <div class="col-2 text-end align-self-center">
+                            <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,13 +101,6 @@
                 </div>
             </div>
         </div>
-        <script>
-
-            $(document).ready(function () {
-            });
-
-
-        </script>
 
 </body>
 
