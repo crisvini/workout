@@ -97,32 +97,31 @@
     <script>
 
         $(document).ready(function () {
+        });
 
-            $("#sair_btn").click(function () {
-                Swal.fire({
-                    text: 'Tem certeza que deseja sair?',
-                    icon: 'warning',
-                    confirmButtonText: 'Sim',
-                    cancelButtonText: 'Não',
-                    showCancelButton: true,
-                    width: '90%',
-                    background: '#191919',
-                    position: 'center',
-                    customClass: {
-                        cancelButton: 'btn btn-primary-swal-2',
-                        confirmButton: 'btn btn-secondary-swal-2',
-                        title: 'title-swal',
-                        popup: 'pop-up-swal',
-                        container: 'container-swal-html'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        sessionStorage.clear();
-                        load("index.html");
-                    }
-                })
-            });
-
+        $("#sair_btn").click(function () {
+            Swal.fire({
+                text: 'Tem certeza que deseja sair?',
+                icon: 'warning',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+                showCancelButton: true,
+                width: '90%',
+                background: '#191919',
+                position: 'center',
+                customClass: {
+                    cancelButton: 'btn btn-primary-swal-2',
+                    confirmButton: 'btn btn-secondary-swal-2',
+                    title: 'title-swal',
+                    popup: 'pop-up-swal',
+                    container: 'container-swal-html'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    sessionStorage.clear();
+                    load("index.html");
+                }
+            })
         });
 
     </script>
