@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5">
+        <div class="container mt-5 pb-5">
             <div class="row">
                 <div class="col-12 form-floating">
                     <select class="form-control" id="plano">
@@ -97,7 +97,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="spacer"></div>
+            <div class="row mb-5 w-90 m-auto fixed-bottom">
                 <div class="col-12">
                     <button type="button" class="btn btn-primary" id="assinar_btn" disabled>Assinar</button>
                 </div>
@@ -108,9 +109,6 @@
     <script>
 
         $(document).ready(function () {
-
-            // Insere o head no html
-            head();
 
             // Máscara dos campos
             $("#numero_cartao").mask("0000 0000 0000 0000");
@@ -142,9 +140,7 @@
 
             // Faz o usuário quando o cliente realiza a assinatura
             $('#assinar_btn').click(function () {
-
-                alert('login');
-
+                load("objetivo.html");
             });
 
         });
