@@ -403,3 +403,11 @@ body {
 .fw-500 {
     font-weight: 500;
 }
+
+.spacer {
+    height: 250px;
+}
+
+.w-90 {
+    width: 90% !important;
+}
