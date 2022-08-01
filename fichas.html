@@ -82,6 +82,7 @@
                 </div>
             </div>
         </div>
+        <div class="spacer"></div>
         <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20"
             style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
             <div class="row">
@@ -96,7 +97,8 @@
                     <span class="fs-extra-small color-pink">Treino</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('metas.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
+                    onclick="load('minhasMetas.html')">
                     <i class="fa-solid fa-list-check color-pink"></i><br>
                     <span class="fs-extra-small">Metas</span>
                 </div>
@@ -112,42 +114,43 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
+    <script>
 
-            $(document).ready(() => {
+        $(document).ready(() => {
 
-                // Mostra o dia da semana
-                const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-                var dia = new Date();
-                dia = diasSemana[dia.getDay()];
+            // Mostra o dia da semana
+            const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+            var dia = new Date();
+            dia = diasSemana[dia.getDay()];
 
-                if (dia == 'Domingo') {
-                    $("#domingo").removeClass("bg-gray");
-                    $("#domingo").addClass("bg-pink");
-                } else if (dia == 'Segunda') {
-                    $("#segunda").removeClass("bg-gray");
-                    $("#segunda").addClass("bg-pink");
-                } else if (dia == 'Terça') {
-                    $("#terca").removeClass("bg-gray");
-                    $("#terca").addClass("bg-pink");
-                } else if (dia == 'Quarta') {
-                    $("#quarta").removeClass("bg-gray");
-                    $("#quarta").addClass("bg-pink");
-                } else if (dia == 'Quinta') {
-                    $("#quinta").removeClass("bg-gray");
-                    $("#quinta").addClass("bg-pink");
-                } else if (dia == 'Sexta') {
-                    $("#sexta").removeClass("bg-gray");
-                    $("#sexta").addClass("bg-pink");
-                } else if (dia == 'Sábado') {
-                    $("#sabado").removeClass("bg-gray");
-                    $("#sabado").addClass("bg-pink");
-                }
+            if (dia == 'Domingo') {
+                $("#domingo").removeClass("bg-gray");
+                $("#domingo").addClass("bg-pink");
+            } else if (dia == 'Segunda') {
+                $("#segunda").removeClass("bg-gray");
+                $("#segunda").addClass("bg-pink");
+            } else if (dia == 'Terça') {
+                $("#terca").removeClass("bg-gray");
+                $("#terca").addClass("bg-pink");
+            } else if (dia == 'Quarta') {
+                $("#quarta").removeClass("bg-gray");
+                $("#quarta").addClass("bg-pink");
+            } else if (dia == 'Quinta') {
+                $("#quinta").removeClass("bg-gray");
+                $("#quinta").addClass("bg-pink");
+            } else if (dia == 'Sexta') {
+                $("#sexta").removeClass("bg-gray");
+                $("#sexta").addClass("bg-pink");
+            } else if (dia == 'Sábado') {
+                $("#sabado").removeClass("bg-gray");
+                $("#sabado").addClass("bg-pink");
+            }
 
-            });
+        });
 
-        </script>
+    </script>
 
 </body>
 
