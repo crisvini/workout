@@ -31,7 +31,8 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-10 text-start p-0">
-                    <span class="color-white fs-medium" style="font-weight: 500; line-height: normal;">Bom dia,
+                    <span class="color-white fs-medium" style="font-weight: 500; line-height: normal;"><span
+                            id="welcome"></span>,
                         Cristian</span>
                 </div>
                 <div class="col-2 text-end p-0">
@@ -91,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" onclick="load('minhasMetas.html');">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" onclick="load('minhasminhasMetas.html');">
             <div class="row">
                 <div class="col-10 color-white fs-large">
                     <span>Minhas metas</span>
@@ -117,16 +118,16 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking" onclick="load('ranking.html')">
             <div class="row">
                 <div class="col-10 color-white fs-large">
-                    <span>Ranking</span>
+                    <span>Ranking semanal</span>
                 </div>
                 <div class="col-2 text-end align-self-center">
                     <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
                 </div>
             </div>
-            <div class="row mt-4 bg-light-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
                 <div class="color-white d-flex flex-column fs-small fw-500">
                     <div class="row">
                         <div class="col-1">
@@ -153,34 +154,36 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20"
-        style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
-        <div class="row">
-            <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.html')">
-                <i class="fa-solid fa-house color-pink"></i><br>
-                <span class="fs-extra-small color-pink">Início</span>
-            </div>
-            <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.html')">
-                <i class="fa-solid fa-dumbbell color-pink"></i><br>
-                <span class="fs-extra-small">Treino</span>
-            </div>
-            <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('metas.html')">
-                <i class="fa-solid fa-list-check color-pink"></i><br>
-                <span class="fs-extra-small">Metas</span>
-            </div>
-            <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.html')">
-                <i class="fa-solid fa-ranking-star color-pink"></i><br>
-                <span class="fs-extra-small">Ranking</span>
-            </div>
-            <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
-                onclick="load('perfil.html')">
-                <i class="fa-solid fa-circle-user color-pink"></i><br>
-                <span class="fs-extra-small">Perfil</span>
+        <div class="spacer"></div>
+        <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20"
+            style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+            <div class="row">
+                <div class="col text-white m-0 text-center color-white fs-medium"
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.html')">
+                    <i class="fa-solid fa-house color-pink"></i><br>
+                    <span class="fs-extra-small color-pink">Início</span>
+                </div>
+                <div class="col text-white m-0 text-center color-white fs-medium"
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.html')">
+                    <i class="fa-solid fa-dumbbell color-pink"></i><br>
+                    <span class="fs-extra-small">Treino</span>
+                </div>
+                <div class="col text-white m-0 text-center color-white fs-medium"
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
+                    onclick="load('minhasMetas.html')">
+                    <i class="fa-solid fa-list-check color-pink"></i><br>
+                    <span class="fs-extra-small">Metas</span>
+                </div>
+                <div class="col text-white m-0 text-center color-white fs-medium"
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.html')">
+                    <i class="fa-solid fa-ranking-star color-pink"></i><br>
+                    <span class="fs-extra-small">Ranking</span>
+                </div>
+                <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
+                    onclick="load('perfil.html')">
+                    <i class="fa-solid fa-circle-user color-pink"></i><br>
+                    <span class="fs-extra-small">Perfil</span>
+                </div>
             </div>
         </div>
     </div>
@@ -189,11 +192,10 @@
 
         $(document).ready(() => {
 
-            // Mostra o dia da semana
+            // Altera o dia da semana
             const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
             var dia = new Date();
             dia = diasSemana[dia.getDay()];
-
             if (dia == 'Domingo') {
                 $("#domingo").removeClass("bg-gray");
                 $("#domingo").addClass("bg-pink");
@@ -215,6 +217,17 @@
             } else if (dia == 'Sábado') {
                 $("#sabado").removeClass("bg-gray");
                 $("#sabado").addClass("bg-pink");
+            }
+
+            // Altera o bom dia
+            var hora = new Date();
+            hora = hora.getHours();
+            if (hora >= 0 && hora <= 11) {
+                $("#welcome").text("Bom dia");
+            } else if (hora >= 12 && hora <= 17) {
+                $("#welcome").text("Boa tarde");
+            } else if (hora >= 18 && hora <= 11) {
+                $("#welcome").text("Boa noite");
             }
 
         });
