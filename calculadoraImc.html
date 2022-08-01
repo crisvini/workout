@@ -114,6 +114,7 @@
                 </div>
             </div>
         </div>
+        <div class="spacer"></div>
         <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20"
             style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
             <div class="row">
@@ -128,7 +129,8 @@
                     <span class="fs-extra-small">Treino</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('metas.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
+                    onclick="load('minhasMetas.html')">
                     <i class="fa-solid fa-list-check color-pink"></i><br>
                     <span class="fs-extra-small">Metas</span>
                 </div>
@@ -144,42 +146,44 @@
                 </div>
             </div>
         </div>
-        <script>
+    </div>
 
-            $(document).ready(function () {
-                $("#altura").mask("000");
-                $("#peso").mask("000");
-            });
+    <script>
 
-            $("#calcular").click(function () {
-                if ($("#altura").val() != "" && $("#peso").val() != "") {
-                    var imc = (parseFloat($("#peso").cleanVal()) / (parseFloat($("#altura").cleanVal()) * parseFloat($("#altura").cleanVal())) * 10000).toFixed(2);
-                    $("#imc").text("Seu IMC é de " + imc + " kg/m²");
-                    if (imc < 18.5) {
-                        $("#linha1").addClass("bg-pink");
-                        $("#linha2, #linha3, #linha4").removeClass("bg-pink");
-                    } else if (imc > 18.49 && imc < 25) {
-                        $("#linha2").addClass("bg-pink");
-                        $("#linha1, #linha3, #linha4").removeClass("bg-pink");
-                    } else if (imc > 24.99 && imc < 30) {
-                        $("#linha3").addClass("bg-pink");
-                        $("#linha1, #linha2, #linha4").removeClass("bg-pink");
-                    } else {
-                        $("#linha4").addClass("bg-pink");
-                        $("#linha1, #linha2, #linha3").removeClass("bg-pink");
-                    }
-                    $("#tabela_imc").removeClass("d-none");
+        $(document).ready(function () {
+            $("#altura").mask("000");
+            $("#peso").mask("000");
+        });
+
+        $("#calcular").click(function () {
+            if ($("#altura").val() != "" && $("#peso").val() != "") {
+                var imc = (parseFloat($("#peso").cleanVal()) / (parseFloat($("#altura").cleanVal()) * parseFloat($("#altura").cleanVal())) * 10000).toFixed(2);
+                $("#imc").text("Seu IMC é de " + imc + " kg/m²");
+                if (imc < 18.5) {
+                    $("#linha1").addClass("bg-pink");
+                    $("#linha2, #linha3, #linha4").removeClass("bg-pink");
+                } else if (imc > 18.49 && imc < 25) {
+                    $("#linha2").addClass("bg-pink");
+                    $("#linha1, #linha3, #linha4").removeClass("bg-pink");
+                } else if (imc > 24.99 && imc < 30) {
+                    $("#linha3").addClass("bg-pink");
+                    $("#linha1, #linha2, #linha4").removeClass("bg-pink");
                 } else {
-                    if ($("#altura").val() == "") {
-                        alertaPreenchimento('#altura', '#label_altura');
-                    }
-                    if ($("#peso").val() == "") {
-                        alertaPreenchimento('#peso', '#label_peso');
-                    }
+                    $("#linha4").addClass("bg-pink");
+                    $("#linha1, #linha2, #linha3").removeClass("bg-pink");
                 }
-            });
+                $("#tabela_imc").removeClass("d-none");
+            } else {
+                if ($("#altura").val() == "") {
+                    alertaPreenchimento('#altura', '#label_altura');
+                }
+                if ($("#peso").val() == "") {
+                    alertaPreenchimento('#peso', '#label_peso');
+                }
+            }
+        });
 
-        </script>
+    </script>
 
 </body>
 
