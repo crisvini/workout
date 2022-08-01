@@ -32,7 +32,7 @@
             <div class="row py-4 bg-peito br-bt-20 h-100">
                 <div class="col-12 px-2">
                     <div>
-                        <i class="fa-solid fa-angle-left back-button-2" onclick="load('home.html');"></i>
+                        <i class="fa-solid fa-angle-left back-button-2" onclick="load('home.php');"></i>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between w-100 mx-0 px-0" style="position: absolute; bottom: 51%">
@@ -351,14 +351,14 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    load("home.html");
+                    load("home.php");
                 }
             })
         });
 
         // Atualiza o timer a cada segundo
         timer.addEventListener('secondsUpdated', function (e) {
-            $('#timer').html(timer.getTimeValues().toString());
+            $('#timer').php(timer.getTimeValues().toString());
         });
 
     </script>

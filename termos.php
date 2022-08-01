@@ -31,7 +31,7 @@
         <div class="container" style="max-width: 100% !important;">
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.html?paginaAnterior=termos');"
+                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.php?paginaAnterior=termos');"
                         id="back_btn"></i>
                     <span class="logo-font"
                         style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
@@ -144,7 +144,7 @@
         <div class="row w-90 fixed-bottom m-auto mb-5">
             <div class="col-12">
                 <button type="button" class="btn btn-primary"
-                    onclick="load('index.html?paginaAnterior=termos')">Voltar</button>
+                    onclick="load('index.php?paginaAnterior=termos')">Voltar</button>
             </div>
         </div>
 

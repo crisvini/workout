@@ -31,7 +31,7 @@
         <div class="container" style="max-width: 100% !important;">
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.html');"></i>
+                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.php');"></i>
                     <span class="logo-font"
                         style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
@@ -60,34 +60,34 @@
         style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
         <div class="row">
             <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.html')">
+                style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
                 <i class="fa-solid fa-house color-pink"></i><br>
                 <span class="fs-extra-small">Início</span>
             </div>
             <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.html')">
+                style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
                 <i class="fa-solid fa-dumbbell color-pink"></i><br>
                 <span class="fs-extra-small">Treino</span>
             </div>
             <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('minhasMetas.html')">
+                style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('minhasMetas.php')">
                 <i class="fa-solid fa-list-check color-pink"></i><br>
                 <span class="fs-extra-small">Metas</span>
             </div>
             <div class="col text-white m-0 text-center color-white fs-medium"
-                style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.html')">
+                style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
                 <i class="fa-solid fa-ranking-star color-pink"></i><br>
                 <span class="fs-extra-small">Ranking</span>
             </div>
             <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
-                onclick="load('perfil.html')">
+                onclick="load('perfil.php')">
                 <i class="fa-solid fa-circle-user color-pink"></i><br>
                 <span class="fs-extra-small color-pink">Perfil</span>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <button type="button" class="btn btn-primary" onclick="load('objetivo.html?paginaAnterior=perfil')">Selecionar
+                <button type="button" class="btn btn-primary" onclick="load('objetivo.php?paginaAnterior=perfil')">Selecionar
                     objetivo</button>
             </div>
         </div>
@@ -120,7 +120,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     sessionStorage.clear();
-                    load("index.html");
+                    load("index.php");
                 }
             })
         });

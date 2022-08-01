@@ -136,7 +136,7 @@
                                 <input type="checkbox" class="form-check-input" id="termos"
                                     onchange="alertaPreenchimento('#termos', '#label_termos');">
                                 <label class="form-check-label" for="termos" id="label_termos">Declaro que li e aceito
-                                    os <span style="text-decoration: underline;" onclick="load('termos.html');">termos
+                                    os <span style="text-decoration: underline;" onclick="load('termos.php');">termos
                                         de
                                         uso e política de privacidade</span></label>
                             </div>
@@ -270,7 +270,7 @@
                     $("#email").val("");
                     alertaPreenchimento('#email', '#label_email');
                 } else
-                    load("home.html");
+                    load("home.php");
 
 
             } else {
@@ -322,7 +322,7 @@
                 && $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) != false && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
                 sessionStorage.setItem("cpf", $("#cpf").cleanVal());
                 sessionStorage.setItem("cad_email", $("#cad_email").val());
-                load("cadastroDadosPagamento.html");
+                load("cadastroDadosPagamento.php");
             } else {
                 alertaPreenchimento('#nome', '#label_nome');
                 if (testaCpf($("#cpf").cleanVal()) == false || $("#cpf").val() == "") {

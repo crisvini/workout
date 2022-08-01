@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Workout - Início</title>
+    <title>Workout</title>
     <!-- JS -->
     <script src="./style/bootstrap5/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./lib/jquery/node_modules/jquery/dist/jquery.min.js"></script>
@@ -27,58 +27,45 @@
 
 <body class="bg-black" id="body">
 
-    <div class="entire-screen mb-5">
+    <div class="entire-screen">
         <div class="container" style="max-width: 100% !important;">
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.html');"></i>
+                    <i class="fa-solid fa-angle-left back-button" onclick="load('ferramentas.php');"></i>
                     <span class="logo-font"
                         style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
                 </div>
             </div>
         </div>
-        <div class="container h-25 mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.html')">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
-                <div class="color-white fs-medium">
-                    <span>Treino do dia</span>
+                <div class="col color-white text-center fs-large">
+                    <span>Calculadora de Hidratação</span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 form-floating">
+                    <input type="tel" class="form-control" id="peso" maxlength="3" placeholder="peso"
+                        onchange="alertaPreenchimento('#peso', '#label_peso');">
+                    <label for="peso" class="custom-label" id="label_peso">Peso (KG)</label>
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="color-white fs-extra-large">
-                    <span>Ficha A</span>
-                </div>
-            </div>
-            <div class="row mt-5" style="position: absolute; bottom: 66.5%">
-                <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>9 exercícios</span>
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-primary" id="calcular">Calcular</button>
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-triceps image-disabled br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.html')">
-            <div class="row py-5">
-                <div class="color-white fs-extra-large">
-                    <span>Ficha B</span>
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+            <div class="row">
+                <div class="col color-white text-center fs-large">
+                    <span class="color-pink">Resultado</span>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>11 exercícios</span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 bg-biceps image-disabled br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.html')">
-            <div class="row py-5">
-                <div class="color-white fs-extra-large">
-                    <span>Ficha C</span>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>10 exercícios</span>
+            <div class="row">
+                <div class="col color-white text-center fs-large">
+                    <span id="agua">?</span>
                 </div>
             </div>
         </div>
@@ -87,28 +74,28 @@
             style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
             <div class="row">
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
                     <i class="fa-solid fa-house color-pink"></i><br>
                     <span class="fs-extra-small">Início</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
                     <i class="fa-solid fa-dumbbell color-pink"></i><br>
-                    <span class="fs-extra-small color-pink">Treino</span>
+                    <span class="fs-extra-small">Treino</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
                     style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
-                    onclick="load('minhasMetas.html')">
+                    onclick="load('minhasMetas.php')">
                     <i class="fa-solid fa-list-check color-pink"></i><br>
                     <span class="fs-extra-small">Metas</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
                     <i class="fa-solid fa-ranking-star color-pink"></i><br>
                     <span class="fs-extra-small">Ranking</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
-                    onclick="load('perfil.html')">
+                    onclick="load('perfil.php')">
                     <i class="fa-solid fa-circle-user color-pink"></i><br>
                     <span class="fs-extra-small">Perfil</span>
                 </div>
@@ -118,36 +105,15 @@
 
     <script>
 
-        $(document).ready(() => {
+        $(document).ready(function () {
+            $("#peso").mask("000");
+        });
 
-            // Mostra o dia da semana
-            const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-            var dia = new Date();
-            dia = diasSemana[dia.getDay()];
-
-            if (dia == 'Domingo') {
-                $("#domingo").removeClass("bg-gray");
-                $("#domingo").addClass("bg-pink");
-            } else if (dia == 'Segunda') {
-                $("#segunda").removeClass("bg-gray");
-                $("#segunda").addClass("bg-pink");
-            } else if (dia == 'Terça') {
-                $("#terca").removeClass("bg-gray");
-                $("#terca").addClass("bg-pink");
-            } else if (dia == 'Quarta') {
-                $("#quarta").removeClass("bg-gray");
-                $("#quarta").addClass("bg-pink");
-            } else if (dia == 'Quinta') {
-                $("#quinta").removeClass("bg-gray");
-                $("#quinta").addClass("bg-pink");
-            } else if (dia == 'Sexta') {
-                $("#sexta").removeClass("bg-gray");
-                $("#sexta").addClass("bg-pink");
-            } else if (dia == 'Sábado') {
-                $("#sabado").removeClass("bg-gray");
-                $("#sabado").addClass("bg-pink");
-            }
-
+        $("#calcular").click(function () {
+            if ($("#peso").val() != "")
+                $("#agua").text("Você deve beber " + (parseFloat($("#peso").cleanVal()) * 35) + " ml de água por dia");
+            else
+                alertaPreenchimento('#peso', '#label_peso');
         });
 
     </script>

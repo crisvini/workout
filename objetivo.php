@@ -83,10 +83,10 @@
                             container: 'container-swal-html'
                         }
                     }).then(() => {
-                        load('home.html');
+                        load('home.php');
                     });
                 } else if ($(this).attr("id") == "back_btn")
-                    load('perfil.html');
+                    load('perfil.php');
             } else {
                 if ($(this).attr("id") == "finalizar_btn")
                     Swal.fire({
@@ -103,10 +103,10 @@
                             container: 'container-swal-html'
                         }
                     }).then(() => {
-                        load('home.html');
+                        load('home.php');
                     });
                 else
-                    load('cadastroDadosPagamento.html');
+                    load('cadastroDadosPagamento.php');
             }
         });
     </script>

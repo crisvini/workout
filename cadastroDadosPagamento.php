@@ -31,7 +31,7 @@
         <div class="container" style="max-width: 100% !important;">
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.html');"></i>
+                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.php');"></i>
                     <span class="logo-font"
                         style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
@@ -140,7 +140,7 @@
 
             // Faz o usuário quando o cliente realiza a assinatura
             $('#assinar_btn').click(function () {
-                load("objetivo.html");
+                load("objetivo.php");
             });
 
         });

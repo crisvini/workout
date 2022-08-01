@@ -36,7 +36,7 @@
                         Cristian</span>
                 </div>
                 <div class="col-2 text-end p-0">
-                    <i class="fa-solid fa-circle-user color-white fs-large" onclick="load('perfil.html');"
+                    <i class="fa-solid fa-circle-user color-white fs-large" onclick="load('perfil.php');"
                         id="perfil"></i>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.html')">
+        <div class="container mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row">
                 <div class="color-white fs-medium">
                     <span>Treino do dia</span>
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" onclick="load('minhasminhasMetas.html');">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" onclick="load('minhasminhasMetas.php');">
             <div class="row">
                 <div class="col-10 color-white fs-large">
                     <span>Minhas metas</span>
@@ -118,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking" onclick="load('ranking.html')">
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking" onclick="load('ranking.php')">
             <div class="row">
                 <div class="col-10 color-white fs-large">
                     <span>Ranking semanal</span>
@@ -144,7 +144,7 @@
             </div>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ferramentas"
-            onclick="load('ferramentas.html');">
+            onclick="load('ferramentas.php');">
             <div class="row">
                 <div class="col-10 color-white fs-large">
                     <span>Ferramentas</span>
@@ -159,28 +159,28 @@
             style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
             <div class="row">
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
                     <i class="fa-solid fa-house color-pink"></i><br>
                     <span class="fs-extra-small color-pink">Início</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
                     <i class="fa-solid fa-dumbbell color-pink"></i><br>
                     <span class="fs-extra-small">Treino</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
                     style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
-                    onclick="load('minhasMetas.html')">
+                    onclick="load('minhasMetas.php')">
                     <i class="fa-solid fa-list-check color-pink"></i><br>
                     <span class="fs-extra-small">Metas</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.html')">
+                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
                     <i class="fa-solid fa-ranking-star color-pink"></i><br>
                     <span class="fs-extra-small">Ranking</span>
                 </div>
                 <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
-                    onclick="load('perfil.html')">
+                    onclick="load('perfil.php')">
                     <i class="fa-solid fa-circle-user color-pink"></i><br>
                     <span class="fs-extra-small">Perfil</span>
                 </div>
