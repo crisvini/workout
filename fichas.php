@@ -2,27 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Workout - Início</title>
-    <!-- JS -->
-    <script src="./style/bootstrap5/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./lib/jquery/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./lib/jqueryMask/jquery.mask.js"></script>
-    <script src="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="./js/functions.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style/bootstrap5/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style/styles.css">
-    <link rel="stylesheet" href="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="./style/fontAwesome/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+    <?php include('./head.php') ?>
 </head>
 
 <body class="bg-black" id="body">
@@ -32,14 +12,12 @@
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
                     <i class="fa-solid fa-angle-left back-button" onclick="load('home.php');"></i>
-                    <span class="logo-font"
-                        style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
                 </div>
             </div>
         </div>
-        <div class="container h-25 mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.php')">
+        <div class="container h-25 mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row">
                 <div class="color-white fs-medium">
                     <span>Treino do dia</span>
@@ -56,8 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-triceps image-disabled br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.php')">
+        <div class="container mt-5 bg-triceps image-disabled br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row py-5">
                 <div class="color-white fs-extra-large">
                     <span>Ficha B</span>
@@ -69,8 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-biceps image-disabled br-20" style="padding: 3%;" id="treino_dia"
-            onclick="load('treino.php')">
+        <div class="container mt-5 bg-biceps image-disabled br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row py-5">
                 <div class="color-white fs-extra-large">
                     <span>Ficha C</span>
@@ -83,32 +59,25 @@
             </div>
         </div>
         <div class="spacer"></div>
-        <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20"
-            style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+        <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
             <div class="row">
-                <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
+                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
                     <i class="fa-solid fa-house color-pink"></i><br>
                     <span class="fs-extra-small">Início</span>
                 </div>
-                <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
+                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
                     <i class="fa-solid fa-dumbbell color-pink"></i><br>
                     <span class="fs-extra-small color-pink">Treino</span>
                 </div>
-                <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_metas"
-                    onclick="load('minhasMetas.php')">
+                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('minhasMetas.php')">
                     <i class="fa-solid fa-list-check color-pink"></i><br>
                     <span class="fs-extra-small">Metas</span>
                 </div>
-                <div class="col text-white m-0 text-center color-white fs-medium"
-                    style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
+                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
                     <i class="fa-solid fa-ranking-star color-pink"></i><br>
                     <span class="fs-extra-small">Ranking</span>
                 </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil"
-                    onclick="load('perfil.php')">
+                <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil" onclick="load('perfil.php')">
                     <i class="fa-solid fa-circle-user color-pink"></i><br>
                     <span class="fs-extra-small">Perfil</span>
                 </div>
@@ -117,7 +86,6 @@
     </div>
 
     <script>
-
         $(document).ready(() => {
 
             // Mostra o dia da semana
@@ -149,7 +117,6 @@
             }
 
         });
-
     </script>
 
 </body>

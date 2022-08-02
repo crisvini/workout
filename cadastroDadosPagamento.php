@@ -2,27 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Workout - Plano</title>
-    <!-- JS -->
-    <script src="./style/bootstrap5/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./lib/jquery/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./lib/jqueryMask/jquery.mask.js"></script>
-    <script src="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="./js/functions.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style/bootstrap5/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style/styles.css">
-    <link rel="stylesheet" href="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="./style/fontAwesome/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+    <?php include('./head.php') ?>
 </head>
 
 <body class="bg-black" id="body">
@@ -32,8 +12,7 @@
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
                     <i class="fa-solid fa-angle-left back-button" onclick="load('index.php');"></i>
-                    <span class="logo-font"
-                        style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
                 </div>
             </div>
@@ -52,45 +31,39 @@
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="numero_cartao" placeholder="Número do cartão"
-                        onchange="alertaPreenchimento('#numero_cartao', '#label_numero_cartao');">
+                    <input type="tel" class="form-control" id="numero_cartao" placeholder="Número do cartão" onchange="alertaPreenchimento('#numero_cartao', '#label_numero_cartao');">
                     <label for="numero_cartao" class="custom-label" id="label_numero_cartao">Número do
                         cartão</label>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
-                    <input type="text" class="form-control" id="titular" placeholder="Titular do cartão"
-                        onchange="alertaPreenchimento('#titular', '#label_titular');">
+                    <input type="text" class="form-control" id="titular" placeholder="Titular do cartão" onchange="alertaPreenchimento('#titular', '#label_titular');">
                     <label for="titular" class="custom-label" id="label_titular">Titular do cartão</label>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="vencimento" placeholder="Vencimento"
-                        onchange="alertaPreenchimento('#vencimento', '#label_vencimento');">
+                    <input type="tel" class="form-control" id="vencimento" placeholder="Vencimento" onchange="alertaPreenchimento('#vencimento', '#label_vencimento');">
                     <label for="vencimento" class="custom-label" id="label_vencimento">Vencimento</label>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="cvv" placeholder="CVV"
-                        onchange="alertaPreenchimento('#cvv', '#label_cvv');" maxlength="4">
+                    <input type="tel" class="form-control" id="cvv" placeholder="CVV" onchange="alertaPreenchimento('#cvv', '#label_cvv');" maxlength="4">
                     <label for="cvv" class="custom-label" id="label_cvv">CVV</label>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="cpf_titular" placeholder="CPF do titular"
-                        onchange="alertaPreenchimento('#cpf_titular', '#label_cpf_titular');">
+                    <input type="tel" class="form-control" id="cpf_titular" placeholder="CPF do titular" onchange="alertaPreenchimento('#cpf_titular', '#label_cpf_titular');">
                     <label for="cpf_titular" class="custom-label" id="label_cpf_titular">CPF do titular</label>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 form-floating">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="termos"
-                            onchange="alertaPreenchimento('#termos', '#label_termos');">
+                        <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
                         <label class="form-check-label" for="check1">Entendo que é uma cobrança
                             recorrente e que o plano não pode ser cancelado ou reembolsado durante sua
                             duração</label>
@@ -107,8 +80,7 @@
     </div>
 
     <script>
-
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             // Máscara dos campos
             $("#numero_cartao").mask("0000 0000 0000 0000");
@@ -117,20 +89,20 @@
             $("#cpf_titular").mask("000.000.000-00");
 
             // Impede a digitação de caracteres inválidos
-            $('#titular').bind('keyup blur', function () {
+            $('#titular').bind('keyup blur', function() {
                 var node = $(this);
                 node.val(node.val().replace(/[¨*`!@#$%&()_={}[\]:;,.<>+\/?-]/, ''));
                 node.val(node.val().replace(/[0-9]/g, ''));
             });
 
             // Habilita o botao se todos os campos estiverem preenchidos
-            $('#plano, #numero_cartao, #titular, #vencimento, #cvv, #cpf_titular, #termos').on('input', function () {
+            $('#plano, #numero_cartao, #titular, #vencimento, #cvv, #cpf_titular, #termos').on('input', function() {
 
                 var numeroCartao = $("#numero_cartao").cleanVal();
                 var cvv = $("#cvv").cleanVal();
 
-                if ($("#plano").val() != "" && $("#numero_cartao").val() != "" && numeroCartao.length == 16 && $("#titular").val() != "" && $("#vencimento").val() != "" && $("#cvv").val() != ""
-                    && cvv.length == 3 && $("#cpf_titular").val() != "" && testaCpf($("#cpf_titular").cleanVal()) != false && $("#termos").prop("checked") == true) {
+                if ($("#plano").val() != "" && $("#numero_cartao").val() != "" && numeroCartao.length == 16 && $("#titular").val() != "" && $("#vencimento").val() != "" && $("#cvv").val() != "" &&
+                    cvv.length == 3 && $("#cpf_titular").val() != "" && testaCpf($("#cpf_titular").cleanVal()) != false && $("#termos").prop("checked") == true) {
                     $('#assinar_btn').prop('disabled', false);
                 } else {
                     $('#assinar_btn').prop('disabled', true);
@@ -139,12 +111,11 @@
             });
 
             // Faz o usuário quando o cliente realiza a assinatura
-            $('#assinar_btn').click(function () {
+            $('#assinar_btn').click(function() {
                 load("objetivo.php");
             });
 
         });
-
     </script>
 
 </body>

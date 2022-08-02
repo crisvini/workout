@@ -2,27 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Workout</title>
-    <!-- JS -->
-    <script src="./style/bootstrap5/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./lib/jquery/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./lib/jqueryMask/jquery.mask.js"></script>
-    <script src="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="./js/functions.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style/bootstrap5/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style/styles.css">
-    <link rel="stylesheet" href="./lib/swal2/node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="./style/fontAwesome/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+    <?php include('./head.php') ?>
 </head>
 
 <body class="bg-black" id="body">
@@ -31,10 +11,8 @@
         <div class="container" style="max-width: 100% !important;">
             <div class="row pt-4 pb-4 bg-black">
                 <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.php?paginaAnterior=termos');"
-                        id="back_btn"></i>
-                    <span class="logo-font"
-                        style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.php?paginaAnterior=termos');" id="back_btn"></i>
+                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
                 </div>
             </div>
@@ -143,8 +121,7 @@
         <div class="spacer"></div>
         <div class="row w-90 fixed-bottom m-auto mb-5">
             <div class="col-12">
-                <button type="button" class="btn btn-primary"
-                    onclick="load('index.php?paginaAnterior=termos')">Voltar</button>
+                <button type="button" class="btn btn-primary" onclick="load('index.php?paginaAnterior=termos')">Voltar</button>
             </div>
         </div>
 
