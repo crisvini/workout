@@ -17,12 +17,10 @@
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-black overflow-hidden" id="body">
@@ -40,8 +38,7 @@
                     </div>
                     <div class="row" style="margin-bottom: 15%;">
                         <div class="col-12 text-center">
-                            <span class="logo-font"
-                                style="color: #e30b5c; font-weight: bold; font-size: 140px; line-height: normal;">Workout
+                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 140px; line-height: normal;">Workout
                                 <i class="fa-solid fa-dumbbell"></i></span>
                         </div>
                     </div>
@@ -49,19 +46,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="email@email.com"
-                                maxlength="100" onchange="alertaPreenchimento('#email', '#label_email');">
+                            <input type="email" class="form-control" id="email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#email', '#label_email');">
                             <label for="email" class="custom-label" id="label_email">E-mail</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
-                            <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;"
-                                id="open_eye"></i>
-                            <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;"
-                                id="closed_eye"></i>
-                            <input type="password" class="form-control" id="senha" placeholder="senha"
-                                onchange="alertaPreenchimento('#senha', '#label_senha');">
+                            <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye"></i>
+                            <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye"></i>
+                            <input type="password" class="form-control" id="senha" placeholder="senha" onchange="alertaPreenchimento('#senha', '#label_senha');">
                             <label for="senha" class="custom-label" id="label_senha">Senha</label>
                         </div>
                     </div>
@@ -71,8 +64,7 @@
                             <button type="button" class="btn btn-primary" id="login_btn" disabled>Entrar</button>
                         </div>
                         <div class="col-12 text-center mt-5">
-                            <span class="link-login" style="text-decoration: underline;"
-                                onclick="$('#next').click()">Não tem uma conta?
+                            <span class="link-login" style="text-decoration: underline;" onclick="$('#next').click()">Não tem uma conta?
                                 Criar</span>
                         </div>
                     </div>
@@ -84,8 +76,7 @@
                     <div class="row pt-4 pb-4 bg-black">
                         <div class="col text-center">
                             <i class="fa-solid fa-angle-left back-button" onclick="$('#previous').click()"></i>
-                            <span class="logo-font"
-                                style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
                                 <i class="fa-solid fa-dumbbell"></i></span>
                         </div>
                     </div>
@@ -93,48 +84,40 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 form-floating">
-                            <input type="text" class="form-control" id="nome" placeholder="Nome"
-                                onchange="alertaPreenchimento('#nome', '#label_nome');">
+                            <input type="text" class="form-control" id="nome" placeholder="Nome" onchange="alertaPreenchimento('#nome', '#label_nome');">
                             <label for="nome" class="custom-label" id="label_nome">Nome</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
-                            <input type="tel" class="form-control" id="cpf" placeholder="CPF"
-                                onchange="alertaPreenchimento('#cpf', '#label_cpf');">
+                            <input type="tel" class="form-control" id="cpf" placeholder="CPF" onchange="alertaPreenchimento('#cpf', '#label_cpf');">
                             <label for="cpf" class="custom-label" id="label_cpf">CPF</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
-                            <input type="tel" class="form-control" id="nascimento" placeholder="Nascimento"
-                                onchange="alertaPreenchimento('#nascimento', '#label_nascimento');">
+                            <input type="tel" class="form-control" id="nascimento" placeholder="Nascimento" onchange="alertaPreenchimento('#nascimento', '#label_nascimento');">
                             <label for="nascimento" class="custom-label" id="label_nascimento">Nascimento</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
-                            <input type="email" class="form-control" id="cad_email" placeholder="email@email.com"
-                                maxlength="100" onchange="alertaPreenchimento('#cad_email', '#label_cad_email');">
+                            <input type="email" class="form-control" id="cad_email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#cad_email', '#label_cad_email');">
                             <label for="cad_email" class="custom-label" id="label_cad_email">Email</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
-                            <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;"
-                                id="open_eye2"></i>
-                            <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;"
-                                id="closed_eye2"></i>
-                            <input type="password" class="form-control" id="cad_senha" placeholder="senha"
-                                onchange="alertaPreenchimento('#cad_senha', '#label_cad_senha');">
+                            <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye2"></i>
+                            <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye2"></i>
+                            <input type="password" class="form-control" id="cad_senha" placeholder="senha" onchange="alertaPreenchimento('#cad_senha', '#label_cad_senha');">
                             <label for="cad_senha" class="custom-label" id="label_cad_senha">Senha</label>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-12 form-floating">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="termos"
-                                    onchange="alertaPreenchimento('#termos', '#label_termos');">
+                                <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
                                 <label class="form-check-label" for="termos" id="label_termos">Declaro que li e aceito
                                     os <span style="text-decoration: underline;" onclick="load('termos.php');">termos
                                         de
@@ -145,8 +128,7 @@
                     <div class="spacer"></div>
                     <div class="row fixed-bottom w-90 m-auto mb-5">
                         <div class="col-12">
-                            <button type="button" class="btn btn-primary" id="prosseguir_btn"
-                                disabled>Prosseguir</button>
+                            <button type="button" class="btn btn-primary" id="prosseguir_btn" disabled>Prosseguir</button>
                         </div>
                     </div>
                 </div>
@@ -154,20 +136,17 @@
         </div>
 
         <!-- Botões de prosseguir e voltar slide -->
-        <button class="carousel-control-prev d-none" type="button" id="previous" data-bs-target="#slider"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev d-none" type="button" id="previous" data-bs-target="#slider" data-bs-slide="prev">
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next d-none" type="button" id="next" data-bs-target="#slider"
-            data-bs-slide="next">
+        <button class="carousel-control-next d-none" type="button" id="next" data-bs-target="#slider" data-bs-slide="next">
             <span class="visually-hidden">Next</span>
         </button>
         <!-- Botões de prosseguir e voltar slide -->
     </div>
 
     <script>
-
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('paginaAnterior');
@@ -194,25 +173,25 @@
         });
 
         // Impede a digitação de caracteres inválidos
-        $('#nome, #responsavel').bind('keyup blur', function () {
+        $('#nome, #responsavel').bind('keyup blur', function() {
             var node = $(this);
             node.val(node.val().replace(/[¨*`!@#$%&()_={}[\]:;,.<>+\/?-]/, ''));
             node.val(node.val().replace(/[0-9]/g, ''));
         });
-        $('#email, #cad_email').bind('keyup blur', function () {
+        $('#email, #cad_email').bind('keyup blur', function() {
             var node = $(this);
             node.val(node.val().replace(/[\s]/, ''));
         });
 
         // Mostra e esconde senha
-        $("#closed_eye").on('click', function () {
+        $("#closed_eye").on('click', function() {
             $("#closed_eye").removeClass("d-block");
             $("#closed_eye").addClass("d-none");
             $("#open_eye").removeClass("d-none");
             $("#open_eye").addClass("d-block");
             $("#senha").attr("type", "text");
         });
-        $("#open_eye").on('click', function () {
+        $("#open_eye").on('click', function() {
             $("#open_eye").removeClass("d-block");
             $("#open_eye").addClass("d-none");
             $("#closed_eye").removeClass("d-none");
@@ -221,14 +200,14 @@
         });
 
         // Mostra e esconde senha na tela de cadastro
-        $("#closed_eye2").on('click', function () {
+        $("#closed_eye2").on('click', function() {
             $("#closed_eye2").removeClass("d-block");
             $("#closed_eye2").addClass("d-none");
             $("#open_eye2").removeClass("d-none");
             $("#open_eye2").addClass("d-block");
             $("#cad_senha").attr("type", "text");
         });
-        $("#open_eye2").on('click', function () {
+        $("#open_eye2").on('click', function() {
             $("#open_eye2").removeClass("d-block");
             $("#open_eye2").addClass("d-none");
             $("#closed_eye2").removeClass("d-none");
@@ -237,7 +216,7 @@
         });
 
         // Habilita o botão de login se os campos de login estiverem preenchidos
-        $("#email, #senha").on('input', function () {
+        $("#email, #senha").on('input', function() {
             if ($("#email").val() != "" && $("#senha").val() != "" && validacaoEmail($("#email").val()) != false)
                 $("#login_btn").attr("disabled", false);
             else
@@ -246,7 +225,7 @@
         });
 
         // Valida os dados inseridos e faz login
-        $("#login_btn").click(function () {
+        $("#login_btn").click(function() {
 
             if ($("#email").val() != "" && $("#senha").val() != "") {
 
@@ -258,14 +237,14 @@
                         icon: 'error',
                         confirmButtonText: 'Entendi',
                         width: '90%',
+                        background: '#191919',
                         position: 'center',
-                        buttonsStyling: false,
                         customClass: {
-                            confirmButton: 'btn btn-primary-swal',
+                            confirmButton: 'btn btn-primary-swal-2',
                             title: 'title-swal',
                             popup: 'pop-up-swal',
-                            container: 'container-swal'
-                        },
+                            container: 'container-swal-html'
+                        }
                     });
                     $("#email").val("");
                     alertaPreenchimento('#email', '#label_email');
@@ -280,14 +259,14 @@
                     icon: 'error',
                     confirmButtonText: 'Entendi',
                     width: '90%',
+                    background: '#191919',
                     position: 'center',
-                    buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-primary-swal',
+                        confirmButton: 'btn btn-primary-swal-2',
                         title: 'title-swal',
                         popup: 'pop-up-swal',
-                        container: 'container-swal'
-                    },
+                        container: 'container-swal-html'
+                    }
                 });
             }
 
@@ -298,7 +277,7 @@
         //     $("#nome").val($("#nome").val().charAt(0).toUpperCase() + $("#nome").val().slice(1));
         // });
 
-        $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('change', function () {
+        $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('change', function() {
             // Salva os dados na session storage do javascript
             if ($(this).attr('id') == 'nome') {
                 $(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().slice(1));
@@ -308,18 +287,18 @@
         });
 
         // Habilita o botão de prosseguir se todos os campos estiverem preenchidos
-        $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('input', function () {
-            if ($("#nome").val() != "" && $("#cpf").val() != "" && $("#nascimento").val() != "" && $("#cad_email").val() != ""
-                && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true)
+        $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('input', function() {
+            if ($("#nome").val() != "" && $("#cpf").val() != "" && $("#nascimento").val() != "" && $("#cad_email").val() != "" &&
+                $("#cad_senha").val() != "" && $("#termos").prop("checked") == true)
                 $("#prosseguir_btn").attr("disabled", false);
             else
                 $("#prosseguir_btn").attr("disabled", true);
         });
 
         // Prossegue se todos os campos estão preenchidos e validados
-        $("#prosseguir_btn").click(function () {
-            if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) != false && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) != false
-                && $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) != false && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
+        $("#prosseguir_btn").click(function() {
+            if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) != false && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) != false &&
+                $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) != false && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
                 sessionStorage.setItem("cpf", $("#cpf").cleanVal());
                 sessionStorage.setItem("cad_email", $("#cad_email").val());
                 load("cadastroDadosPagamento.php");
@@ -346,14 +325,14 @@
                     icon: 'error',
                     confirmButtonText: 'Entendi',
                     width: '90%',
+                    background: '#191919',
                     position: 'center',
-                    buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn btn-primary-swal',
+                        confirmButton: 'btn btn-primary-swal-2',
                         title: 'title-swal',
                         popup: 'pop-up-swal',
-                        container: 'container-swal'
-                    },
+                        container: 'container-swal-html'
+                    }
                 });
             }
         });
@@ -435,7 +414,6 @@
             }
             return (false)
         }
-
     </script>
 
 </body>

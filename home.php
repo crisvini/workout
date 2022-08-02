@@ -226,7 +226,7 @@
                 $("#welcome").text("Bom dia");
             } else if (hora >= 12 && hora <= 17) {
                 $("#welcome").text("Boa tarde");
-            } else if (hora >= 18 && hora <= 11) {
+            } else if (hora >= 18 && hora <= 23) {
                 $("#welcome").text("Boa noite");
             }
 

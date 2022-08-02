@@ -17,12 +17,10 @@
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-black" id="body">
@@ -52,7 +50,7 @@
         <div class="container">
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -75,7 +73,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -98,7 +96,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -121,7 +119,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -144,7 +142,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -167,7 +165,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -190,7 +188,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -213,7 +211,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -236,7 +234,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -259,7 +257,7 @@
             </div>
             <div class="row my-5 bg-gray br-20">
                 <div class="col-4 ps-0 align-self-center">
-                    <img src="../img/treino_background.jpg" class="w-100 br-st-20">
+                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                 </div>
                 <div class="col-8 my-3 align-self-center px-3">
                     <div class="row pe-2 mb-2">
@@ -304,7 +302,6 @@
 
     <script src="./lib/easyTimer/easytimer.min.js"></script>
     <script>
-
         // Inicializa o timer
         var timer = new easytimer.Timer();
 
@@ -357,10 +354,9 @@
         });
 
         // Atualiza o timer a cada segundo
-        timer.addEventListener('secondsUpdated', function (e) {
-            $('#timer').php(timer.getTimeValues().toString());
+        timer.addEventListener('secondsUpdated', function(e) {
+            $('#timer').html(timer.getTimeValues().toString());
         });
-
     </script>
 
 </body>
