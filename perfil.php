@@ -38,7 +38,7 @@ echo $row["nome"];
             </div>
             <div class="row mb-2">
                 <div class="col-12 text-center color-white">
-                    <span class="fs-small"><strong>Código: </strong>832382</span>
+                    <span class="fs-small"><strong>E-mail: </strong>crisvini.leoncini@outlook.com</span>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@ echo $row["nome"];
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <button type="button" class="btn btn-primary" onclick="load('objetivo.php?paginaAnterior=perfil')">Selecionar
+                <button type="button" class="btn btn-primary" onclick="load('objetivo.php?paginaAnterior=perfil')">Alterar
                     objetivo</button>
             </div>
         </div>
