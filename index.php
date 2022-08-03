@@ -254,15 +254,6 @@ $_SESSION = array(); // Limpa a session
             $("#nome").val($("#nome").val().charAt(0).toUpperCase() + $("#nome").val().slice(1));
         });
 
-        // $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('change', function() {
-        //     // Salva os dados na session storage do javascript
-        //     if ($(this).attr('id') == 'nome') {
-        //         $(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().slice(1));
-        //         sessionStorage.setItem($(this).attr("id"), $(this).val());
-        //     } else if ($(this).attr('id') != 'senha' && $(this).attr('id') != 'termos')
-        //         sessionStorage.setItem($(this).attr("id"), $(this).val());
-        // });
-
         // Habilita o botão de prosseguir se todos os campos estiverem preenchidos
         $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('input', function() {
             if ($("#nome").val() != "" && $("#cpf").val() != "" && $("#nascimento").val() != "" && $("#cad_email").val() != "" &&
@@ -274,29 +265,55 @@ $_SESSION = array(); // Limpa a session
 
         // Prossegue se todos os campos estão preenchidos e validados
         $("#prosseguir_btn").click(function(event) {
-            // console.log([$("#nome").val(), $("#cpf").val(), testaCpf($("#cpf").cleanVal()), $("#nascimento").val(), diffYearsNow($("#nascimento").val(), 12, 120),
-            //     $("#cad_email").val(), validacaoEmail($("#cad_email").val()), $("#cad_senha").val(), $("#termos").prop("checked")
-            // ]);
             if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) == true && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) == true &&
                 $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) == true && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
-                $("#cadastro_usuario").submit();
+                event.preventDefault();
+                load();
+                var settings = {
+                    url: './ajax/verificaCadastro.php',
+                    method: 'POST',
+                    data: {
+                        cpf: $("#cpf").val(),
+                        email: $("#cad_email").val()
+                    },
+                }
+                $.ajax(settings).done(function(result) {
+                    if (result == 'invalido') {
+                        stopLoad();
+                        Swal.fire({
+                            title: 'Ops!',
+                            text: 'CPF e/ou E-mail já cadastrados',
+                            icon: 'error',
+                            confirmButtonText: 'Entendi',
+                            width: '90%',
+                            background: '#191919',
+                            position: 'center',
+                            customClass: {
+                                confirmButton: 'btn btn-primary-swal-2',
+                                title: 'title-swal',
+                                popup: 'pop-up-swal',
+                                container: 'container-swal-html'
+                            }
+                        });
+                    } else
+                        $("#cadastro_usuario").submit();
+
+                });
+
             } else {
                 event.preventDefault();
                 alertaPreenchimento('#nome', '#label_nome');
                 if (testaCpf($("#cpf").cleanVal()) == false || $("#cpf").val() == "") {
                     $("#cpf").val("");
                     alertaPreenchimento('#cpf', '#label_cpf');
-                    // console.log('cpf');
                 }
                 if (diffYearsNow($("#nascimento").val(), 12, 120) == false || $("#nascimento").val() == "") {
                     $("#nascimento").val("");
                     alertaPreenchimento('#nascimento', '#label_nascimento');
-                    // console.log('nascimento');
                 }
                 if (validacaoEmail($("#cad_email").val()) == false || $("#cad_email").val() == "") {
                     $("#cad_email").val("");
                     alertaPreenchimento('#cad_email', '#label_cad_email');
-                    // console.log('cad_email');
                 }
                 alertaPreenchimento('#cad_senha', '#label_cad_senha');
                 alertaPreenchimento('#termos', '#label_termos');
