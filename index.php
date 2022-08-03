@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION = array(); // Limpa a session
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,7 +33,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#email', '#label_email');">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#email', '#label_email');">
                             <label for="email" class="custom-label" id="label_email">E-mail</label>
                         </div>
                     </div>
@@ -36,7 +41,7 @@
                         <div class="col-12 form-floating">
                             <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye"></i>
                             <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye"></i>
-                            <input type="password" class="form-control" id="senha" placeholder="senha" onchange="alertaPreenchimento('#senha', '#label_senha');">
+                            <input name="senha" type="password" class="form-control" id="senha" placeholder="senha" onchange="alertaPreenchimento('#senha', '#label_senha');">
                             <label for="senha" class="custom-label" id="label_senha">Senha</label>
                         </div>
                     </div>
@@ -64,55 +69,57 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-12 form-floating">
-                            <input type="text" class="form-control" id="nome" placeholder="Nome" onchange="alertaPreenchimento('#nome', '#label_nome');">
-                            <label for="nome" class="custom-label" id="label_nome">Nome</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <input type="tel" class="form-control" id="cpf" placeholder="CPF" onchange="alertaPreenchimento('#cpf', '#label_cpf');">
-                            <label for="cpf" class="custom-label" id="label_cpf">CPF</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <input type="tel" class="form-control" id="nascimento" placeholder="Nascimento" onchange="alertaPreenchimento('#nascimento', '#label_nascimento');">
-                            <label for="nascimento" class="custom-label" id="label_nascimento">Nascimento</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <input type="email" class="form-control" id="cad_email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#cad_email', '#label_cad_email');">
-                            <label for="cad_email" class="custom-label" id="label_cad_email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye2"></i>
-                            <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye2"></i>
-                            <input type="password" class="form-control" id="cad_senha" placeholder="senha" onchange="alertaPreenchimento('#cad_senha', '#label_cad_senha');">
-                            <label for="cad_senha" class="custom-label" id="label_cad_senha">Senha</label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
-                                <label class="form-check-label" for="termos" id="label_termos">Declaro que li e aceito
-                                    os <span style="text-decoration: underline;" onclick="load('termos.php');">termos
-                                        de
-                                        uso e política de privacidade</span></label>
+                    <form method="post" action="./cadastroDadosPagamento.php" id="cadastro_usuario">
+                        <div class="row">
+                            <div class="col-12 form-floating">
+                                <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" onchange="alertaPreenchimento('#nome', '#label_nome');">
+                                <label for="nome" class="custom-label" id="label_nome">Nome</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="spacer"></div>
-                    <div class="row fixed-bottom w-90 m-auto mb-5">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-primary" id="prosseguir_btn" disabled>Prosseguir</button>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <input name="cpf" type="tel" class="form-control" id="cpf" placeholder="CPF" onchange="alertaPreenchimento('#cpf', '#label_cpf');">
+                                <label for="cpf" class="custom-label" id="label_cpf">CPF</label>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <input name="nascimento" type="tel" class="form-control" id="nascimento" placeholder="Nascimento" onchange="alertaPreenchimento('#nascimento', '#label_nascimento');">
+                                <label for="nascimento" class="custom-label" id="label_nascimento">Nascimento</label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <input name="email" type="email" class="form-control" id="cad_email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#cad_email', '#label_cad_email');">
+                                <label for="cad_email" class="custom-label" id="label_cad_email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye2"></i>
+                                <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye2"></i>
+                                <input name="senha" type="password" class="form-control" id="cad_senha" placeholder="senha" onchange="alertaPreenchimento('#cad_senha', '#label_cad_senha');">
+                                <label for="cad_senha" class="custom-label" id="label_cad_senha">Senha</label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 form-floating">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
+                                    <label class="form-check-label" for="termos" id="label_termos">Declaro que li e aceito
+                                        os <span style="text-decoration: underline;" onclick="load('termos.php');">termos
+                                            de
+                                            uso e política de privacidade</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="row fixed-bottom w-90 m-auto mb-5">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary" id="prosseguir_btn" disabled>Prosseguir</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -135,18 +142,6 @@
 
             if (page == 'termos')
                 $("#next").click();
-            else
-                sessionStorage.clear();
-
-            // Atribui os valores da ssession aos campos
-            if (sessionStorage.getItem("nome") != null)
-                $("#nome").val(sessionStorage.getItem("nome"));
-            if (sessionStorage.getItem("cpf") != null)
-                $("#cpf").val(sessionStorage.getItem("cpf"));
-            if (sessionStorage.getItem("nascimento") != null)
-                $("#nascimento").val(sessionStorage.getItem("nascimento"));
-            if (sessionStorage.getItem("cad_email") != null)
-                $("#cad_email").val(sessionStorage.getItem("cad_email"));
 
             // Máscara dos campos
             $("#cpf").mask("000.000.000-00");
@@ -254,19 +249,19 @@
 
         })
 
-        // // Aplica capitalize no campo de nome
-        // $("#nome").on('change', function () {
-        //     $("#nome").val($("#nome").val().charAt(0).toUpperCase() + $("#nome").val().slice(1));
-        // });
-
-        $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('change', function() {
-            // Salva os dados na session storage do javascript
-            if ($(this).attr('id') == 'nome') {
-                $(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().slice(1));
-                sessionStorage.setItem($(this).attr("id"), $(this).val());
-            } else if ($(this).attr('id') != 'senha' && $(this).attr('id') != 'termos')
-                sessionStorage.setItem($(this).attr("id"), $(this).val());
+        // Aplica capitalize no campo de nome
+        $("#nome").on('change', function() {
+            $("#nome").val($("#nome").val().charAt(0).toUpperCase() + $("#nome").val().slice(1));
         });
+
+        // $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('change', function() {
+        //     // Salva os dados na session storage do javascript
+        //     if ($(this).attr('id') == 'nome') {
+        //         $(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().slice(1));
+        //         sessionStorage.setItem($(this).attr("id"), $(this).val());
+        //     } else if ($(this).attr('id') != 'senha' && $(this).attr('id') != 'termos')
+        //         sessionStorage.setItem($(this).attr("id"), $(this).val());
+        // });
 
         // Habilita o botão de prosseguir se todos os campos estiverem preenchidos
         $("#nome, #cpf, #nascimento, #cad_email, #cad_senha, #termos").on('input', function() {
@@ -278,25 +273,30 @@
         });
 
         // Prossegue se todos os campos estão preenchidos e validados
-        $("#prosseguir_btn").click(function() {
-            if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) != false && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) != false &&
-                $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) != false && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
-                sessionStorage.setItem("cpf", $("#cpf").cleanVal());
-                sessionStorage.setItem("cad_email", $("#cad_email").val());
-                load("cadastroDadosPagamento.php");
+        $("#prosseguir_btn").click(function(event) {
+            // console.log([$("#nome").val(), $("#cpf").val(), testaCpf($("#cpf").cleanVal()), $("#nascimento").val(), diffYearsNow($("#nascimento").val(), 12, 120),
+            //     $("#cad_email").val(), validacaoEmail($("#cad_email").val()), $("#cad_senha").val(), $("#termos").prop("checked")
+            // ]);
+            if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) == true && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) == true &&
+                $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) == true && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
+                $("#cadastro_usuario").submit();
             } else {
+                event.preventDefault();
                 alertaPreenchimento('#nome', '#label_nome');
                 if (testaCpf($("#cpf").cleanVal()) == false || $("#cpf").val() == "") {
                     $("#cpf").val("");
                     alertaPreenchimento('#cpf', '#label_cpf');
+                    // console.log('cpf');
                 }
                 if (diffYearsNow($("#nascimento").val(), 12, 120) == false || $("#nascimento").val() == "") {
                     $("#nascimento").val("");
                     alertaPreenchimento('#nascimento', '#label_nascimento');
+                    // console.log('nascimento');
                 }
                 if (validacaoEmail($("#cad_email").val()) == false || $("#cad_email").val() == "") {
                     $("#cad_email").val("");
                     alertaPreenchimento('#cad_email', '#label_cad_email');
+                    // console.log('cad_email');
                 }
                 alertaPreenchimento('#cad_senha', '#label_cad_senha');
                 alertaPreenchimento('#termos', '#label_termos');

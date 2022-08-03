@@ -1,3 +1,14 @@
+<?php
+session_start();
+// Insere os dados da página anterior na session do php
+$_SESSION["plano"] = $_POST["plano"];
+$_SESSION["numero_cartao"] = $_POST["numero_cartao"];
+$_SESSION["titular"] = $_POST["titular"];
+$_SESSION["vencimento"] = $_POST["vencimento"];
+$_SESSION["cvv"] = $_POST["cvv"];
+$_SESSION["cpf_titular"] = $_POST["cpf_titular"];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,17 +34,19 @@
                     <span>Selecione seu objetivo</span>
                 </div>
             </div>
-            <div class="col-12 mt-5 form-floating">
-                <select class="form-control" id="objetivo">
-                    <option value="emagrecer">Emagrecimento</option>
-                    <option value="hipertrofia">Hipertrofia</option>
-                </select>
-                <label for="plano" class="custom-label">Objetivo</label>
-            </div>
+            <form method="post" action="./query/cadastroUsuario.php" id="cadastro_usuario">
+                <div class="col-12 mt-5 form-floating">
+                    <select name="objetivo" class="form-control" id="objetivo">
+                        <option value="emagrecer">Emagrecimento</option>
+                        <option value="hipertrofia">Hipertrofia</option>
+                    </select>
+                    <label for="plano" class="custom-label">Objetivo</label>
+                </div>
+            </form>
         </div>
         <div class="row w-90 fixed-bottom m-auto mb-5">
             <div class="col-12">
-                <button type="button" class="btn btn-primary" id="finalizar_btn">Finalizar</button>
+                <button type="submit" class="btn btn-primary" id="finalizar_btn">Finalizar</button>
             </div>
         </div>
 
@@ -43,7 +56,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const page = urlParams.get('paginaAnterior');
 
-        $("#back_btn, #finalizar_btn").click(function() {
+        $("#back_btn, #finalizar_btn").click(function(event) {
+            event.preventDefault();
 
             if (page == 'perfil') {
                 if ($(this).attr("id") == "finalizar_btn") {
@@ -81,7 +95,7 @@
                             container: 'container-swal-html'
                         }
                     }).then(() => {
-                        load('home.php');
+                        $("#cadastro_usuario").submit();
                     });
                 else
                     load('cadastroDadosPagamento.php');
