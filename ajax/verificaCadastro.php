@@ -14,10 +14,8 @@ $sql = "SELECT
             usuarios
         WHERE
             cpf ='" . $_POST["cpf"] . "'";
-$resultado = mysqli_query($mysqli, $sql);
-if (mysqli_fetch_assoc($resultado)["cpf"] == null) {
+if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["cpf"] == null)
     $cpfValido = true;
-}
 
 // Verifica se o email já está cadastrado
 $sql = "SELECT
@@ -26,10 +24,8 @@ $sql = "SELECT
             usuarios
         WHERE
             email ='" . $_POST["email"] . "'";
-$resultado = mysqli_query($mysqli, $sql);
-if (mysqli_fetch_assoc($resultado)["email"] == null) {
+if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["email"] == null)
     $emailValido = true;
-}
 
 // Se o email ou o cpf já estiver cadastrado, retorna false
 if ($cpfValido != true || $emailValido != true)

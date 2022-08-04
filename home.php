@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +16,7 @@
             <div class="row mt-5">
                 <div class="col-10 text-start p-0">
                     <span class="color-white fs-medium" style="font-weight: 500; line-height: normal;"><span id="welcome"></span>,
-                        Cristian</span>
+                        <?= explode(" ", $_SESSION["nome"])[0]; ?></span>
                 </div>
                 <div class="col-2 text-end p-0">
                     <i class="fa-solid fa-circle-user color-white fs-large" onclick="load('perfil.php');" id="perfil"></i>

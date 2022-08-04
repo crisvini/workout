@@ -1,9 +1,5 @@
 <?php
-
-include("./mysql/conexao.php");
-$result = $mysqli->query('SELECT * FROM usuarios');
-$row = mysqli_fetch_assoc($result);
-echo $row["nome"];
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +29,12 @@ echo $row["nome"];
             </div>
             <div class="row mt-5 mb-1">
                 <div class="col-12 text-center color-white">
-                    <span class="fs-large">Cristian Lopes</span>
+                    <span class="fs-large"><?= $_SESSION["nome"]; ?></span>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-12 text-center color-white">
-                    <span class="fs-small"><strong>E-mail: </strong>crisvini.leoncini@outlook.com</span>
+                    <span class="fs-small"><strong>E-mail: </strong><?= $_SESSION["email"]; ?></span>
                 </div>
             </div>
         </div>
@@ -99,7 +95,6 @@ echo $row["nome"];
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    sessionStorage.clear();
                     load("index.php");
                 }
             })
