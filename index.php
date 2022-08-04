@@ -140,8 +140,11 @@ $_SESSION = array(); // Limpa a session
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('paginaAnterior');
 
-            if (page == 'termos')
+            if (page == 'termos') {
+                load();
                 $("#next").click();
+                stopLoad();
+            }
 
             // Máscara dos campos
             $("#cpf").mask("000.000.000-00");
@@ -198,19 +201,28 @@ $_SESSION = array(); // Limpa a session
                 $("#login_btn").attr("disabled", false);
             else
                 $("#login_btn").attr("disabled", true);
-
         });
 
         // Valida os dados inseridos e faz login
         $("#login_btn").click(function() {
-
-            if ($("#email").val() != "" && $("#senha").val() != "") {
-
-                // Faz o login se os dados forem válidos
-                if (validacaoEmail($("#email").val()) == false) {
+            // Faz o login se os dados forem válidos
+            load();
+            var settings = {
+                url: './ajax/login.php',
+                method: 'POST',
+                data: {
+                    email: $("#email").val(),
+                    senha: $("#senha").val()
+                },
+            }
+            $.ajax(settings).done(function(result) {
+                if (result == true) {
+                    window.location.href = "./home.php"
+                } else {
+                    stopLoad();
                     Swal.fire({
                         title: 'Ops!',
-                        text: 'E-mail inválido',
+                        text: 'E-mail e/ou senha inválida',
                         icon: 'error',
                         confirmButtonText: 'Entendi',
                         width: '90%',
@@ -223,29 +235,8 @@ $_SESSION = array(); // Limpa a session
                             container: 'container-swal-html'
                         }
                     });
-                    $("#email").val("");
-                    alertaPreenchimento('#email', '#label_email');
-                } else
-                    load("home.php");
-
-
-            } else {
-                Swal.fire({
-                    title: 'Ops!',
-                    text: 'Preencha todos os campos para prosseguir',
-                    icon: 'error',
-                    confirmButtonText: 'Entendi',
-                    width: '90%',
-                    background: '#191919',
-                    position: 'center',
-                    customClass: {
-                        confirmButton: 'btn btn-primary-swal-2',
-                        title: 'title-swal',
-                        popup: 'pop-up-swal',
-                        container: 'container-swal-html'
-                    }
-                });
-            }
+                }
+            });
 
         })
 
@@ -265,8 +256,8 @@ $_SESSION = array(); // Limpa a session
 
         // Prossegue se todos os campos estão preenchidos e validados
         $("#prosseguir_btn").click(function(event) {
-            if ($("#nome").val() != "" && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) == true && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) == true &&
-                $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) == true && $("#cad_senha").val() != "" && $("#termos").prop("checked") == true) {
+            if ($("#nome").val() != "" && $("#nome").val().split(" ").length > 1 && $("#cpf").val() != "" && testaCpf($("#cpf").cleanVal()) == true && $("#nascimento").val() != "" && diffYearsNow($("#nascimento").val(), 12, 120) == true &&
+                $("#cad_email").val() != "" && validacaoEmail($("#cad_email").val()) == true && $("#cad_senha").val() != "" && $("#cad_senha").val().length > 7 && $("#termos").prop("checked") == true) {
                 event.preventDefault();
                 load();
                 var settings = {
@@ -297,12 +288,20 @@ $_SESSION = array(); // Limpa a session
                         });
                     } else
                         $("#cadastro_usuario").submit();
-
                 });
 
             } else {
                 event.preventDefault();
-                alertaPreenchimento('#nome', '#label_nome');
+
+                var erros = '';
+
+                if ($("#nome").val().split(" ").length < 2 || $("#nome").val() == "") {
+                    $("#nome").val("");
+                    alertaPreenchimento('#nome', '#label_nome');
+                    if ($("#nome").val().split(" ").length < 2) {
+                        erros += '<br>Informe seu nome completo';
+                    }
+                }
                 if (testaCpf($("#cpf").cleanVal()) == false || $("#cpf").val() == "") {
                     $("#cpf").val("");
                     alertaPreenchimento('#cpf', '#label_cpf');
@@ -315,12 +314,17 @@ $_SESSION = array(); // Limpa a session
                     $("#cad_email").val("");
                     alertaPreenchimento('#cad_email', '#label_cad_email');
                 }
-                alertaPreenchimento('#cad_senha', '#label_cad_senha');
-                alertaPreenchimento('#termos', '#label_termos');
+                if ($("#cad_senha").val().length < 8 || $("#cad_senha").val() == "") {
+                    $("#cad_senha").val("");
+                    alertaPreenchimento('#cad_senha', '#label_cad_senha');
+                    if ($("#cad_senha").val().length < 8) {
+                        erros += '<br>Sua senha deve ter no mínimo 8 caracteres';
+                    }
+                }
 
                 Swal.fire({
                     title: 'Ops!',
-                    text: 'Dados inválidos',
+                    html: 'Dados inválidos' + erros,
                     icon: 'error',
                     confirmButtonText: 'Entendi',
                     width: '90%',
