@@ -1,12 +1,16 @@
 <?php
 session_start();
-// Insere os dados da página anterior na session do php
-$_SESSION["plano"] = $_POST["plano"];
-$_SESSION["numero_cartao"] = $_POST["numero_cartao"];
-$_SESSION["titular"] = $_POST["titular"];
-$_SESSION["vencimento"] = $_POST["vencimento"];
-$_SESSION["cvv"] = $_POST["cvv"];
-$_SESSION["cpf_titular"] = $_POST["cpf_titular"];
+
+// Insere os dados na session do php
+if (!$_GET["paginaAnterior"]) {
+    $_SESSION["plano"] = $_POST["plano"];
+    $_SESSION["numero_cartao"] = $_POST["numero_cartao"];
+    $_SESSION["titular"] = $_POST["titular"];
+    $_SESSION["vencimento"] = $_POST["vencimento"];
+    $_SESSION["cvv"] = $_POST["cvv"];
+    $_SESSION["cpf_titular"] = $_POST["cpf_titular"];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +41,7 @@ $_SESSION["cpf_titular"] = $_POST["cpf_titular"];
             <form method="post" action="./query/cadastroUsuario.php" id="cadastro_usuario">
                 <div class="col-12 mt-5 form-floating">
                     <select name="objetivo" class="form-control" id="objetivo">
-                        <option value="emagrecer">Emagrecimento</option>
+                        <option value="emagrecimento">Emagrecimento</option>
                         <option value="hipertrofia">Hipertrofia</option>
                     </select>
                     <label for="plano" class="custom-label">Objetivo</label>
@@ -49,7 +53,6 @@ $_SESSION["cpf_titular"] = $_POST["cpf_titular"];
                 <button type="submit" class="btn btn-primary" id="finalizar_btn">Finalizar</button>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -61,21 +64,32 @@ $_SESSION["cpf_titular"] = $_POST["cpf_titular"];
 
             if (page == 'perfil') {
                 if ($(this).attr("id") == "finalizar_btn") {
-                    Swal.fire({
-                        text: 'Seu treino foi alterado com sucesso!',
-                        icon: 'success',
-                        confirmButtonText: 'Ok',
-                        width: '90%',
-                        background: '#191919',
-                        position: 'center',
-                        customClass: {
-                            confirmButton: 'btn btn-primary-swal-2',
-                            title: 'title-swal',
-                            popup: 'pop-up-swal',
-                            container: 'container-swal-html'
-                        }
-                    }).then(() => {
-                        load('home.php');
+                    load();
+                    var settings = {
+                        url: './ajax/alteraObjetivo.php',
+                        method: 'POST',
+                        data: {
+                            objetivo: $("#objetivo").val()
+                        },
+                    }
+                    $.ajax(settings).done(function(result) {
+                        stopLoad();
+                        Swal.fire({
+                            text: 'Seu treino foi alterado com sucesso!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok',
+                            width: '90%',
+                            background: '#191919',
+                            position: 'center',
+                            customClass: {
+                                confirmButton: 'btn btn-primary-swal-2',
+                                title: 'title-swal',
+                                popup: 'pop-up-swal',
+                                container: 'container-swal-html'
+                            }
+                        }).then(() => {
+                            load('home.php');
+                        });
                     });
                 } else if ($(this).attr("id") == "back_btn")
                     load('perfil.php');
