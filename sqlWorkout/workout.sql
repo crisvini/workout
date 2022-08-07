@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Ago-2022 às 00:29
+-- Tempo de geração: 07-Ago-2022 às 05:09
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -79,20 +79,22 @@ INSERT INTO `exercicios` (`id_exercicio`, `nome`, `repeticoes`, `descanso`, `_id
 CREATE TABLE `fichas` (
   `id_ficha` int(11) NOT NULL,
   `nome` varchar(1) NOT NULL,
-  `_id_treino` int(11) NOT NULL
+  `_id_treino` int(11) NOT NULL,
+  `id_ficha_anterior` varchar(1) NOT NULL,
+  `background` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `fichas`
 --
 
-INSERT INTO `fichas` (`id_ficha`, `nome`, `_id_treino`) VALUES
-(1, 'A', 1),
-(2, 'B', 1),
-(3, 'C', 1),
-(4, 'A', 2),
-(5, 'B', 2),
-(6, 'C', 2);
+INSERT INTO `fichas` (`id_ficha`, `nome`, `_id_treino`, `id_ficha_anterior`, `background`) VALUES
+(1, 'A', 1, '3', 'bg-abdome'),
+(2, 'B', 1, '1', 'bg-aerobico'),
+(3, 'C', 1, '2', 'bg-ombro'),
+(4, 'A', 2, '6', 'bg-peito'),
+(5, 'B', 2, '4', 'bg-biceps'),
+(6, 'C', 2, '5', 'bg-perna');
 
 -- --------------------------------------------------------
 
@@ -134,15 +136,16 @@ CREATE TABLE `usuarios` (
   `cvv` varchar(3) NOT NULL,
   `cpf_titular` varchar(14) NOT NULL,
   `objetivo` varchar(20) NOT NULL,
-  `_id_ultima_ficha` int(11) NOT NULL
+  `_id_ultima_ficha` int(11) NOT NULL,
+  `ultima_ficha_completa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuarios`, `nome`, `email`, `cpf`, `nascimento`, `senha`, `plano`, `numero_cartao`, `titular_cartao`, `vencimento`, `cvv`, `cpf_titular`, `objetivo`, `_id_ultima_ficha`) VALUES
-(12, 'Cristian Leoncini', 'crisvini.leoncini@outlook.com', '444.252.888-82', '12/02/2001', '01c28a3b53576f31689ea49e2bc0bcec', 'anual', '9999 9999 9999 9999', 'Cristian V L Lopes', '12/2030', '123', '444.252.888-82', 'hipertrofia', 4);
+INSERT INTO `usuarios` (`id_usuarios`, `nome`, `email`, `cpf`, `nascimento`, `senha`, `plano`, `numero_cartao`, `titular_cartao`, `vencimento`, `cvv`, `cpf_titular`, `objetivo`, `_id_ultima_ficha`, `ultima_ficha_completa`) VALUES
+(12, 'Cristian Leoncini', 'crisvini.leoncini@outlook.com', '444.252.888-82', '12/02/2001', '01c28a3b53576f31689ea49e2bc0bcec', 'anual', '9999 9999 9999 9999', 'Cristian V L Lopes', '12/2030', '123', '444.252.888-82', 'hipertrofia', 4, 6);
 
 --
 -- Índices para tabelas despejadas
