@@ -1,5 +1,33 @@
 <?php
 session_start();
+include("./navbar.php");
+
+if (!isset($_SESSION["nomeFichaDia"])) {
+    include("./mysql/conexao.php");
+    $sql = "SELECT
+                fichas.nome,
+                fichas.id_ficha,
+                fichas.background
+            FROM 
+                fichas
+            JOIN
+                usuarios
+            WHERE
+                usuarios.cpf = '" . $_SESSION["cpf"] . "'
+            AND
+                usuarios.ultima_ficha_completa = fichas.id_ficha_anterior";
+    $_SESSION["nomeFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["nome"];
+    $_SESSION["idFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_ficha"];
+    $_SESSION["backgroundFichaDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["background"];
+
+    $sql = "SELECT
+                COUNT(id_exercicio) as qtd_ex
+            FROM 
+                exercicios
+            WHERE
+                _id_ficha = '" . $_SESSION["idFichaDoDia"] . "'";
+    $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["qtd_ex"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +78,7 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
+        <div class="container mt-5 <?= $_SESSION["backgroundFichaDia"] ?> br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row">
                 <div class="color-white fs-medium">
                     <span>Treino do dia</span>
@@ -58,12 +86,12 @@ session_start();
             </div>
             <div class="row mt-5">
                 <div class="color-white fs-extra-large">
-                    <span>Ficha A</span>
+                    <span>Ficha <?= $_SESSION["nomeFichaDoDia"]; ?></span>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>9 exercícios</span>
+                    <span><i class="fa-solid fa-heart-pulse me-3"></i><?= $_SESSION["quantidadeExercicios"]; ?> exercícios</span>
                 </div>
             </div>
         </div>
@@ -127,75 +155,51 @@ session_start();
             </div>
         </div>
         <div class="spacer"></div>
-        <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
-            <div class="row">
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
-                    <i class="fa-solid fa-house color-pink"></i><br>
-                    <span class="fs-extra-small color-pink">Início</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
-                    <i class="fa-solid fa-dumbbell color-pink"></i><br>
-                    <span class="fs-extra-small">Treino</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('minhasMetas.php')">
-                    <i class="fa-solid fa-list-check color-pink"></i><br>
-                    <span class="fs-extra-small">Metas</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
-                    <i class="fa-solid fa-ranking-star color-pink"></i><br>
-                    <span class="fs-extra-small">Ranking</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil" onclick="load('perfil.php')">
-                    <i class="fa-solid fa-circle-user color-pink"></i><br>
-                    <span class="fs-extra-small">Perfil</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        <?= navbar($_SERVER['REQUEST_URI']); ?>
 
-    <script>
-        $(document).ready(() => {
+        <script>
+            $(document).ready(() => {
 
-            // Altera o dia da semana
-            const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-            var dia = new Date();
-            dia = diasSemana[dia.getDay()];
-            if (dia == 'Domingo') {
-                $("#domingo").removeClass("bg-gray");
-                $("#domingo").addClass("bg-pink");
-            } else if (dia == 'Segunda') {
-                $("#segunda").removeClass("bg-gray");
-                $("#segunda").addClass("bg-pink");
-            } else if (dia == 'Terça') {
-                $("#terca").removeClass("bg-gray");
-                $("#terca").addClass("bg-pink");
-            } else if (dia == 'Quarta') {
-                $("#quarta").removeClass("bg-gray");
-                $("#quarta").addClass("bg-pink");
-            } else if (dia == 'Quinta') {
-                $("#quinta").removeClass("bg-gray");
-                $("#quinta").addClass("bg-pink");
-            } else if (dia == 'Sexta') {
-                $("#sexta").removeClass("bg-gray");
-                $("#sexta").addClass("bg-pink");
-            } else if (dia == 'Sábado') {
-                $("#sabado").removeClass("bg-gray");
-                $("#sabado").addClass("bg-pink");
-            }
+                // Altera o dia da semana
+                const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+                var dia = new Date();
+                dia = diasSemana[dia.getDay()];
+                if (dia == 'Domingo') {
+                    $("#domingo").removeClass("bg-gray");
+                    $("#domingo").addClass("bg-pink");
+                } else if (dia == 'Segunda') {
+                    $("#segunda").removeClass("bg-gray");
+                    $("#segunda").addClass("bg-pink");
+                } else if (dia == 'Terça') {
+                    $("#terca").removeClass("bg-gray");
+                    $("#terca").addClass("bg-pink");
+                } else if (dia == 'Quarta') {
+                    $("#quarta").removeClass("bg-gray");
+                    $("#quarta").addClass("bg-pink");
+                } else if (dia == 'Quinta') {
+                    $("#quinta").removeClass("bg-gray");
+                    $("#quinta").addClass("bg-pink");
+                } else if (dia == 'Sexta') {
+                    $("#sexta").removeClass("bg-gray");
+                    $("#sexta").addClass("bg-pink");
+                } else if (dia == 'Sábado') {
+                    $("#sabado").removeClass("bg-gray");
+                    $("#sabado").addClass("bg-pink");
+                }
 
-            // Altera o bom dia
-            var hora = new Date();
-            hora = hora.getHours();
-            if (hora >= 0 && hora <= 11) {
-                $("#welcome").text("Bom dia");
-            } else if (hora >= 12 && hora <= 17) {
-                $("#welcome").text("Boa tarde");
-            } else if (hora >= 18 && hora <= 23) {
-                $("#welcome").text("Boa noite");
-            }
+                // Altera o bom dia
+                var hora = new Date();
+                hora = hora.getHours();
+                if (hora >= 0 && hora <= 11) {
+                    $("#welcome").text("Bom dia");
+                } else if (hora >= 12 && hora <= 17) {
+                    $("#welcome").text("Boa tarde");
+                } else if (hora >= 18 && hora <= 23) {
+                    $("#welcome").text("Boa noite");
+                }
 
-        });
-    </script>
+            });
+        </script>
 
 </body>
 
