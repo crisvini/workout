@@ -2,32 +2,30 @@
 session_start();
 include("./navbar.php");
 
-if (!isset($_SESSION["nomeFichaDia"])) {
-    include("./mysql/conexao.php");
-    $sql = "SELECT
-                fichas.nome,
-                fichas.id_ficha,
-                fichas.background
-            FROM 
-                fichas
-            JOIN
-                usuarios
-            WHERE
-                usuarios.cpf = '" . $_SESSION["cpf"] . "'
-            AND
-                usuarios.ultima_ficha_completa = fichas.id_ficha_anterior";
-    $_SESSION["nomeFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["nome"];
-    $_SESSION["idFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_ficha"];
-    $_SESSION["backgroundFichaDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["background"];
+include("./mysql/conexao.php");
+$sql = "SELECT
+            fichas.nome,
+            fichas.id_ficha,
+            fichas.background
+        FROM 
+            fichas
+        JOIN
+            usuarios
+        WHERE
+            usuarios.cpf = '" . $_SESSION["cpf"] . "'
+        AND
+            usuarios.ultima_ficha_completa = fichas.id_ficha_anterior";
+$_SESSION["nomeFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["nome"];
+$_SESSION["idFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_ficha"];
+$_SESSION["backgroundFichaDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["background"];
 
-    $sql = "SELECT
-                COUNT(id_exercicio) as qtd_ex
-            FROM 
-                exercicios
-            WHERE
-                _id_ficha = '" . $_SESSION["idFichaDoDia"] . "'";
-    $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["qtd_ex"];
-}
+$sql = "SELECT
+            COUNT(id_exercicio) as qtd_ex
+        FROM 
+            exercicios
+        WHERE
+            _id_ficha = '" . $_SESSION["idFichaDoDia"] . "'";
+$_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["qtd_ex"];
 ?>
 
 <!DOCTYPE html>

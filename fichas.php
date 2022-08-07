@@ -4,19 +4,17 @@ include("./mysql/conexao.php");
 include("./navbar.php");
 
 // Seleciona o idTreino(objetivo) 
-if (!isset($_SESSION["idTreino"])) {
-    $sql = "SELECT
-                treinos.id_treino
-            FROM 
-                treinos
-            JOIN
-                usuarios
-            WHERE
-                usuarios.cpf = '" . $_SESSION["cpf"] . "'
-            AND 
-                usuarios.objetivo = treinos.objetivo";
-    $_SESSION["idTreino"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_treino"];
-}
+$sql = "SELECT
+            treinos.id_treino
+        FROM 
+            treinos
+        JOIN
+            usuarios
+        WHERE
+            usuarios.cpf = '" . $_SESSION["cpf"] . "'
+        AND 
+            usuarios.objetivo = treinos.objetivo";
+$_SESSION["idTreino"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_treino"];
 
 // Consulta os dados das fichas
 $sql = "SELECT
@@ -43,11 +41,11 @@ $htmlFichas = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $sql2 = "SELECT
-                COUNT(id_exercicio) as qtd_ex
-            FROM 
-                exercicios
-            WHERE
-                _id_ficha = '" . $row["id_ficha"] . "'";
+                    COUNT(id_exercicio) as qtd_ex
+                FROM 
+                    exercicios
+                WHERE
+                    _id_ficha = '" . $row["id_ficha"] . "'";
         $quantidadeExercicios = mysqli_fetch_assoc(mysqli_query($mysqli, $sql2))["qtd_ex"];
         $htmlFichas .= '<div class="container mt-5 ' . $row["background"] . ' image-disabled br-20" style="padding: 3%;" id="ficha_' . $row["nome"] . '" onclick="load("treino.php")">
                             <div class="row py-5">
