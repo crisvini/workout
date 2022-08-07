@@ -7,11 +7,19 @@ include("../mysql/conexao.php");
 
 $autenticado = false;
 
-// Busca o email e a senha no banco de dados
+// Define a última ficha completa
+$ultima_ficha_completa = 0;
+if ($_POST["objetivo"] == "emagrecimento")
+    $ultima_ficha_completa = 3;
+else if ($_POST["objetivo"] == "hipertrofia")
+    $ultima_ficha_completa = 6;
+
+// Altera o objetivo
 $sql = "UPDATE 
             usuarios
         SET 
-            objetivo = '" . $_POST["objetivo"] . "'
+            objetivo = '" . $_POST["objetivo"] . "',
+            ultima_ficha_completa = " . $ultima_ficha_completa . "
         WHERE 
             cpf = '" .  $_SESSION["cpf"] . "'";
 mysqli_query($mysqli, $sql);
