@@ -2,7 +2,6 @@
 error_reporting(E_ERROR | E_PARSE);
 session_start();
 
-// Arquivo de conexão
 include("../mysql/conexao.php");
 
 $autenticado = false;

@@ -1,7 +1,5 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-
-// Arquivo de conexão
 include("../mysql/conexao.php");
 
 $cpfValido = false;
