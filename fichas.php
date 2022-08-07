@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
                 WHERE
                     _id_ficha = '" . $row["id_ficha"] . "'";
         $quantidadeExercicios = mysqli_fetch_assoc(mysqli_query($mysqli, $sql2))["qtd_ex"];
-        $htmlFichas .= '<div class="container mt-5 ' . $row["background"] . ' image-disabled br-20" style="padding: 3%;" id="ficha_' . $row["nome"] . '" onclick="load("treino.php")">
+        $htmlFichas .= '<div class="container mt-5 ' . $row["background"] . ' image-disabled br-20" style="padding: 3%;" id="ficha_' . $row["nome"] . '">
                             <div class="row py-5">
                                 <div class="color-white fs-extra-large">
                                     <span>Ficha ' . $row["nome"] . '</span>
