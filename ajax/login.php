@@ -10,7 +10,8 @@ $autenticado = false;
 $sql = "SELECT
             email,
             nome,
-            cpf
+            cpf,
+            objetivo
         FROM 
             usuarios
         WHERE
@@ -23,6 +24,7 @@ if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["email"] != null) {
     $_SESSION["email"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["email"];
     $_SESSION["nome"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["nome"];
     $_SESSION["cpf"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["cpf"];
+    $_SESSION["objetivo"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["objetivo"];
 }
 
 echo $autenticado;
