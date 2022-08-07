@@ -1,3 +1,49 @@
+<?php
+session_start();
+include("./mysql/conexao.php");
+
+// Consulta os dados das fichas
+$sql = "SELECT
+            nome,
+            repeticoes,
+            descanso
+        FROM 
+            exercicios
+        WHERE
+            _id_ficha = " . $_SESSION["idFichaDoDia"];
+$result = $mysqli->query($sql);
+
+// Monta os cards das fichas
+$htmlExercicios = '';
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $htmlExercicios .= '<div class="row my-5 bg-gray br-20">
+                            <div class="col-4 ps-0 align-self-center">
+                                <img src="./img/treino_background.jpg" class="w-100 br-st-20">
+                            </div>
+                            <div class="col-8 my-3 align-self-center px-3">
+                                <div class="row pe-2 mb-2">
+                                    <div class="col-12">
+                                        <span class="color-white fs-small">' . $row["nome"] . '</span>
+                                    </div>
+                                </div>
+                                <div class="row pe-2 h-50">
+                                    <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
+                                        <div class="text-start">
+                                            <span class="color-white fs-extra-small">' . $row["repeticoes"] . '</span>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
+                                            ' . $row["descanso"] . '</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +55,7 @@
 
     <div class="entire-screen">
         <div class="container h-50vh" style="max-width: 100% !important;">
-            <div class="row py-4 bg-peito br-bt-20 h-100">
+            <div class="row py-4 <?= $_SESSION["backgroundFichaDia"]; ?> br-bt-20 h-100">
                 <div class="col-12 px-2">
                     <div>
                         <i class="fa-solid fa-angle-left back-button-2" onclick="load('home.php');"></i>
@@ -18,7 +64,7 @@
                 <div class="d-flex justify-content-between w-100 mx-0 px-0" style="position: absolute; bottom: 51%">
                     <div class="col-6 px-3">
                         <div class="text-start">
-                            <span class="fs-extra-large color-white pt-5 fw-500">Ficha A</span>
+                            <span class="fs-extra-large color-white pt-5 fw-500">Ficha <?= $_SESSION["nomeFichaDoDia"] ?></span>
                         </div>
                     </div>
                     <div class="col-6 px-3 d-none" id="div_timer">
@@ -30,235 +76,8 @@
             </div>
         </div>
         <div class="container">
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Supino reto (barra)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Supino inclinado (barra)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Crucifixo polia alta (cross over)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Chest press</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Chest press</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Tríceps no pulley (corda)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Tríceps no pulley (barra reta)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Tríceps invertido (unilateral)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Tríceps francês (halter)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">4x 12</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5 bg-gray br-20">
-                <div class="col-4 ps-0 align-self-center">
-                    <img src="./img/treino_background.jpg" class="w-100 br-st-20">
-                </div>
-                <div class="col-8 my-3 align-self-center px-3">
-                    <div class="row pe-2 mb-2">
-                        <div class="col-12">
-                            <span class="color-white fs-small">Abdominal (solo)</span>
-                        </div>
-                    </div>
-                    <div class="row pe-2 h-50">
-                        <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
-                            <div class="text-start">
-                                <span class="color-white fs-extra-small">3x 30</span>
-                            </div>
-                            <div class="text-end">
-                                <span class="color-white fs-extra-small"><i class="fa-regular fa-clock color-white"></i>
-                                    30"</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="cardExercicios">
+                <?= $htmlExercicios; ?>
             </div>
             <div class="spacer"></div>
             <div class="mt-5 bg-gray fixed-bottom border-light-gray">
