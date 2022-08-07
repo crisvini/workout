@@ -1,3 +1,70 @@
+<?php
+session_start();
+include("./mysql/conexao.php");
+include("./navbar.php");
+
+// Seleciona o idTreino(objetivo) 
+if (!isset($_SESSION["idTreino"])) {
+    $sql = "SELECT
+                treinos.id_treino
+            FROM 
+                treinos
+            JOIN
+                usuarios
+            WHERE
+                usuarios.cpf = '" . $_SESSION["cpf"] . "'
+            AND 
+                usuarios.objetivo = treinos.objetivo";
+    $_SESSION["idTreino"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_treino"];
+}
+
+// Consulta os dados das fichas
+$sql = "SELECT
+            fichas.nome,
+            fichas.id_ficha,
+            fichas.background
+        FROM 
+            fichas
+        JOIN
+            usuarios
+        WHERE
+            usuarios.cpf = '" . $_SESSION["cpf"] . "'
+        AND 
+            fichas._id_treino = '" . $_SESSION["idTreino"] . "'
+        AND
+            usuarios.ultima_ficha_completa != fichas.id_ficha_anterior
+        ORDER BY
+            fichas.id_ficha
+        ASC ";
+$result = $mysqli->query($sql);
+
+// Monta os cards das fichas
+$htmlFichas = '';
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $sql2 = "SELECT
+                COUNT(id_exercicio) as qtd_ex
+            FROM 
+                exercicios
+            WHERE
+                _id_ficha = '" . $row["id_ficha"] . "'";
+        $quantidadeExercicios = mysqli_fetch_assoc(mysqli_query($mysqli, $sql2))["qtd_ex"];
+        $htmlFichas .= '<div class="container mt-5 ' . $row["background"] . ' image-disabled br-20" style="padding: 3%;" id="ficha_' . $row["nome"] . '" onclick="load("treino.php")">
+                            <div class="row py-5">
+                                <div class="color-white fs-extra-large">
+                                    <span>Ficha ' . $row["nome"] . '</span>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="color-white fs-small">
+                                    <span><i class="fa-solid fa-heart-pulse me-3"></i>' . $quantidadeExercicios . ' exercícios</span>
+                                </div>
+                            </div>
+                        </div>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="container h-25 mt-5 bg-peito br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
+        <div class="container h-25 mt-5 <?= $_SESSION["backgroundFichaDia"] ?> br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
             <div class="row">
                 <div class="color-white fs-medium">
                     <span>Treino do dia</span>
@@ -25,100 +92,21 @@
             </div>
             <div class="row mt-5">
                 <div class="color-white fs-extra-large">
-                    <span>Ficha A</span>
+                    <span>Ficha <?= $_SESSION["nomeFichaDoDia"]; ?></span>
                 </div>
             </div>
             <div class="row mt-5" style="position: absolute; bottom: 66.5%">
                 <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>9 exercícios</span>
+                    <span><i class="fa-solid fa-heart-pulse me-3"></i><?= $_SESSION["quantidadeExercicios"]; ?> exercícios</span>
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-triceps image-disabled br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
-            <div class="row py-5">
-                <div class="color-white fs-extra-large">
-                    <span>Ficha B</span>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>11 exercícios</span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 bg-biceps image-disabled br-20" style="padding: 3%;" id="treino_dia" onclick="load('treino.php')">
-            <div class="row py-5">
-                <div class="color-white fs-extra-large">
-                    <span>Ficha C</span>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="color-white fs-small">
-                    <span><i class="fa-solid fa-heart-pulse me-3"></i>10 exercícios</span>
-                </div>
-            </div>
+        <div id="fichas">
+            <?= $htmlFichas; ?>
         </div>
         <div class="spacer"></div>
-        <div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
-            <div class="row">
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load('home.php')">
-                    <i class="fa-solid fa-house color-pink"></i><br>
-                    <span class="fs-extra-small">Início</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_treino" onclick="load('fichas.php')">
-                    <i class="fa-solid fa-dumbbell color-pink"></i><br>
-                    <span class="fs-extra-small color-pink">Treino</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_metas" onclick="load('minhasMetas.php')">
-                    <i class="fa-solid fa-list-check color-pink"></i><br>
-                    <span class="fs-extra-small">Metas</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_ranking" onclick="load('ranking.php')">
-                    <i class="fa-solid fa-ranking-star color-pink"></i><br>
-                    <span class="fs-extra-small">Ranking</span>
-                </div>
-                <div class="col text-white m-0 text-center color-white fs-medium" id="nav_perfil" onclick="load('perfil.php')">
-                    <i class="fa-solid fa-circle-user color-pink"></i><br>
-                    <span class="fs-extra-small">Perfil</span>
-                </div>
-            </div>
-        </div>
+        <?= navbar($_SERVER['REQUEST_URI']); ?>
     </div>
-
-    <script>
-        $(document).ready(() => {
-
-            // Mostra o dia da semana
-            const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-            var dia = new Date();
-            dia = diasSemana[dia.getDay()];
-
-            if (dia == 'Domingo') {
-                $("#domingo").removeClass("bg-gray");
-                $("#domingo").addClass("bg-pink");
-            } else if (dia == 'Segunda') {
-                $("#segunda").removeClass("bg-gray");
-                $("#segunda").addClass("bg-pink");
-            } else if (dia == 'Terça') {
-                $("#terca").removeClass("bg-gray");
-                $("#terca").addClass("bg-pink");
-            } else if (dia == 'Quarta') {
-                $("#quarta").removeClass("bg-gray");
-                $("#quarta").addClass("bg-pink");
-            } else if (dia == 'Quinta') {
-                $("#quinta").removeClass("bg-gray");
-                $("#quinta").addClass("bg-pink");
-            } else if (dia == 'Sexta') {
-                $("#sexta").removeClass("bg-gray");
-                $("#sexta").addClass("bg-pink");
-            } else if (dia == 'Sábado') {
-                $("#sabado").removeClass("bg-gray");
-                $("#sabado").addClass("bg-pink");
-            }
-
-        });
-    </script>
-
 </body>
 
 </html>
