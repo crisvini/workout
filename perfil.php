@@ -8,6 +8,21 @@ include("./navbar.php");
 
 <head>
     <?php include('./head.php') ?>
+    
+    <style>
+        .crop {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 100%;
+        }
+
+        .crop img {
+            width: 700px;
+            margin: -8% 0px 0px -36%;
+            clip-path: circle(100%);
+        }
+    </style>
 </head>
 
 <body class="bg-black" id="body">
@@ -25,7 +40,10 @@ include("./navbar.php");
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 text-center">
-                    <i class="fa-solid fa-circle-user color-white" style="font-size: 280px;" id="perfil"></i>
+                    <div class="crop mx-auto">
+                        <img src="./img/treino-peito.jpg">
+                    </div>
+                    //<i class="fa-solid fa-circle-user color-white" style="font-size: 280px;" id="perfil"></i>
                 </div>
             </div>
             <div class="row mt-5 mb-1">
