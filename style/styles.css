@@ -411,3 +411,24 @@ body {
 .w-90 {
     width: 90% !important;
 }
+
+.input-file {
+    background-color: #e30b5c !important;
+    border: none !important;
+    border-radius: 20px !important;
+    height: 150px !important;
+    font-size: 45px !important;
+    color: #fff7f8 !important;
+    width: 100% !important;
+}
+
+.crop {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.crop img {
+    height: 400px !important;
+}

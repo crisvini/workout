@@ -2,7 +2,7 @@
 session_start();
 
 // Insere os dados na session do php
-if (!$_GET["paginaAnterior"]) {
+if (!isset($_GET["paginaAnterior"])) {
     $_SESSION["plano"] = $_POST["plano"];
     $_SESSION["numero_cartao"] = $_POST["numero_cartao"];
     $_SESSION["titular"] = $_POST["titular"];
