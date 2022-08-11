@@ -4,27 +4,34 @@ include("./mysql/conexao.php");
 
 // Consulta os dados das fichas
 $sql = "SELECT
+            id_exercicio,
             nome,
             repeticoes,
-            descanso
+            descanso,
+            _id_ficha
         FROM 
             exercicios
         WHERE
             _id_ficha = " . $_SESSION["idFichaDoDia"];
 $result = $mysqli->query($sql);
 
-// Monta os cards das fichas
+// Monta os cards dos exercícios
+$idExercicios = [];
+$idFicha = '';
 $htmlExercicios = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $idFicha = $row["_id_ficha"];
+        array_push($idExercicios, "icone_feito_" . $row["id_exercicio"]);
         $htmlExercicios .= '<div class="row my-5 bg-gray br-20">
                             <div class="col-4 ps-0 align-self-center">
                                 <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                             </div>
                             <div class="col-8 my-3 align-self-center px-3">
                                 <div class="row pe-2 mb-2">
-                                    <div class="col-12">
-                                        <span class="color-white fs-small">' . $row["nome"] . '</span>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <span class="color-white fs-small me-1">' . $row["nome"] . '</span>
+                                        <i class="d-none fa-regular fa-circle-check fs-small color-white" id="icone_feito_' . $row["id_exercicio"] . '" onclick="finalizaExercicio(' . "'" . 'icone_feito_' . $row["id_exercicio"] . "'" . ');"></i>
                                     </div>
                                 </div>
                                 <div class="row pe-2 h-50">
@@ -41,6 +48,7 @@ if ($result->num_rows > 0) {
                             </div>
                         </div>';
     }
+    $idExercicios = json_encode($idExercicios);
 }
 ?>
 
@@ -58,7 +66,7 @@ if ($result->num_rows > 0) {
             <div class="row py-4 <?= $_SESSION["backgroundFichaDia"]; ?> br-bt-20 h-100">
                 <div class="col-12 px-2">
                     <div>
-                        <i class="fa-solid fa-angle-left back-button-2" onclick="load('home.php');"></i>
+                        <i class="fa-solid fa-angle-left back-button-2" id="back_btn"></i>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between w-100 mx-0 px-0" style="position: absolute; bottom: 51%">
@@ -103,15 +111,32 @@ if ($result->num_rows > 0) {
 
     <script src="./lib/easyTimer/easytimer.min.js"></script>
     <script>
+        // Pega os Ids dos exercícios
+        var idExercicios = JSON.parse('<?php echo $idExercicios; ?>');
+        // Quantidade de exercícios
+        var quantidadeExercicios = idExercicios.length;
+        // Id dos exercícios concluídos
+        var idExerciciosConcluidos = [];
+        // Variável para verificar se o treino foi iniciado
+        var treinoIniciado = false;
+
         // Inicializa o timer
         var timer = new easytimer.Timer();
 
         $("#btn_comecar_treino").click(() => {
             // Inicia o timer
             timer.start();
-
             $("#div_btn_comecar_treino").addClass("d-none");
             $("#div_btn_pausar_finalizar_treino, #div_timer").removeClass("d-none");
+
+            // Remove o d-none dos botões de finalização de exercício
+            var contador = 0;
+            idExercicios.forEach(function() {
+                $("#" + idExercicios[contador]).removeClass("d-none");
+                contador++;
+            });
+
+            treinoIniciado = true;
         });
 
         $("#btn_pausar_treino").click(() => {
@@ -119,6 +144,13 @@ if ($result->num_rows > 0) {
             timer.pause();
             $("#btn_pausar_treino").addClass("d-none");
             $("#btn_retomar_treino").removeClass("d-none");
+
+            // Esconde os exercícios não concluídos
+            var contador = 0;
+            idExercicios.forEach(function() {
+                $("#" + idExercicios[contador]).addClass("d-none");
+                contador++;
+            });
         });
 
         $("#btn_retomar_treino").click(() => {
@@ -126,38 +158,110 @@ if ($result->num_rows > 0) {
             timer.start();
             $("#btn_pausar_treino").removeClass("d-none");
             $("#btn_retomar_treino").addClass("d-none");
+
+            // Esconde os exercícios não concluídos
+            var contador = 0;
+            idExercicios.forEach(function() {
+                $("#" + idExercicios[contador]).removeClass("d-none");
+                contador++;
+            });
         });
 
-        $("#btn_finalizar_treino").click(() => {
-            // Finaliza o timer
-            timer.stop();
-            Swal.fire({
-                text: 'Tem certeza que deseja finalizar o treino?',
-                icon: 'warning',
-                confirmButtonText: 'Sim',
-                cancelButtonText: 'Não',
-                showCancelButton: true,
-                width: '90%',
-                background: '#191919',
-                position: 'center',
-                customClass: {
-                    cancelButton: 'btn btn-primary-swal-2',
-                    confirmButton: 'btn btn-secondary-swal-2',
-                    title: 'title-swal',
-                    popup: 'pop-up-swal',
-                    container: 'container-swal-html'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    load("home.php");
-                }
-            })
+        $("#btn_finalizar_treino, #back_btn").click(() => {
+            // Se o treino tiver sido iniciado, exibe o swal, caso contrário retorna para a home
+            if (treinoIniciado == true) {
+                // Finaliza o timer
+                timer.stop();
+                Swal.fire({
+                    text: 'Tem certeza que deseja finalizar o treino?',
+                    icon: 'warning',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não',
+                    showCancelButton: true,
+                    width: '90%',
+                    background: '#191919',
+                    position: 'center',
+                    customClass: {
+                        cancelButton: 'btn btn-primary-swal-2',
+                        confirmButton: 'btn btn-secondary-swal-2',
+                        title: 'title-swal',
+                        popup: 'pop-up-swal',
+                        container: 'container-swal-html'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Parabéns!',
+                            text: 'Seu treino do dia foi concluído',
+                            icon: 'success',
+                            confirmButtonText: 'Ok',
+                            width: '90%',
+                            background: '#191919',
+                            position: 'center',
+                            customClass: {
+                                confirmButton: 'btn btn-primary-swal-2',
+                                title: 'title-swal',
+                                popup: 'pop-up-swal',
+                                container: 'container-swal-html'
+                            }
+                        }).then((result) => {
+                            load("home.php");
+                        })
+                    }
+                });
+            } else
+                load("home.php");
+
         });
 
         // Atualiza o timer a cada segundo
         timer.addEventListener('secondsUpdated', function(e) {
             $('#timer').html(timer.getTimeValues().toString());
         });
+
+        function finalizaExercicio(id_exercicio) {
+            id_exercicio = "#" + id_exercicio;
+            if ($(id_exercicio).hasClass("fa-regular")) {
+                $(id_exercicio).removeClass("fa-regular");
+                $(id_exercicio).addClass("fa-solid");
+                $(id_exercicio).removeAttr("onclick");
+                idExerciciosConcluidos.push(id_exercicio.replace("#", ""));
+                if (idExercicios.indexOf(id_exercicio.replace("#", "")) > -1)
+                    idExercicios.splice(idExercicios.indexOf(id_exercicio.replace("#", "")), 1);
+            }
+
+            if (treinoIniciado == true) {
+                // Finaliza o treino
+                if (idExercicios.length == 0) {
+                    Swal.fire({
+                        title: 'Parabéns!',
+                        text: 'Seu treino do dia foi concluído',
+                        icon: 'success',
+                        confirmButtonText: 'Ok',
+                        width: '90%',
+                        background: '#191919',
+                        position: 'center',
+                        customClass: {
+                            confirmButton: 'btn btn-primary-swal-2',
+                            title: 'title-swal',
+                            popup: 'pop-up-swal',
+                            container: 'container-swal-html'
+                        }
+                    }).then((result) => {
+                        var settings = {
+                            url: './ajax/finalizaTreino.php',
+                            method: 'POST',
+                            data: {
+                                idFicha: "<?= $idFicha; ?>"
+                            },
+                        }
+                        $.ajax(settings).done(function(result) {
+                            load("home.php");
+                        });
+                    });
+                }
+            }
+        }
     </script>
 
 </body>

@@ -5,8 +5,6 @@ session_start();
 // Arquivo de conexão
 include("../mysql/conexao.php");
 
-$autenticado = false;
-
 // Define a última ficha completa
 $ultima_ficha_completa = 0;
 if ($_POST["objetivo"] == "emagrecimento")
