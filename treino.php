@@ -205,8 +205,17 @@ if ($result->num_rows > 0) {
                                 container: 'container-swal-html'
                             }
                         }).then((result) => {
-                            load("home.php");
-                        })
+                            var settings = {
+                                url: './ajax/finalizaTreino.php',
+                                method: 'POST',
+                                data: {
+                                    idFicha: "<?= $idFicha; ?>"
+                                },
+                            }
+                            $.ajax(settings).done(function(result) {
+                                load("home.php");
+                            });
+                        });
                     }
                 });
             } else
