@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
                                 <div class="row pe-2 mb-2">
                                     <div class="col-12 d-flex justify-content-between">
                                         <span class="color-white fs-small me-1">' . $row["nome"] . '</span>
-                                        <i class="d-none fa-regular fa-circle-check fs-small color-white" id="icone_feito_' . $row["id_exercicio"] . '" onclick="finalizaExercicio(' . "'" . 'icone_feito_' . $row["id_exercicio"] . "'" . ');"></i>
+                                        <i class="d-none fa-regular fa-circle fs-small color-white" id="icone_feito_' . $row["id_exercicio"] . '" onclick="finalizaExercicio(' . "'" . 'icone_feito_' . $row["id_exercicio"] . "'" . ');"></i>
                                     </div>
                                 </div>
                                 <div class="row pe-2 h-50">
@@ -230,14 +230,12 @@ if ($result->num_rows > 0) {
 
         function finalizaExercicio(id_exercicio) {
             id_exercicio = "#" + id_exercicio;
-            if ($(id_exercicio).hasClass("fa-regular")) {
-                $(id_exercicio).removeClass("fa-regular");
-                $(id_exercicio).addClass("fa-solid");
-                $(id_exercicio).removeAttr("onclick");
-                idExerciciosConcluidos.push(id_exercicio.replace("#", ""));
-                if (idExercicios.indexOf(id_exercicio.replace("#", "")) > -1)
-                    idExercicios.splice(idExercicios.indexOf(id_exercicio.replace("#", "")), 1);
-            }
+            $(id_exercicio).removeClass("fa-circle");
+            $(id_exercicio).addClass("fa-circle-check");
+            $(id_exercicio).removeAttr("onclick");
+            idExerciciosConcluidos.push(id_exercicio.replace("#", ""));
+            if (idExercicios.indexOf(id_exercicio.replace("#", "")) > -1)
+                idExercicios.splice(idExercicios.indexOf(id_exercicio.replace("#", "")), 1);
 
             if (treinoIniciado == true) {
                 // Finaliza o treino
