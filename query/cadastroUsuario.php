@@ -30,9 +30,35 @@ $sql =
          '" . $_SESSION['plano'] . "', MD5('" . $_SESSION['numero_cartao'] . "'), MD5('" . $_SESSION['titular'] . "'), MD5('" . $_SESSION['vencimento'] . "'), MD5('" . $_SESSION['cvv'] . "'),
           '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['objetivo'] . "', '" . $_id_ultima_ficha . "', '" . $ultima_ficha_completa . "', '" . $fotoPerfilPadrao . "')";
 
-if ($mysqli->query($sql) === true)
+if ($mysqli->query($sql) === true) {
+
+    $sql =
+        "SELECT
+            id_usuarios
+        FROM 
+            usuarios
+        WHERE
+            cpf = '" . $_SESSION['cpf'] . "'";
+    $id_usuarios = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_usuarios"];
+
+    $sql =
+        "SELECT
+            *
+        FROM 
+            metas";
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $sql2 =
+                "INSERT INTO 
+                    metas_usuarios (_id_usuarios, _id_metas, completo)
+                VALUES
+                    (" .  $id_usuarios . "," .  $row["id_metas"] . ", 'false')";
+            $result2 = $mysqli->query($sql2);
+        }
+    }
     header('Location: ../home.php');
-else
+} else
     header('Location: ../index.php');
 
 $mysqli->close();

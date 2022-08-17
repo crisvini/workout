@@ -13,7 +13,7 @@ function load(page) {
     if (page != undefined) {
         setTimeout(function () {
             location.href = page;
-        }, 1000);
+        }, 700);
     }
 
 }
