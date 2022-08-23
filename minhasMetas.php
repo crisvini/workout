@@ -42,15 +42,21 @@ $htmlMetasCompletas = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $htmlMetasCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                                        <div class="col-12 br-20">
-                                            <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
-                                        </div>
-                                        <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
-                                            <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
-                                            <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-check"></i></span>
-                                        </div>
-                                    </div>';
+                                    <div class="col-12 br-20">
+                                        <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
+                                    </div>
+                                    <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
+                                        <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
+                                        <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-check"></i></span>
+                                    </div>
+                                </div>';
     }
+} else {
+    $htmlMetasCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+                                <div class="col-12 br-20">
+                                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Nenhuma meta encontrada</p>
+                                </div>
+                            </div>';
 }
 
 // Consulta os dados das metas incompletas
