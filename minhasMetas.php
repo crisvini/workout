@@ -3,12 +3,64 @@ include("./navbar.php");
 include("./mysql/conexao.php");
 session_start();
 
-// Consulta os dados das metas
+// Seleciona as pontuações do usuário
+$sql = "SELECT 
+            pontuacao_semanal,
+            pontuacao_geral
+        FROM 
+            usuarios
+        WHERE 
+            cpf = '" . $_SESSION["cpf"] . "'";
+$pontuacaoSemanal = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao_semanal"] . " pontos";
+$pontuacaoGeral = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao_geral"] . " pontos";
+
+// Seleciona as metas completas
 $sql = "SELECT 
             metas_usuarios.completo as completo,
             metas.nome as nome,
             metas.descricao as descricao,
-            metas.pontos as pontos
+            metas.pontos as pontos,
+            metas.quantidade as quantidade,
+            metas_usuarios.quantidade_concluida as quantidadeConcluida
+        FROM 
+            metas_usuarios 
+        JOIN 
+                usuarios 
+            on 
+                usuarios.id_usuarios = metas_usuarios._id_usuarios 
+        JOIN 
+                metas 
+            on 
+                metas.id_metas = metas_usuarios._id_metas 
+        WHERE 
+            usuarios.cpf = '" . $_SESSION["cpf"] . "'
+        AND
+            metas_usuarios.completo = 'true'";
+$result = $mysqli->query($sql);
+// Monta os cards das metas completas
+$htmlMetasCompletas = '';
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $htmlMetasCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+                                        <div class="col-12 br-20">
+                                            <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
+                                        </div>
+                                        <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
+                                            <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
+                                            <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-check"></i></span>
+                                        </div>
+                                    </div>';
+    }
+}
+
+// Consulta os dados das metas incompletas
+$sql = "SELECT 
+            metas_usuarios.completo as completo,
+            metas.nome as nome,
+            metas.descricao as descricao,
+            metas.pontos as pontos,
+            metas.quantidade as quantidade,
+            metas_usuarios.quantidade_concluida as quantidadeConcluida
         FROM 
             metas_usuarios 
         JOIN 
@@ -24,22 +76,22 @@ $sql = "SELECT
         AND
             metas_usuarios.completo = 'false'";
 $result = $mysqli->query($sql);
-
-// Monta os cards das metas
-$htmlMetasNaoCompletas = '';
+// Monta os cards das metas incompletas
+$htmlMetasIncompletas = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $htmlMetasNaoCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                                        <div class="col-12 color-white fs-medium mb-3">
-                                            <span>' . $row["nome"] . '</span>
+        $htmlMetasIncompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+                                        <div class="col-12 br-20">
+                                            <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
                                         </div>
-                                        <div class="col-10 progress br-20" style="height: 80px;">
-                                            <div class="progress-bar bg-pink text-start" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="color-white ms-4 fs-small fw-500" style="position: absolute;">' . $row["pontos"] . ' pontos</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <span class="color-pink fs-large float-end me-4" style="line-height: initial;"><i class="fa-solid fa-check"></i></span>
+                                        <div class="col-12 progress br-20 mt-4" style="height: 80px;">
+                                             <div class="progress-bar bg-light-gray text-start" role="progressbar" style="width: ' . ($row["quantidadeConcluida"] * 100) / $row["quantidade"] . '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                 <span class="color-medium-gray ms-4 fs-small fw-800" style="position: absolute;">' . $row["quantidadeConcluida"] . ' realizadas</span>
+                                             </div>
+                                         </div>
+                                        <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
+                                            <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
+                                            <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-star"></i></span>
                                         </div>
                                     </div>';
     }
@@ -67,54 +119,43 @@ if ($result->num_rows > 0) {
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
-                <div class="col-12 color-white fs-large">
+                <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Minhas metas</span>
+                    <span><i class="fa-solid fa-list" style="align-self: center;"></i></span>
                 </div>
             </div>
-            <?= $htmlMetasNaoCompletas; ?>
-            <!-- <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 color-white fs-medium mb-3">
-                    <span>Faça 100 flexões</span>
-                </div>
-                <div class="col-10 progress br-20" style="height: 80px;">
-                    <div class="progress-bar bg-pink text-start" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <span class="color-white ms-4 fs-small fw-500" style="position: absolute;">Flexões</span>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <span class="color-pink fs-large float-end me-4" style="line-height: initial;"><i class="fa-solid fa-check"></i></span>
-                </div>
-            </div> -->
+            <?= $htmlMetasIncompletas; ?>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
-                <div class="col-12 color-white fs-large">
+                <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Metas completas</span>
+                    <span><i class="fa-solid fa-list-check" style="align-self: center;"></i></span>
                 </div>
             </div>
-            <div class="row mt-5 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 color-white fs-medium mb-3">
-                    <span>Faça 120 abdominais</span>
-                </div>
-                <div class="col-10 progress br-20" style="height: 80px;">
-                    <div class="progress-bar bg-pink text-start" role="progressbar" style="width: 100%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                        <span class="color-white ms-4 fs-small fw-500" style="position: absolute;">Abdominais</span>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <span class="color-pink fs-large float-end me-4" style="line-height: initial;"><i class="fa-solid fa-check-double"></i></span>
-                </div>
-            </div>
+            <?= $htmlMetasCompletas; ?>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
-                <div class="col-12 color-white fs-large">
+                <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Minha pontuação</span>
+                    <span style="align-self: center;"><i class="fa-solid fa-star" style="align-self: center;"></i></span>
                 </div>
             </div>
             <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 color-white fs-extra-large color-pink mb-3">
-                    <span>3500 pontos</span>
+                <div class="col-12 br-20">
+                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Semanal</p>
+                </div>
+                <div class="col-12 ps-4 bg-black br-20 mt-4 fs-large color-pink mb-3">
+                    <span><?= $pontuacaoSemanal; ?></span>
+                </div>
+            </div>
+            <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+                <div class="col-12 br-20">
+                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Geral</p>
+                </div>
+                <div class="col-12 ps-4 bg-black br-20 mt-4 fs-large color-pink mb-3">
+                    <span><?= $pontuacaoGeral; ?></span>
                 </div>
             </div>
         </div>

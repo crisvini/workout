@@ -24,11 +24,11 @@ else if ($_SESSION['objetivo'] == "hipertrofia")
 
 $sql =
     "INSERT INTO 
-        usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, objetivo, _id_ultima_ficha, ultima_ficha_completa, foto_perfil) 
+        usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, objetivo, _id_ultima_ficha, ultima_ficha_completa, foto_perfil, pontuacao_semanal, pontuacao_geral) 
     VALUES 
         ('" . $_SESSION['nome'] . "', '" . $_SESSION['email'] . "', '" . $_SESSION['cpf'] . "', '" . $_SESSION['nascimento'] . "', MD5('" . $_SESSION['senha'] . "'),
          '" . $_SESSION['plano'] . "', MD5('" . $_SESSION['numero_cartao'] . "'), MD5('" . $_SESSION['titular'] . "'), MD5('" . $_SESSION['vencimento'] . "'), MD5('" . $_SESSION['cvv'] . "'),
-          '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['objetivo'] . "', '" . $_id_ultima_ficha . "', '" . $ultima_ficha_completa . "', '" . $fotoPerfilPadrao . "')";
+          '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['objetivo'] . "', '" . $_id_ultima_ficha . "', '" . $ultima_ficha_completa . "', '" . $fotoPerfilPadrao . "', 0, 0)";
 
 if ($mysqli->query($sql) === true) {
 
@@ -51,9 +51,9 @@ if ($mysqli->query($sql) === true) {
         while ($row = $result->fetch_assoc()) {
             $sql2 =
                 "INSERT INTO 
-                    metas_usuarios (_id_usuarios, _id_metas, completo)
+                    metas_usuarios (_id_usuarios, _id_metas, completo, quantidade_concluida)
                 VALUES
-                    (" .  $id_usuarios . "," .  $row["id_metas"] . ", 'false')";
+                    (" .  $id_usuarios . "," .  $row["id_metas"] . ", 'false', 0)";
             $result2 = $mysqli->query($sql2);
         }
     }
