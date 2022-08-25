@@ -50,6 +50,36 @@ if ($result->num_rows > 0) {
     }
     $idExercicios = json_encode($idExercicios);
 }
+
+// Seleciona as metas do usuário ainda não completas
+$arrayMetasUsuarios = [];
+$sql2 = "SELECT
+            metas._id_exercicio,
+            metas_usuarios.quantidade_concluida,
+            metas_usuarios.completo
+        FROM 
+            metas_usuarios
+        JOIN
+            metas
+        ON 
+            metas_usuarios._id_metas = metas.id_metas
+        WHERE
+            metas_usuarios._id_usuarios = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')
+        AND
+            metas_usuarios.completo = 'false'";
+$result2 = $mysqli->query($sql2);
+if ($result2->num_rows > 0) {
+    $cont = 0;
+    while ($row2 = $result2->fetch_assoc()) {
+        $arrayQuantidadeCompleta = ["quantidade_ex_" . $cont =>  $row2["quantidade_concluida"], "ex_completo_" .
+            $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"]];
+        array_push($arrayMetasUsuarios, $arrayQuantidadeCompleta);
+        $cont++;
+    }
+}
+echo json_encode($arrayMetasUsuarios);
+
+die();
 ?>
 
 <!DOCTYPE html>

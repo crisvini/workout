@@ -102,7 +102,7 @@ $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sq
                     <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
                 </div>
             </div>
-            <div class="row mt-4" style="--bs-gutter-x: none;">
+            <!-- <div class="row mt-4" style="--bs-gutter-x: none;">
                 <div class="progress br-20" style="height: 50px;">
                     <div class="progress-bar bg-pink text-start" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         <span class="color-white ms-4 fs-small fw-500" style="position: absolute;">Flexões</span>
@@ -115,7 +115,7 @@ $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sq
                         <span class="color-white ms-4 fs-small fw-500" style="position: absolute;">Abdominais</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking" onclick="load('ranking.php')">
             <div class="row">
@@ -137,6 +137,31 @@ $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sq
                         </div>
                         <div class="col-4 text-end">
                             <span>6855 pontos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 bg-gray br-20" style="padding: 3%;" id="ranking" onclick="load('ranking.php')">
+            <div class="row">
+                <div class="col-10 color-white fs-large">
+                    <span>Ranking geral</span>
+                </div>
+                <div class="col-2 text-end align-self-center">
+                    <span><i class="fa-solid fa-angle-right enter-button color-pink"></i></span>
+                </div>
+            </div>
+            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+                <div class="color-white d-flex flex-column fs-small fw-500">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
+                        </div>
+                        <div class="col-7 ps-4">
+                            <span>3567° - Você</span>
+                        </div>
+                        <div class="col-4 text-end">
+                            <span>27679 pontos</span>
                         </div>
                     </div>
                 </div>
