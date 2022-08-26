@@ -17,12 +17,14 @@ $result = $mysqli->query($sql);
 
 // Monta os cards dos exercícios
 $idExercicios = [];
+$idExerciciosArray = [];
 $idFicha = '';
 $htmlExercicios = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $idFicha = $row["_id_ficha"];
         array_push($idExercicios, "icone_feito_" . $row["id_exercicio"]);
+        array_push($idExerciciosArray, $row["id_exercicio"]);
         $htmlExercicios .= '<div class="row my-5 bg-gray br-20">
                             <div class="col-4 ps-0 align-self-center">
                                 <img src="./img/treino_background.jpg" class="w-100 br-st-20">
@@ -71,9 +73,13 @@ $result2 = $mysqli->query($sql2);
 if ($result2->num_rows > 0) {
     $cont = 0;
     while ($row2 = $result2->fetch_assoc()) {
-        $arrayQuantidadeCompleta = ["quantidade_ex_" . $cont =>  $row2["quantidade_concluida"], "ex_completo_" .
-            $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"]];
-        array_push($arrayMetasUsuarios, $arrayQuantidadeCompleta);
+        foreach ($idExerciciosArray as $key => $value) {
+            if ($row2["_id_exercicio"] == $value) {
+                $arrayQuantidadeCompleta = ["quantidade_ex_" . $cont =>  $row2["quantidade_concluida"], "ex_completo_" .
+                    $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"]];
+                array_push($arrayMetasUsuarios, $arrayQuantidadeCompleta);
+            }
+        }
         $cont++;
     }
 }
