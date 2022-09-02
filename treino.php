@@ -53,39 +53,6 @@ if ($result->num_rows > 0) {
     $idExercicios = json_encode($idExercicios);
 }
 
-// Seleciona as metas do usuário ainda não completas
-$arrayMetasUsuarios = [];
-$sql2 = "SELECT
-            metas._id_exercicio,
-            metas_usuarios.quantidade_concluida,
-            metas_usuarios.completo
-        FROM 
-            metas_usuarios
-        JOIN
-            metas
-        ON 
-            metas_usuarios._id_metas = metas.id_metas
-        WHERE
-            metas_usuarios._id_usuarios = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')
-        AND
-            metas_usuarios.completo = 'false'";
-$result2 = $mysqli->query($sql2);
-if ($result2->num_rows > 0) {
-    $cont = 0;
-    while ($row2 = $result2->fetch_assoc()) {
-        foreach ($idExerciciosArray as $key => $value) {
-            if ($row2["_id_exercicio"] == $value) {
-                $arrayQuantidadeCompleta = ["quantidade_ex_" . $cont =>  $row2["quantidade_concluida"], "ex_completo_" .
-                    $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"]];
-                array_push($arrayMetasUsuarios, $arrayQuantidadeCompleta);
-            }
-        }
-        $cont++;
-    }
-}
-echo json_encode($arrayMetasUsuarios);
-
-die();
 ?>
 
 <!DOCTYPE html>
@@ -226,31 +193,43 @@ die();
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                            title: 'Parabéns!',
-                            text: 'Seu treino do dia foi concluído',
-                            icon: 'success',
-                            confirmButtonText: 'Ok',
-                            width: '90%',
-                            background: '#191919',
-                            position: 'center',
-                            customClass: {
-                                confirmButton: 'btn btn-primary-swal-2',
-                                title: 'title-swal',
-                                popup: 'pop-up-swal',
-                                container: 'container-swal-html'
+                        load();
+                        var settings = {
+                            url: './ajax/incrementaMetas.php',
+                            method: 'POST'
+                        }
+                        $.ajax(settings).done(function(result) {
+                            if (result == true) {
+                                window.location.href = "./home.php"
+                            } else {
+                                stopLoad();
+                                Swal.fire({
+                                    title: 'Parabéns!',
+                                    text: 'Seu treino do dia foi concluído',
+                                    icon: 'success',
+                                    confirmButtonText: 'Ok',
+                                    width: '90%',
+                                    background: '#191919',
+                                    position: 'center',
+                                    customClass: {
+                                        confirmButton: 'btn btn-primary-swal-2',
+                                        title: 'title-swal',
+                                        popup: 'pop-up-swal',
+                                        container: 'container-swal-html'
+                                    }
+                                }).then((result) => {
+                                    var settings = {
+                                        url: './ajax/finalizaTreino.php',
+                                        method: 'POST',
+                                        data: {
+                                            idFicha: "<?= $idFicha; ?>"
+                                        },
+                                    }
+                                    $.ajax(settings).done(function(result) {
+                                        load("home.php");
+                                    });
+                                });
                             }
-                        }).then((result) => {
-                            var settings = {
-                                url: './ajax/finalizaTreino.php',
-                                method: 'POST',
-                                data: {
-                                    idFicha: "<?= $idFicha; ?>"
-                                },
-                            }
-                            $.ajax(settings).done(function(result) {
-                                load("home.php");
-                            });
                         });
                     }
                 });
