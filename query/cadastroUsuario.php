@@ -58,7 +58,7 @@ if ($mysqli->query($sql) === true) {
                     metas_usuarios (_id_usuarios, _id_metas, completo, quantidade_concluida)
                 VALUES
                     (" .  $id_usuarios . "," .  $row["id_metas"] . ", 'false', 0)";
-            $result2 = $mysqli->query($sql2);
+            $mysqli->query($sql2);
         }
     }
 
@@ -68,7 +68,7 @@ if ($mysqli->query($sql) === true) {
             ranking (_id_usuario, nome, pontuacao)
         VALUES
             (" .  $id_usuarios . ",'" .  $_SESSION['nome'] . "', 0)";
-    $result = $mysqli->query($sql);
+    $mysqli->query($sql);
 
     $mysqli->close();
     header('Location: ../home.php');

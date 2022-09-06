@@ -16,17 +16,12 @@ $sql = "SELECT
             _id_ficha = " . $_SESSION["idFichaDoDia"];
 $result = $mysqli->query($sql);
 
-// Monta os cards dos exercícios
-$idExercicios = [];
+// Atribui o id dos exercícios ao array $idExerciciosArray
 $idExerciciosArray = [];
-$idFicha = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $idFicha = $row["_id_ficha"];
-        array_push($idExercicios, "icone_feito_" . $row["id_exercicio"]);
         array_push($idExerciciosArray, $row["id_exercicio"]);
     }
-    $idExercicios = json_encode($idExercicios);
 }
 
 // Seleciona as metas do usuário ainda não completas
@@ -34,6 +29,7 @@ $arrayMetasUsuarios = [];
 $sql2 = "SELECT
             metas._id_exercicio,
             metas.quantidade,
+            metas.pontos,
             metas_usuarios.quantidade_concluida,
             metas_usuarios.completo,
             metas_usuarios._id_metas
@@ -54,7 +50,7 @@ if ($result2->num_rows > 0) {
         foreach ($idExerciciosArray as $key => $value) {
             if ($row2["_id_exercicio"] == $value) {
                 $arrayQuantidadeCompleta = ["quantidade_ex_realizado_" . $cont =>  $row2["quantidade_concluida"], "ex_completo_" .
-                    $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"], "_id_metas" => $row2["_id_metas"], "quantidade_a_completar" => $row2["quantidade"]];
+                    $cont => $row2["completo"], "id_exercicio" => $row2["_id_exercicio"], "_id_metas" => $row2["_id_metas"], "quantidade_a_completar" => $row2["quantidade"], "pontos" => $row2["pontos"]];
                 array_push($arrayMetasUsuarios, $arrayQuantidadeCompleta);
             }
         }
@@ -91,6 +87,27 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                     metas._id_exercicio = " . $arrayMetasUsuarios[$key]["id_exercicio"] . "
                 AND
                     metas_usuarios._id_metas = " . $arrayMetasUsuarios[$key]["_id_metas"];
+        $mysqli->query($sql);
+
+        // Seleciona a pontuação atual do usuário
+        $sql = "SELECT
+                    pontuacao
+                FROM 
+                    ranking
+                WHERE
+                    _id_usuario = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')";
+        $pontuacaoAtual = (int) mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao"];
+
+        // Soma a pontuação atual com a pontuação nova
+        $novaPontuacao = $pontuacaoAtual + (int) $arrayMetasUsuarios[$key]["pontos"];
+
+        // Incrementa a pontuação do usuário
+        $sql = "UPDATE
+                    ranking
+                SET
+                    pontuacao = " . $novaPontuacao . "
+                WHERE
+                    _id_usuario = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')";
         $mysqli->query($sql);
     } else {
         // Faz update na quantidade de exercícios concluídos da meta
