@@ -22,6 +22,7 @@ if ($_SESSION['objetivo'] == "emagrecimento")
 else if ($_SESSION['objetivo'] == "hipertrofia")
     $ultima_ficha_completa = 6;
 
+// Cria o usuário na tabela usuarios
 $sql =
     "INSERT INTO 
         usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, objetivo, _id_ultima_ficha, ultima_ficha_completa, foto_perfil, pontuacao_semanal, pontuacao_geral) 
@@ -30,8 +31,9 @@ $sql =
          '" . $_SESSION['plano'] . "', MD5('" . $_SESSION['numero_cartao'] . "'), MD5('" . $_SESSION['titular'] . "'), MD5('" . $_SESSION['vencimento'] . "'), MD5('" . $_SESSION['cvv'] . "'),
           '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['objetivo'] . "', '" . $_id_ultima_ficha . "', '" . $ultima_ficha_completa . "', '" . $fotoPerfilPadrao . "', 0, 0)";
 
+// Se o usuário for criado com sucesso, insere as metas semanais na tabela de metas_usuarios no perfil do usuário
 if ($mysqli->query($sql) === true) {
-
+    // Seleciona o id do usuário
     $sql =
         "SELECT
             id_usuarios
@@ -41,12 +43,14 @@ if ($mysqli->query($sql) === true) {
             cpf = '" . $_SESSION['cpf'] . "'";
     $id_usuarios = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_usuarios"];
 
+    // Seleciona as metas
     $sql =
         "SELECT
             *
         FROM 
             metas";
     $result = $mysqli->query($sql);
+    // Insere as metas semanais na tabela de metas_usuarios no perfil do usuário
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $sql2 =
@@ -57,8 +61,18 @@ if ($mysqli->query($sql) === true) {
             $result2 = $mysqli->query($sql2);
         }
     }
-    header('Location: ../home.php');
-} else
-    header('Location: ../index.php');
 
-$mysqli->close();
+    // Insere os dados do usuário no ranking
+    $sql =
+        "INSERT INTO 
+            ranking (_id_usuario, nome, pontuacao)
+        VALUES
+            (" .  $id_usuarios . ",'" .  $_SESSION['nome'] . "', 0)";
+    $result = $mysqli->query($sql);
+
+    $mysqli->close();
+    header('Location: ../home.php');
+} else {
+    $mysqli->close();
+    header('Location: ../index.php');
+}
