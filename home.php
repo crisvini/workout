@@ -2,7 +2,14 @@
 session_start();
 include("./navbar.php");
 
+// Seleciona o id_usuario do usuário
 include("./mysql/conexao.php");
+if (!isset($_SESSION["idUsuario"])) {
+    $sql = "SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "'";
+    $_SESSION["idUsuario"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_usuarios"];
+}
+
+// Seleciona os dados da ficha do dia do usuário
 $sql = "SELECT
             fichas.nome,
             fichas.id_ficha,
@@ -19,6 +26,7 @@ $_SESSION["nomeFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["n
 $_SESSION["idFichaDoDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["id_ficha"];
 $_SESSION["backgroundFichaDia"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["background"];
 
+// Seleciona a quantidade de exercícios da ficha do dia do usuário
 $sql = "SELECT
             COUNT(id_exercicio) as qtd_ex
         FROM 
@@ -26,6 +34,33 @@ $sql = "SELECT
         WHERE
             _id_ficha = '" . $_SESSION["idFichaDoDia"] . "'";
 $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["qtd_ex"];
+
+// Seleciona a classificação e a pontuação do usuário no ranking
+$sql = "SELECT
+            _id_usuario,
+            pontuacao,
+            RANK() OVER(ORDER BY pontuacao DESC) as ranking
+        FROM 
+            ranking";
+$result = $mysqli->query($sql);
+// Gera um array com os dados da classificação
+$arrayRanking = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $arrayUsuario = ["_id_usuario" =>  $row["_id_usuario"], "pontuacao" => $row["pontuacao"], "ranking" => $row["ranking"]];
+        array_push($arrayRanking, $arrayUsuario);
+    }
+}
+// Salva o ranking e a pontuação do usuário em variáveis
+$pontuacao = "";
+$ranking = "";
+foreach ($arrayRanking as $key => $value) {
+    if ($value["_id_usuario"] == $_SESSION["idUsuario"]) {
+        $pontuacao = $value["pontuacao"];
+        $ranking = $value["ranking"];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -133,10 +168,10 @@ $_SESSION["quantidadeExercicios"] = mysqli_fetch_assoc(mysqli_query($mysqli, $sq
                             <i class="fa-solid fa-circle-user color-white fs-large"></i>
                         </div>
                         <div class="col-7 ps-4">
-                            <span>1545° - Você</span>
+                            <span><?= $ranking; ?>° - Você</span>
                         </div>
                         <div class="col-4 text-end">
-                            <span>6855 pontos</span>
+                            <span><?= $pontuacao; ?> pontos</span>
                         </div>
                     </div>
                 </div>

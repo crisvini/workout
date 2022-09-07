@@ -40,7 +40,7 @@ $sql2 = "SELECT
         ON 
             metas_usuarios._id_metas = metas.id_metas
         WHERE
-            metas_usuarios._id_usuarios = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')
+            metas_usuarios._id_usuarios = " . $_SESSION["idUsuario"] . "
         AND
             metas_usuarios.completo = 'false'";
 $result2 = $mysqli->query($sql2);
@@ -95,7 +95,7 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 FROM 
                     ranking
                 WHERE
-                    _id_usuario = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')";
+                    _id_usuario = " . $_SESSION["idUsuario"];
         $pontuacaoAtual = (int) mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao"];
 
         // Soma a pontuação atual com a pontuação nova
@@ -107,7 +107,7 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 SET
                     pontuacao = " . $novaPontuacao . "
                 WHERE
-                    _id_usuario = (SELECT id_usuarios FROM usuarios WHERE cpf = '" . $_SESSION["cpf"] . "')";
+                    _id_usuario = " . $_SESSION["idUsuario"];
         $mysqli->query($sql);
     } else {
         // Faz update na quantidade de exercícios concluídos da meta

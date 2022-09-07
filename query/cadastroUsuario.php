@@ -68,7 +68,7 @@ if ($mysqli->query($sql) === true) {
             ranking (_id_usuario, nome, pontuacao)
         VALUES
             (" .  $id_usuarios . ",'" .  $_SESSION['nome'] . "', 0)";
-    $mysqli->query($sql);
+    $result = $mysqli->query($sql);
 
     $mysqli->close();
     header('Location: ../home.php');
