@@ -1,5 +1,76 @@
 <?php
+session_start();
 include("./navbar.php");
+// Seleciona a classificação e a pontuação do usuário no ranking
+include("./mysql/conexao.php");
+$sql = "SELECT
+            _id_usuario,
+            pontuacao,
+            nome,
+            RANK() OVER(ORDER BY pontuacao DESC) as ranking
+        FROM 
+            ranking";
+$result = $mysqli->query($sql);
+// Gera um array com os dados da classificação
+$arrayRanking = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $arrayUsuario = ["_id_usuario" =>  $row["_id_usuario"], "pontuacao" => $row["pontuacao"], "ranking" => $row["ranking"], "nome" => explode(" ", $row["nome"])[0] . " " . substr(explode(" ", $row["nome"])[1], 0, 1) . "."];
+        array_push($arrayRanking, $arrayUsuario);
+    }
+}
+// Salva o ranking e a pontuação do usuário em variáveis
+$pontuacao = "";
+$ranking = "";
+$htmlRanking = "";
+$arrayRankingUsuarios = [];
+$nome = "";
+foreach ($arrayRanking as $key => $value) {
+    $pontuacao = $value["pontuacao"];
+    $ranking = $value["ranking"];
+    $nome = $value["nome"];
+    if ($value["_id_usuario"] == $_SESSION["idUsuario"]) {
+        $pontuacaoUsuario = $value["pontuacao"];
+        $rankingUsuario = $value["ranking"];
+        $htmlRanking = '
+                        <div class="row mt-4 bg-light-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+                            <div class="color-white d-flex flex-column fs-small fw-500">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-circle-user color-white fs-large"></i>
+                                    </div>
+                                    <div class="col-7 ps-4">
+                                        <span>' . $rankingUsuario . '° - Você</span>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <span>' . $pontuacaoUsuario . ' pontos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        array_push($arrayRankingUsuarios, $ranking);
+        continue;
+    }
+    if ($ranking != "" && count($arrayRankingUsuarios) < 5 && $pontuacao != 0) {
+        array_push($arrayRankingUsuarios, $ranking);
+        $htmlRanking .= '
+                <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+                    <div class="color-white d-flex flex-column fs-small fw-500">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa-solid fa-circle-user color-white fs-large"></i>
+                            </div>
+                            <div class="col-7 ps-4">
+                                <span>' . $ranking . ' - ' . $nome . '</span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span>' . $pontuacao . ' pontos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,96 +93,22 @@ include("./navbar.php");
             </div>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
-            <div class="row">
+            <div class="row" id="titulo_ranking">
                 <div class="col-12 color-white fs-large">
                     <span>Ranking semanal</span>
                 </div>
             </div>
-            <div class="row mt-4 bg-light-gray br-20" style="padding: 4%; --bs-gutter-x: none">
-                <div class="color-white d-flex flex-column fs-small fw-500">
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
-                        </div>
-                        <div class="col-7 ps-4">
-                            <span>1545° - Você</span>
-                        </div>
-                        <div class="col-4 text-end">
-                            <span>3500 pontos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
-                <div class="color-white d-flex flex-column fs-small fw-500">
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
-                        </div>
-                        <div class="col-7 ps-4">
-                            <span>1546° - User 1835</span>
-                        </div>
-                        <div class="col-4 text-end">
-                            <span>3298 pontos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
-                <div class="color-white d-flex flex-column fs-small fw-500">
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
-                        </div>
-                        <div class="col-7 ps-4">
-                            <span>1547° - User 1395</span>
-                        </div>
-                        <div class="col-4 text-end">
-                            <span>3220 pontos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
-                <div class="color-white d-flex flex-column fs-small fw-500">
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
-                        </div>
-                        <div class="col-7 ps-4">
-                            <span>1548° - User 9564</span>
-                        </div>
-                        <div class="col-4 text-end">
-                            <span>3165 pontos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
-                <div class="color-white d-flex flex-column fs-small fw-500">
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="fa-solid fa-circle-user color-white fs-large"></i>
-                        </div>
-                        <div class="col-7 ps-4">
-                            <span>1549° - User 4774</span>
-                        </div>
-                        <div class="col-4 text-end">
-                            <span>3147 pontos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?= $htmlRanking; ?>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large">
-                    <span>Minha pontuação</span>
+                    <span>Minha pontuação semanal</span>
                 </div>
             </div>
             <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
                 <div class="col-12 color-white fs-extra-large color-pink mb-3">
-                    <span>3500 pontos</span>
+                    <span><?= $pontuacaoUsuario; ?> pontos</span>
                 </div>
             </div>
         </div>

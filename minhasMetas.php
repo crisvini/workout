@@ -5,14 +5,12 @@ session_start();
 
 // Seleciona as pontuações do usuário
 $sql = "SELECT 
-            pontuacao_semanal,
-            pontuacao_geral
+            pontuacao
         FROM 
-            usuarios
+            ranking
         WHERE 
-            cpf = '" . $_SESSION["cpf"] . "'";
-$pontuacaoSemanal = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao_semanal"] . " pontos";
-$pontuacaoGeral = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao_geral"] . " pontos";
+            _id_usuario = '" . $_SESSION["idUsuario"] . "'";
+$pontuacao = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao"];
 
 // Seleciona as metas completas
 $sql = "SELECT 
@@ -130,7 +128,15 @@ if ($result->num_rows > 0) {
                     <span><i class="fa-solid fa-list" style="align-self: center;"></i></span>
                 </div>
             </div>
-            <?= $htmlMetasIncompletas; ?>
+            <?php
+            $metas = "";
+            $htmlMetasIncompletas != "" ? $metas = $htmlMetasIncompletas : $metas = '<div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+                                                                                        <div class="col-12 br-20">
+                                                                                             <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Parabéns! Todas as metas foram concluídas!</p>
+                                                                                         </div>
+                                                                                     </div>';
+            echo $metas;
+            ?>
         </div>
         <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
             <div class="row">
@@ -149,19 +155,8 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 br-20">
-                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Semanal</p>
-                </div>
                 <div class="col-12 ps-4 bg-black br-20 mt-4 fs-large color-pink mb-3">
-                    <span><?= $pontuacaoSemanal; ?></span>
-                </div>
-            </div>
-            <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 br-20">
-                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Geral</p>
-                </div>
-                <div class="col-12 ps-4 bg-black br-20 mt-4 fs-large color-pink mb-3">
-                    <span><?= $pontuacaoGeral; ?></span>
+                    <span><?= $pontuacao; ?> pontos</span>
                 </div>
             </div>
         </div>
