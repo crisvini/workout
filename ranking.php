@@ -54,7 +54,7 @@ foreach ($arrayRanking as $key => $value) {
     if ($ranking != "" && count($arrayRankingUsuarios) < 5 && $pontuacao != 0) {
         array_push($arrayRankingUsuarios, $ranking);
         $htmlRanking .= '
-                <div class="row mt-4 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+                <div class="row mt-2 bg-medium-gray br-20" style="padding: 4%; --bs-gutter-x: none">
                     <div class="color-white d-flex flex-column fs-small fw-500">
                         <div class="row">
                             <div class="col-1">
