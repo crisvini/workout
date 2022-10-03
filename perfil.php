@@ -1,7 +1,9 @@
 <?php
 session_start();
 include("./navbar.php");
+include("./header.php");
 include("./mysql/conexao.php");
+include("./verificaLogin.php");
 
 $fotoPerfil = '';
 $sql = 'SELECT
@@ -13,6 +15,7 @@ $sql = 'SELECT
 if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["foto_perfil"] != null)
     $fotoPerfil = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["foto_perfil"];
 
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +28,8 @@ if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["foto_perfil"] != null)
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
-                <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.php');"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
-                        <i class="fa-solid fa-dumbbell"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5">
+        <?= retornaHeader("home.php"); ?>
+        <div class="container mt-4vw">
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="crop mx-auto text-center d-flex justify-content-center">
@@ -43,7 +38,7 @@ if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["foto_perfil"] != null)
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-6 mx-auto">
+                <div class="col-8 mx-auto">
                     <div class="text-center bg-pink br-20">
                         <label class="label-upload color-white fs-small" id="label_foto_perfil"><i class="fa-solid fa-upload me-3"></i>Alterar foto de perfil</label>
                         <label for="foto_perfil_input" class="d-none" id="label_foto_perfil_hidden"></label>
@@ -51,7 +46,7 @@ if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["foto_perfil"] != null)
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 mb-1">
+            <div class="row mt-4vw mb-1">
                 <div class="col-12 text-center color-white">
                     <span class="fs-large"><?= $_SESSION["nome"]; ?></span>
                 </div>

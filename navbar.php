@@ -3,8 +3,8 @@
 function navbar($pagina = null)
 {
     $html = '';
-    if (str_contains($pagina, 'home.php')) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+    if (strpos($pagina, 'home.php')) {
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>
@@ -29,8 +29,8 @@ function navbar($pagina = null)
                     </div>
                 </div>';
         return $html;
-    } else  if (str_contains($pagina, 'fichas.php')) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+    } else  if (strpos($pagina, 'fichas.php')) {
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>
@@ -55,8 +55,8 @@ function navbar($pagina = null)
                     </div>
                 </div>';
         return $html;
-    } else  if (str_contains($pagina, 'minhasMetas.php')) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+    } else  if (strpos($pagina, 'minhasMetas.php')) {
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>
@@ -81,8 +81,8 @@ function navbar($pagina = null)
                     </div>
                 </div>';
         return $html;
-    } else  if (str_contains($pagina, 'ranking.php')) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+    } else  if (strpos($pagina, 'ranking.php')) {
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>
@@ -107,8 +107,8 @@ function navbar($pagina = null)
                     </div>
                 </div>';
         return $html;
-    } else  if (str_contains($pagina, 'perfil.php')) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+    } else  if (strpos($pagina, 'perfil.php')) {
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>
@@ -131,13 +131,13 @@ function navbar($pagina = null)
                             <span class="fs-extra-small color-pink">Perfil</span>
                         </div>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row mt-4vw">
                         <div class="col-12 text-center">
                             <button type="button" class="btn btn-primary" onclick="load(' . "'objetivo.php?paginaAnterior=perfil'" . ')">Alterar
                                 objetivo</button>
                         </div>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row mt-4vw">
                         <div class="col-12 text-center">
                             <button type="button" class="btn btn-primary" id="sair_btn">Sair</button>
                         </div>
@@ -145,7 +145,7 @@ function navbar($pagina = null)
                 </div>';
         return $html;
     } else if ($pagina == null) {
-        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 7px solid; border-left: 7px solid; border-right: 7px solid;">
+        $html = '<div class="container mt-5 bg-gray fixed-bottom border-light-gray br-tp-20" style="padding: 3%; border-top: 3px solid; border-left: 3px solid; border-right: 3px solid;">
                     <div class="row">
                         <div class="col text-white m-0 text-center color-white fs-medium" style="border-right: 3px solid #a59b9c !important;" id="nav_inicio" onclick="load(' . "'home.php'" . ')">
                             <i class="fa-solid fa-house color-pink"></i><br>

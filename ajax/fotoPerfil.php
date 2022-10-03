@@ -1,10 +1,9 @@
 <?php
-// error_reporting(E_ERROR | E_PARSE);
 session_start();
 
 include("../mysql/conexao.php");
 
-// Altera o objetivo
+// Altera a foto de perfil
 $sql = "UPDATE 
             usuarios
         SET 
@@ -12,5 +11,7 @@ $sql = "UPDATE
         WHERE 
             cpf = '" .  $_SESSION["cpf"] . "'";
 mysqli_query($mysqli, $sql);
+
+$mysqli->close();
 
 die($sql);

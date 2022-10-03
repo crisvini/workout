@@ -86,7 +86,9 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 WHERE
                     metas._id_exercicio = " . $arrayMetasUsuarios[$key]["id_exercicio"] . "
                 AND
-                    metas_usuarios._id_metas = " . $arrayMetasUsuarios[$key]["_id_metas"];
+                    metas_usuarios._id_metas = " . $arrayMetasUsuarios[$key]["_id_metas"] . "
+                AND 
+                    metas_usuarios._id_usuarios = " . $_SESSION["idUsuario"];
         $mysqli->query($sql);
 
         // Seleciona a pontuação atual do usuário
@@ -95,7 +97,9 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 FROM 
                     ranking
                 WHERE
-                    _id_usuario = " . $_SESSION["idUsuario"];
+                    _id_usuario = " . $_SESSION["idUsuario"] . "
+                AND
+                    _id_treino = " . $_SESSION["_id_treino"];
         $pontuacaoAtual = (int) mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao"];
 
         // Soma a pontuação atual com a pontuação nova
@@ -107,7 +111,9 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 SET
                     pontuacao = " . $novaPontuacao . "
                 WHERE
-                    _id_usuario = " . $_SESSION["idUsuario"];
+                    _id_usuario = " . $_SESSION["idUsuario"] . "
+                AND
+                    _id_treino = " . $_SESSION["_id_treino"];
         $mysqli->query($sql);
     } else {
         // Faz update na quantidade de exercícios concluídos da meta
@@ -120,7 +126,10 @@ foreach ($arrayMetasUsuarios as $key => $value) {
                 WHERE
                     metas._id_exercicio = " . $arrayMetasUsuarios[$key]["id_exercicio"] . "
                 AND
-                    metas_usuarios._id_metas = " . $arrayMetasUsuarios[$key]["_id_metas"];
+                    metas_usuarios._id_metas = " . $arrayMetasUsuarios[$key]["_id_metas"] . "
+                AND 
+                    metas_usuarios._id_usuarios = " . $_SESSION["idUsuario"];
         $mysqli->query($sql);
     }
 }
+$mysqli->close();

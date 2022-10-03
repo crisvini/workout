@@ -5,31 +5,17 @@ include("../fotoPerfilPadrao.php");
 
 session_start();
 // Insere os dados da página anterior na session do php
-$_SESSION["objetivo"] = $_POST["objetivo"];
+$_SESSION["_id_treino"] = explode("|", $_POST["objetivo"])[0];
 $fotoPerfilPadrao = fotoPerfilPadrao();
-
-// Define a primeira ficha
-$_id_ultima_ficha = 0;
-if ($_SESSION['objetivo'] == "emagrecimento")
-    $_id_ultima_ficha = 1;
-else if ($_SESSION['objetivo'] == "hipertrofia")
-    $_id_ultima_ficha = 4;
-
-// Define a última ficha completa
-$ultima_ficha_completa = 0;
-if ($_SESSION['objetivo'] == "emagrecimento")
-    $ultima_ficha_completa = 3;
-else if ($_SESSION['objetivo'] == "hipertrofia")
-    $ultima_ficha_completa = 6;
 
 // Cria o usuário na tabela usuarios
 $sql =
     "INSERT INTO 
-        usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, objetivo, _id_ultima_ficha, ultima_ficha_completa, foto_perfil, pontuacao_semanal, pontuacao_geral) 
+        usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, _id_treino, ultima_ficha_completa, foto_perfil, _id_perfil) 
     VALUES 
         ('" . $_SESSION['nome'] . "', '" . $_SESSION['email'] . "', '" . $_SESSION['cpf'] . "', '" . $_SESSION['nascimento'] . "', MD5('" . $_SESSION['senha'] . "'),
          '" . $_SESSION['plano'] . "', MD5('" . $_SESSION['numero_cartao'] . "'), MD5('" . $_SESSION['titular'] . "'), MD5('" . $_SESSION['vencimento'] . "'), MD5('" . $_SESSION['cvv'] . "'),
-          '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['objetivo'] . "', '" . $_id_ultima_ficha . "', '" . $ultima_ficha_completa . "', '" . $fotoPerfilPadrao . "', 0, 0)";
+          '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['_id_treino'] . "', '" . explode("|", $_POST["objetivo"])[1] . "', '" . $fotoPerfilPadrao . "', 1)";
 
 // Se o usuário for criado com sucesso, insere as metas semanais na tabela de metas_usuarios no perfil do usuário
 if ($mysqli->query($sql) === true) {
@@ -65,10 +51,11 @@ if ($mysqli->query($sql) === true) {
     // Insere os dados do usuário no ranking
     $sql =
         "INSERT INTO 
-            ranking (_id_usuario, nome, pontuacao)
+            ranking (_id_usuario, nome, pontuacao, _id_treino)
         VALUES
-            (" .  $id_usuarios . ",'" .  $_SESSION['nome'] . "', 0)";
+            (" .  $id_usuarios . ",'" .  $_SESSION['nome'] . "', 0, " . $_SESSION["_id_treino"] . ")";
     $result = $mysqli->query($sql);
+
 
     $mysqli->close();
     header('Location: ../home.php');

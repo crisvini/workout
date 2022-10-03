@@ -1,5 +1,7 @@
 <?php
 include("./navbar.php");
+include("./header.php");
+include("./verificaLogin.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,41 +14,33 @@ include("./navbar.php");
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
-                <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('ferramentas.php');"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
-                        <i class="fa-solid fa-dumbbell"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <?= retornaHeader("ferramentas.php", "Para calcularmos o IMC, utilizamos a seguinte fórmula matemática: peso(kg) / altura(m)². Nessa fórmula, os quilos devem ser divididos pela altura ao quadrado."); ?>
+        <div class="container mt-4vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col color-white text-center fs-large">
                     <span>Calculadora de IMC</span>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-4vw">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="altura" maxlength="3" placeholder="altura" onchange="alertaPreenchimento('#altura', '#label_altura');">
-                    <label for="altura" class="custom-label" id="label_altura">Altura (CM)</label>
+                    <input type="tel" class="form-control" style="border: 2px solid #202020" id="altura" maxlength="3" placeholder="altura" onchange="alertaPreenchimento('#altura', '#label_altura');">
+                    <label for="altura" class="custom-label" id="label_altura" style="margin-left: 5% !important;">Altura (CM)</label>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-3">
                 <div class="col-12 form-floating">
-                    <input type="tel" class="form-control" id="peso" maxlength="3" placeholder="peso" onchange="alertaPreenchimento('#peso', '#label_peso');">
-                    <label for="peso" class="custom-label" id="label_peso">Peso (KG)</label>
+                    <input type="tel" class="form-control" style="border: 2px solid #202020" id="peso" maxlength="3" placeholder="peso" onchange="alertaPreenchimento('#peso', '#label_peso');">
+                    <label for="peso" class="custom-label" id="label_peso" style="margin-left: 5% !important;">Peso (KG)</label>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-4vw">
                 <div class="col-12 text-center">
                     <button type="button" class="btn btn-primary" id="calcular">Calcular</button>
                 </div>
             </div>
         </div>
 
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <div class="container mt-4vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col color-white text-center fs-large">
                     <span class="color-pink">Resultado</span>
@@ -59,36 +53,36 @@ include("./navbar.php");
             </div>
             <div class="row">
                 <div class="col">
-                    <table class="table text-white fs-1 mt-5 d-none" id="tabela_imc">
+                    <table class="table text-white fs-1 mt-4vw d-none" id="tabela_imc">
                         <thead>
                             <tr>
-                                <th scope="col" class="fw-bold">&nbsp;</th>
-                                <th scope="col" class="fw-bold">IMC</th>
-                                <th scope="col" class="fw-bold">PESO</th>
+                                <th scope="col" class="fw-bold fs-small">&nbsp;</th>
+                                <th scope="col" class="fw-bold fs-small">IMC</th>
+                                <th scope="col" class="fw-bold fs-small">PESO</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="" id="linha1">
-                                <th scope="row">Magreza</th>
-                                <td>
+                                <th scope="row" class="fs-small">Magreza</th>
+                                <td class="fs-small">
                                     < 18.5</td>
-                                <td>
+                                <td class="fs-small">
                                     < 59.9 Kg</td>
                             </tr>
                             <tr class="" id="linha2">
-                                <th scope="row">Normal</th>
-                                <td>18.5 a 24.9</td>
-                                <td>59.9 a 80.7 Kg</td>
+                                <th scope="row" class="fs-small">Normal</th>
+                                <td class="fs-small">18.5 a 24.9</td>
+                                <td class="fs-small">59.9 a 80.7 Kg</td>
                             </tr>
                             <tr class="" id="linha3">
-                                <th scope="row">Sobrepeso</th>
-                                <td> 24.9 a 30</td>
-                                <td>80.7 a 97.2 Kg</td>
+                                <th scope="row" class="fs-small">Sobrepeso</th>
+                                <td class="fs-small"> 24.9 a 30</td>
+                                <td class="fs-small">80.7 a 97.2 Kg</td>
                             </tr>
                             <tr class="" id="linha4">
-                                <th scope="row">Obesidade</th>
-                                <td>> 30</td>
-                                <td>> 97.2 Kg</td>
+                                <th scope="row" class="fs-small">Obesidade</th>
+                                <td class="fs-small">> 30</td>
+                                <td class="fs-small">> 97.2 Kg</td>
                             </tr>
                         </tbody>
                     </table>

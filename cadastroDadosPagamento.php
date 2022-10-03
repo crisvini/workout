@@ -1,11 +1,17 @@
 <?php
 session_start();
+
+// Redireciona para o index se o post cpf não existir
+if (!isset($_POST["cpf"]))
+    header('Location: ./');
+
 // Insere os dados da página anterior na session do php
 $_SESSION["nome"] = $_POST["nome"];
 $_SESSION["cpf"] = $_POST["cpf"];
 $_SESSION["nascimento"] = $_POST["nascimento"];
 $_SESSION["email"] = $_POST["email"];
 $_SESSION["senha"] = $_POST["senha"];
+include("./header.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +24,11 @@ $_SESSION["senha"] = $_POST["senha"];
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
-                <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('index.php');"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
-                        <i class="fa-solid fa-dumbbell"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 pb-5">
+        <?= retornaHeader("home.php"); ?>
+        <div class="container mt-4vw">
             <form method="post" action="./objetivo.php" id="cadastro_usuario">
                 <div class="row">
-                    <div class="col-12 form-floating">
+                    <div class="col-12 p-0 form-floating">
                         <select name="plano" class="form-control" id="plano">
                             <option value="anual">Anual - R$ 10,00 por mês</option>
                             <option value="semestral">Semestral - R$ 12,00 por mês</option>
@@ -40,40 +38,40 @@ $_SESSION["senha"] = $_POST["senha"];
                         <label for="plano" class="custom-label">Plano</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
+                <div class="row mt-4vw">
+                    <div class="col-12 p-0 form-floating">
                         <input name="numero_cartao" type="tel" class="form-control" id="numero_cartao" placeholder="Número do cartão" onchange="alertaPreenchimento('#numero_cartao', '#label_numero_cartao');">
                         <label for="numero_cartao" class="custom-label" id="label_numero_cartao">Número do
                             cartão</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
+                <div class="row mt-4vw">
+                    <div class="col-12 p-0 form-floating">
                         <input name="titular" type="text" class="form-control" id="titular" placeholder="Titular do cartão" onchange="alertaPreenchimento('#titular', '#label_titular');">
                         <label for="titular" class="custom-label" id="label_titular">Titular do cartão</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
+                <div class="row mt-4vw">
+                    <div class="col-12 p-0 form-floating">
                         <input name="vencimento" type="tel" class="form-control" id="vencimento" placeholder="Vencimento" onchange="alertaPreenchimento('#vencimento', '#label_vencimento');">
                         <label for="vencimento" class="custom-label" id="label_vencimento">Vencimento</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
+                <div class="row mt-4vw">
+                    <div class="col-12 p-0 form-floating">
                         <input name="cvv" type="tel" class="form-control" id="cvv" placeholder="CVV" onchange="alertaPreenchimento('#cvv', '#label_cvv');" maxlength="4">
                         <label for="cvv" class="custom-label" id="label_cvv">CVV</label>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-12 form-floating">
+                <div class="row mt-4vw">
+                    <div class="col-12 p-0 form-floating">
                         <input name="cpf_titular" type="tel" class="form-control" id="cpf_titular" placeholder="CPF do titular" onchange="alertaPreenchimento('#cpf_titular', '#label_cpf_titular');">
                         <label for="cpf_titular" class="custom-label" id="label_cpf_titular">CPF do titular</label>
                     </div>
                 </div>
             </form>
-            <div class="row mt-5">
-                <div class="col-12 form-floating">
+            <div class="row mt-4vw">
+                <div class="col-12 p-0 form-floating">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
                         <label class="form-check-label" for="check1">Entendo que é uma cobrança
@@ -83,8 +81,8 @@ $_SESSION["senha"] = $_POST["senha"];
                 </div>
             </div>
             <div class="spacer"></div>
-            <div class="row mb-5 w-90 m-auto fixed-bottom">
-                <div class="col-12">
+            <div class="row mb-4vw m-auto">
+                <div class="col-12 p-0">
                     <button type="submit" class="btn btn-primary" id="assinar_btn" disabled>Assinar</button>
                 </div>
             </div>
@@ -93,7 +91,6 @@ $_SESSION["senha"] = $_POST["senha"];
 
     <script>
         $(document).ready(function() {
-
             // Máscara dos campos
             $("#numero_cartao").mask("0000 0000 0000 0000");
             $("#vencimento").mask("00/0000");

@@ -67,14 +67,14 @@
 }
 
 .title-welcome {
-    font-size: 50px;
+    font-size: 4vw;
     color: #fff7f8;
 }
 
 .link-login {
     text-decoration: none;
     color: #fff7f8;
-    font-size: 40px;
+    font-size: 4vw;
 }
 
 .link-login:focus {
@@ -88,20 +88,28 @@ body {
 
 .back-button {
     color: #e30b5c;
-    font-size: 100px;
+    font-size: 8.5vw;
     position: relative;
     top: 0%;
     left: -16%;
 }
 
+.tip-button {
+    color: #e30b5c;
+    font-size: 8.5vw;
+    position: relative;
+    top: 0%;
+    left: 16%;
+}
+
 .back-button-2 {
     color: #e30b5c;
-    font-size: 100px;
+    font-size: 8.5vw;
 }
 
 .enter-button {
     color: #fff7f8;
-    font-size: 60px;
+    font-size: 8vw;
     position: relative;
     top: 0%;
     left: -16%;
@@ -115,16 +123,17 @@ body {
 
 .logo-font {
     font-family: 'Source Sans Pro', sans-serif;
+    font-size: 8.5vw !important;
 }
 
 .form-control {
-    border: 2px solid #232323;
-    border-radius: 20px;
+    border: 2px solid #191919;
+    border-radius: 2.5vw;
     background-color: #292929;
     color: #fff7f8 !important;
-    padding-left: 25px !important;
-    font-size: 55px;
-    height: 150px !important;
+    padding-left: 2vw !important;
+    font-size: 5vw;
+    height: 15vw !important;
     width: 100%;
 }
 
@@ -138,21 +147,22 @@ body {
 
 .form-check {
     color: white;
-    font-size: 40px;
+    font-size: 3.5vw;
 }
 
 .custom-label {
-    font-size: 35px;
-    padding-left: 5% !important;
+    font-size: 3.5vw;
+    padding-left: 3% !important;
+    padding-top: 3% !important;
     color: #fff7f8;
 }
 
 .btn-primary {
     background-color: #e30b5c !important;
     border: none !important;
-    border-radius: 20px !important;
-    height: 150px !important;
-    font-size: 45px !important;
+    border-radius: 2.5vw !important;
+    height: 15vw !important;
+    font-size: 4.5vw !important;
     color: #fff7f8 !important;
     width: 100% !important;
 }
@@ -165,28 +175,28 @@ body {
 .btn-primary-swal {
     background-color: #e30b5c !important;
     border: none !important;
-    border-radius: 20px !important;
-    font-size: 40px !important;
+    border-radius: 2.5vw !important;
+    font-size: 4.5vw !important;
     color: #fff7f8 !important;
     width: 100% !important;
-    padding: 30px 40px;
+    padding: 3vw 4vw !important;
 }
 
 .btn-primary-swal-2 {
     background-color: #e30b5c !important;
     border: none !important;
-    border-radius: 20px !important;
-    font-size: 40px !important;
+    border-radius: 2.5vw !important;
+    font-size: 4.5vw !important;
     color: #fff7f8 !important;
-    padding: 30px 40px !important;
+    padding: 3vw 4vw !important;
 }
 
 .btn-secondary {
     background-color: #a59b9c !important;
     border: none !important;
-    border-radius: 20px !important;
-    height: 150px !important;
-    font-size: 45px !important;
+    border-radius: 2.5vw !important;
+    height: 15vw !important;
+    font-size: 4.5vw !important;
     color: #fff7f8 !important;
     width: 100% !important;
 }
@@ -199,33 +209,33 @@ body {
 .btn-secondary-swal {
     background-color: #a59b9c !important;
     border: none !important;
-    border-radius: 20px !important;
-    font-size: 40px !important;
+    border-radius: 2.5vw !important;
+    font-size: 5vw !important;
     color: #fff7f8 !important;
     width: 100% !important;
-    padding: 30px 40px !important;
+    padding: 3vw 4vw !important;
 }
 
 .btn-secondary-swal-2 {
     background-color: #a59b9c !important;
     border: none !important;
-    border-radius: 20px !important;
-    font-size: 40px !important;
+    border-radius: 2.5vw !important;
+    font-size: 4.5vw !important;
     color: #fff7f8 !important;
-    padding: 30px 40px !important;
+    padding: 3vw 4vw !important;
 }
 
 .title-swal {
-    font-size: 80px !important;
+    font-size: 7vw !important;
 }
 
 .swal2-icon {
-    font-size: 40px !important;
+    font-size: 4vw !important;
 }
 
 .swal2-html-container {
     color: white !important;
-    font-size: 40px !important;
+    font-size: 4vw !important;
 }
 
 .pop-up-swal {
@@ -276,43 +286,43 @@ body {
 }
 
 .br-20 {
-    border-radius: 20px;
+    border-radius: 3.5vw;
 }
 
 .br-bt-20 {
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 3.5vw 3.5vw;
 }
 
 .br-tp-20 {
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 3.5vw 3.5vw 0px 0px;
 }
 
 .br-st-20 {
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 3.5vw 0px 0px 3.5vw;
 }
 
 .br-ed-20 {
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 3.5vw 3.5vw 0px;
 }
 
 .fs-extra-large {
-    font-size: 80px;
+    font-size: 8.5vw;
 }
 
 .fs-large {
-    font-size: 60px;
+    font-size: 5vw;
 }
 
 .fs-medium {
-    font-size: 50px;
+    font-size: 4.5vw;
 }
 
 .fs-small {
-    font-size: 35px;
+    font-size: 3vw;
 }
 
 .fs-extra-small {
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 .bg-treino {
@@ -379,9 +389,9 @@ body {
 }
 
 .image-disabled {
-    filter: grayscale(80%);
-    -webkit-filter: grayscale(80%);
-    -moz-filter: grayscale(80%);
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
 }
 
 .h-25vh {
@@ -417,7 +427,7 @@ body {
 }
 
 .spacer {
-    height: 250px;
+    height: 25vw;
 }
 
 .w-90 {
@@ -429,18 +439,84 @@ body {
     border: none !important;
     border-radius: 20px !important;
     height: 150px !important;
-    font-size: 45px !important;
+    font-size: 3vw !important;
     color: #fff7f8 !important;
     width: 100% !important;
 }
 
 .crop {
-    width: 400px;
-    height: 400px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
     border-radius: 100%;
 }
 
 .crop img {
-    height: 400px !important;
+    height: 150px !important;
+}
+
+div a img {
+    display: none;
+}
+
+.mt-4vw {
+    margin-top: 4vw !important;
+}
+
+.mb-4vw {
+    margin-bottom: 4vw !important;
+}
+
+.my-4vw {
+    margin-bottom: 4vw !important;
+    margin-top: 4vw !important;
+}
+
+.mt-3vw {
+    margin-top: 3vw !important;
+}
+
+.mt-2vw {
+    margin-top: 2vw !important;
+}
+
+.my-3vw {
+    margin-bottom: 3vw !important;
+    margin-top: 3vw !important;
+}
+
+.my-1vw {
+    margin-bottom: 1vw !important;
+    margin-top: 1vw !important;
+}
+
+.px-4vw {
+    padding-left: 4vw !important;
+    padding-right: 4vw !important;
+}
+
+.p-4vw {
+    padding: 4vw !important;
+}
+
+.p-3vw {
+    padding: 3vw !important;
+}
+
+.py-4vw {
+    margin-bottom: 4vw !important;
+    margin-top: 4vw !important;
+}
+
+.pb-4vw {
+    margin-bottom: 4vw !important;
+}
+
+.py-2vw {
+    margin-bottom: 2vw !important;
+    margin-top: 2vw !important;
+}
+
+button:focus {
+    box-shadow: none !important;
 }

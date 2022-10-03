@@ -1,15 +1,23 @@
 <?php
 session_start();
 include("./navbar.php");
-// Seleciona a classificação e a pontuação do usuário no ranking
+include("./header.php");
 include("./mysql/conexao.php");
-$sql = "SELECT
+include("./verificaLogin.php");
+
+// Seleciona a classificação e a pontuação do usuário no ranking
+$sql = "SELECT 
             _id_usuario,
             pontuacao,
             nome,
-            RANK() OVER(ORDER BY pontuacao DESC) as ranking
-        FROM 
-            ranking";
+            @curRank := @curRank + 1 AS ranking 
+        FROM
+            ranking,
+            (SELECT @curRank := 0) r 
+        WHERE
+            _id_treino = " . $_SESSION["_id_treino"] . "
+        ORDER BY 
+            pontuacao DESC";
 $result = $mysqli->query($sql);
 // Gera um array com os dados da classificação
 $arrayRanking = [];
@@ -33,7 +41,7 @@ foreach ($arrayRanking as $key => $value) {
         $pontuacaoUsuario = $value["pontuacao"];
         $rankingUsuario = $value["ranking"];
         $htmlRanking = '
-                        <div class="row mt-4 bg-light-gray br-20" style="padding: 4%; --bs-gutter-x: none">
+                        <div class="row mt-3 bg-light-gray br-20" style="padding: 4%; --bs-gutter-x: none">
                             <div class="color-white d-flex flex-column fs-small fw-500">
                                 <div class="row">
                                     <div class="col-1">
@@ -61,7 +69,7 @@ foreach ($arrayRanking as $key => $value) {
                                 <i class="fa-solid fa-circle-user color-white fs-large"></i>
                             </div>
                             <div class="col-7 ps-4">
-                                <span>' . $ranking . ' - ' . $nome . '</span>
+                                <span>' . $ranking . '° - ' . $nome . '</span>
                             </div>
                             <div class="col-4 text-end">
                                 <span>' . $pontuacao . ' pontos</span>
@@ -71,6 +79,7 @@ foreach ($arrayRanking as $key => $value) {
                 </div>';
     }
 }
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -83,16 +92,8 @@ foreach ($arrayRanking as $key => $value) {
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
-                <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.php');"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
-                        <i class="fa-solid fa-dumbbell"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <?= retornaHeader("home.php", "O ranking e a pontuação são atualizados semanalmente. No ranking semanal, é trazido sua colocação e pontuação atual e a pontuação e colocação dos 4 usuários subsequentes."); ?>
+        <div class="container mt-4vw bg-gray br-20" style="padding: 3%;">
             <div class="row" id="titulo_ranking">
                 <div class="col-12 color-white fs-large">
                     <span>Ranking semanal</span>
@@ -100,14 +101,14 @@ foreach ($arrayRanking as $key => $value) {
             </div>
             <?= $htmlRanking; ?>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <div class="container mt-4vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large">
                     <span>Minha pontuação semanal</span>
                 </div>
             </div>
-            <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 color-white fs-extra-large color-pink mb-3">
+            <div class="row mt-3 bg-medium-gray p-2 br-20" style="--bs-gutter-x: none;">
+                <div class="col-12 color-white fs-extra-large color-pink">
                     <span><?= $pontuacaoUsuario; ?> pontos</span>
                 </div>
             </div>

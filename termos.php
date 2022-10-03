@@ -9,21 +9,21 @@
 
     <div class="entire-screen">
         <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
+            <div class="row pt-2 pb-2 bg-black">
                 <div class="col text-center">
                     <i class="fa-solid fa-angle-left back-button" onclick="load('index.php?paginaAnterior=termos');" id="back_btn"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 10vw; line-height: normal;">Workout
                         <i class="fa-solid fa-dumbbell"></i></span>
                 </div>
             </div>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <div class="container mt-4vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large">
                     <span>Termos de uso e política de privacidade</span>
                 </div>
             </div>
-            <div class="col-12 mt-5 form-floating">
+            <div class="col-12 mt-4vw form-floating">
                 <p class="color-white fs-medium">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris gravida cursus massa id viverra.
                     Praesent leo mi, pharetra ac tellus id, condimentum vehicula elit. Aliquam in quam molestie,
@@ -119,7 +119,7 @@
             </div>
         </div>
         <div class="spacer"></div>
-        <div class="row w-90 fixed-bottom m-auto mb-5">
+        <div class="row w-90 fixed-bottom m-auto mb-4vw">
             <div class="col-12">
                 <button type="button" class="btn btn-primary" onclick="load('index.php?paginaAnterior=termos')">Voltar</button>
             </div>

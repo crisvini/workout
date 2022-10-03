@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("./mysql/conexao.php");
+include("./verificaLogin.php");
 
 // Consulta os dados das fichas
 $sql = "SELECT
@@ -25,19 +26,19 @@ if ($result->num_rows > 0) {
         $idFicha = $row["_id_ficha"];
         array_push($idExercicios, "icone_feito_" . $row["id_exercicio"]);
         array_push($idExerciciosArray, $row["id_exercicio"]);
-        $htmlExercicios .= '<div class="row my-5 bg-gray br-20">
+        $htmlExercicios .= '<div class="row my-4vw bg-gray br-20">
                             <div class="col-4 ps-0 align-self-center">
                                 <img src="./img/treino_background.jpg" class="w-100 br-st-20">
                             </div>
-                            <div class="col-8 my-3 align-self-center px-3">
-                                <div class="row pe-2 mb-2">
+                            <div class="col-8 my-1vw align-self-center px-3">
+                                <div class="row pe-2">
                                     <div class="col-12 d-flex justify-content-between">
                                         <span class="color-white fs-small me-1">' . $row["nome"] . '</span>
                                         <i class="d-none fa-regular fa-circle fs-small color-white" id="icone_feito_' . $row["id_exercicio"] . '" onclick="finalizaExercicio(' . "'" . 'icone_feito_' . $row["id_exercicio"] . "'" . ');"></i>
                                     </div>
                                 </div>
                                 <div class="row pe-2 h-50">
-                                    <div class="col-12 bg-pink br-20 py-2 text-center d-flex justify-content-between px-5">
+                                    <div class="col-12 bg-pink br-20 py-2vw text-center d-flex justify-content-between px-4vw">
                                         <div class="text-start">
                                             <span class="color-white fs-extra-small">' . $row["repeticoes"] . '</span>
                                         </div>
@@ -52,7 +53,7 @@ if ($result->num_rows > 0) {
     }
     $idExercicios = json_encode($idExercicios);
 }
-
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +67,9 @@ if ($result->num_rows > 0) {
 
     <div class="entire-screen">
         <div class="container h-50vh" style="max-width: 100% !important;">
-            <div class="row py-4 <?= $_SESSION["backgroundFichaDia"]; ?> br-bt-20 h-100">
+            <div class="row pb-4vw <?= $_SESSION["backgroundFichaDia"]; ?> br-bt-20 h-100">
                 <div class="col-12 px-2">
-                    <div>
+                    <div style="margin: 10px;">
                         <i class="fa-solid fa-angle-left back-button-2" id="back_btn"></i>
                     </div>
                 </div>
@@ -92,12 +93,12 @@ if ($result->num_rows > 0) {
             </div>
             <div class="spacer"></div>
             <div class="mt-5 bg-gray fixed-bottom border-light-gray">
-                <div class="row py-4 w-50 mx-auto" id="div_btn_comecar_treino">
-                    <div class="col text-white m-0 text-center color-white" id="btn_comecar_treino">
+                <div class="row py-4vw w-50 mx-auto" id="div_btn_comecar_treino">
+                    <div class="col text-white m-0 text-center color-white p-0" id="btn_comecar_treino">
                         <button type="button" class="btn btn-primary w-50">Começar Treino</button>
                     </div>
                 </div>
-                <div class="row py-4 mx-5 d-none" id="div_btn_pausar_finalizar_treino">
+                <div class="row py-4vw mx-3 d-none" id="div_btn_pausar_finalizar_treino">
                     <div class="col-6 m-0 text-start align-self-center" id="btn_pausar_treino">
                         <i class="fa-regular fa-circle-pause fs-extra-large color-white"></i>
                     </div>

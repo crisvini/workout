@@ -1,6 +1,8 @@
 <?php
 include("./navbar.php");
+include("./header.php");
 include("./mysql/conexao.php");
+include("./verificaLogin.php");
 session_start();
 
 // Seleciona as pontuações do usuário
@@ -9,7 +11,9 @@ $sql = "SELECT
         FROM 
             ranking
         WHERE 
-            _id_usuario = '" . $_SESSION["idUsuario"] . "'";
+            _id_usuario = '" . $_SESSION["idUsuario"] . "'
+        AND
+            _id_treino = " . $_SESSION["_id_treino"];
 $pontuacao = mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["pontuacao"];
 
 // Seleciona as metas completas
@@ -33,26 +37,28 @@ $sql = "SELECT
         WHERE 
             usuarios.cpf = '" . $_SESSION["cpf"] . "'
         AND
-            metas_usuarios.completo = 'true'";
+            metas_usuarios.completo = 'true'
+        AND
+            metas._id_treino = " . $_SESSION["_id_treino"];
 $result = $mysqli->query($sql);
 // Monta os cards das metas completas
 $htmlMetasCompletas = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $htmlMetasCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+        $htmlMetasCompletas .= ' <div class="row mt-3 bg-medium-gray p-4vw br-20" style="--bs-gutter-x: none;">
                                     <div class="col-12 br-20">
-                                        <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
+                                        <p class="color-white fs-medium fw-500 mb-0" style="line-height: 8vw;">' . $row["descricao"] . '</p>
                                     </div>
-                                    <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
-                                        <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
+                                    <div class="col-12 bg-black br-20 mt-3 d-flex justify-content-between">
+                                        <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 8vw;">' . $row["pontos"] . ' pontos </span>
                                         <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                 </div>';
     }
 } else {
-    $htmlMetasCompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+    $htmlMetasCompletas .= ' <div class="row mt-3 bg-medium-gray p-3vw br-20" style="--bs-gutter-x: none;">
                                 <div class="col-12 br-20">
-                                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Nenhuma meta encontrada</p>
+                                    <p class="color-white fs-medium fw-500 mb-0" style="line-height: 8vw;">Nenhuma meta encontrada</p>
                                 </div>
                             </div>';
 }
@@ -78,28 +84,31 @@ $sql = "SELECT
         WHERE 
             usuarios.cpf = '" . $_SESSION["cpf"] . "'
         AND
-            metas_usuarios.completo = 'false'";
+            metas_usuarios.completo = 'false'
+        AND
+            metas._id_treino = " . $_SESSION["_id_treino"];
 $result = $mysqli->query($sql);
 // Monta os cards das metas incompletas
 $htmlMetasIncompletas = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $htmlMetasIncompletas .= ' <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+        $htmlMetasIncompletas .= ' <div class="row mt-3 bg-medium-gray p-4vw br-20" style="--bs-gutter-x: none;">
                                         <div class="col-12 br-20">
-                                            <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">' . $row["descricao"] . '</p>
+                                            <p class="color-white fs-medium fw-500 mb-0" style="line-height: 8vw;">' . $row["descricao"] . '</p>
                                         </div>
-                                        <div class="col-12 progress br-20 mt-4" style="height: 80px;">
+                                        <div class="col-12 progress br-20 mt-3" style="height: 7vw;">
                                              <div class="progress-bar bg-light-gray text-start" role="progressbar" style="width: ' . ($row["quantidadeConcluida"] * 100) / $row["quantidade"] . '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                                  <span class="color-medium-gray ms-4 fs-small fw-800" style="position: absolute;">' . $row["quantidadeConcluida"] . ' realizadas</span>
                                              </div>
                                          </div>
-                                        <div class="col-12 bg-black br-20 mt-4 d-flex justify-content-between">
-                                            <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 70px;">' . $row["pontos"] . ' pontos </span>
+                                        <div class="col-12 bg-black br-20 mt-3 d-flex justify-content-between">
+                                            <span class="color-pink ps-4 fs-small fw-700 mb-0" style="line-height: 8vw;">' . $row["pontos"] . ' pontos </span>
                                             <span class="color-pink pe-4 fs-small" style="align-self: center;"><i class="fa-solid fa-star"></i></span>
                                         </div>
                                     </div>';
     }
 }
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -112,16 +121,8 @@ if ($result->num_rows > 0) {
 <body class="bg-black" id="body">
 
     <div class="entire-screen">
-        <div class="container" style="max-width: 100% !important;">
-            <div class="row pt-4 pb-4 bg-black">
-                <div class="col text-center">
-                    <i class="fa-solid fa-angle-left back-button" onclick="load('home.php');"></i>
-                    <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
-                        <i class="fa-solid fa-dumbbell"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <?= retornaHeader("home.php", "As metas e as pontuações são atualizadas semanalmente, para progredir em uma meta, realize e finalize um treino que possui exercícios que estão inclusos em metas. A pontuação das metas têm base na quantidadde de repetições necessárias para completá-la, ou seja, se uma meta exige 48 repetições, 48 pontos serão incrementados na sua pontuação semanal ao completar tal meta. "); ?>
+        <div class="container mt-3vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Minhas metas</span>
@@ -130,15 +131,15 @@ if ($result->num_rows > 0) {
             </div>
             <?php
             $metas = "";
-            $htmlMetasIncompletas != "" ? $metas = $htmlMetasIncompletas : $metas = '<div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
+            $htmlMetasIncompletas != "" ? $metas = $htmlMetasIncompletas : $metas = '<div class="row mt-3 bg-medium-gray p-4vw br-20" style="--bs-gutter-x: none;">
                                                                                         <div class="col-12 br-20">
-                                                                                             <p class="color-white fs-medium fw-500 mb-0" style="line-height: 70px;">Parabéns! Todas as metas foram concluídas!</p>
+                                                                                             <p class="color-white fs-medium fw-500 mb-0" style="line-height: 8vw;">Parabéns! Todas as metas foram concluídas!</p>
                                                                                          </div>
                                                                                      </div>';
             echo $metas;
             ?>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <div class="container mt-3vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Metas completas</span>
@@ -147,15 +148,15 @@ if ($result->num_rows > 0) {
             </div>
             <?= $htmlMetasCompletas; ?>
         </div>
-        <div class="container mt-5 bg-gray br-20" style="padding: 3%;">
+        <div class="container mt-3vw bg-gray br-20" style="padding: 3%;">
             <div class="row">
                 <div class="col-12 color-white fs-large d-flex justify-content-between">
                     <span>Minha pontuação</span>
                     <span style="align-self: center;"><i class="fa-solid fa-star" style="align-self: center;"></i></span>
                 </div>
             </div>
-            <div class="row mt-4 bg-medium-gray p-4 br-20" style="--bs-gutter-x: none;">
-                <div class="col-12 ps-4 bg-black br-20 mt-4 fs-large color-pink mb-3">
+            <div class="row mt-3 bg-medium-gray p-4vw br-20" style="--bs-gutter-x: none;">
+                <div class="col-12 ps-4 bg-black br-20 fs-large color-pink">
                     <span><?= $pontuacao; ?> pontos</span>
                 </div>
             </div>

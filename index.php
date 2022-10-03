@@ -25,20 +25,20 @@ $_SESSION = array(); // Limpa a session
                     </div>
                     <div class="row" style="margin-bottom: 15%;">
                         <div class="col-12 text-center">
-                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 140px; line-height: normal;">Workout
+                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 10vw; line-height: normal;">Workout
                                 <i class="fa-solid fa-dumbbell"></i></span>
                         </div>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 form-floating">
+                        <div class="col-12 form-floating p-0">
                             <input name="email" type="email" class="form-control" id="email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#email', '#label_email');">
                             <label for="email" class="custom-label" id="label_email">E-mail</label>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-12 form-floating">
+                    <div class="row mt-4vw">
+                        <div class="col-12 form-floating p-0">
                             <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye"></i>
                             <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye"></i>
                             <input name="senha" type="password" class="form-control" id="senha" placeholder="senha" onchange="alertaPreenchimento('#senha', '#label_senha');">
@@ -46,11 +46,11 @@ $_SESSION = array(); // Limpa a session
                         </div>
                     </div>
                     <div class="spacer"></div>
-                    <div class="row w-90 m-auto mb-5 fixed-bottom">
-                        <div class="col-12">
+                    <div class="row m-auto mb-4vw">
+                        <div class="col-12 p-0">
                             <button type="button" class="btn btn-primary" id="login_btn" disabled>Entrar</button>
                         </div>
-                        <div class="col-12 text-center mt-5">
+                        <div class="col-12 text-center mt-4vw">
                             <span class="link-login" style="text-decoration: underline;" onclick="$('#next').click()">Não tem uma conta?
                                 Criar</span>
                         </div>
@@ -59,11 +59,11 @@ $_SESSION = array(); // Limpa a session
             </div>
 
             <div class="carousel-item entire-screen" id="segundo_slide">
-                <div class="container mt-5" style="max-width: 100% !important;">
-                    <div class="row pt-4 pb-4 bg-black">
+                <div class="container" style="max-width: 100% !important;">
+                    <div class="row pt-2 pb-2 bg-black">
                         <div class="col text-center">
                             <i class="fa-solid fa-angle-left back-button" onclick="$('#previous').click()"></i>
-                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 100px; line-height: normal;">Workout
+                            <span class="logo-font" style="color: #e30b5c; font-weight: bold; font-size: 10vw; line-height: normal;">Workout
                                 <i class="fa-solid fa-dumbbell"></i></span>
                         </div>
                     </div>
@@ -71,39 +71,39 @@ $_SESSION = array(); // Limpa a session
                 <div class="container">
                     <form method="post" action="./cadastroDadosPagamento.php" id="cadastro_usuario">
                         <div class="row">
-                            <div class="col-12 form-floating">
+                            <div class="col-12 p-0 form-floating">
                                 <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" onchange="alertaPreenchimento('#nome', '#label_nome');">
                                 <label for="nome" class="custom-label" id="label_nome">Nome</label>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 form-floating">
+                        <div class="row mt-4vw">
+                            <div class="col-12 p-0 form-floating">
                                 <input name="cpf" type="tel" class="form-control" id="cpf" placeholder="CPF" onchange="alertaPreenchimento('#cpf', '#label_cpf');">
                                 <label for="cpf" class="custom-label" id="label_cpf">CPF</label>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 form-floating">
+                        <div class="row mt-4vw">
+                            <div class="col-12 p-0 form-floating">
                                 <input name="nascimento" type="tel" class="form-control" id="nascimento" placeholder="Nascimento" onchange="alertaPreenchimento('#nascimento', '#label_nascimento');">
                                 <label for="nascimento" class="custom-label" id="label_nascimento">Nascimento</label>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 form-floating">
+                        <div class="row mt-4vw">
+                            <div class="col-12 p-0 form-floating">
                                 <input name="email" type="email" class="form-control" id="cad_email" placeholder="email@email.com" maxlength="100" onchange="alertaPreenchimento('#cad_email', '#label_cad_email');">
                                 <label for="cad_email" class="custom-label" id="label_cad_email">Email</label>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 form-floating">
+                        <div class="row mt-4vw">
+                            <div class="col-12 p-0 form-floating">
                                 <i class="fa-solid fa-eye icon-eye d-none fs-medium" style="color: #fff7f8;" id="open_eye2"></i>
                                 <i class="fa-solid fa-eye-slash icon-eye d-block fs-medium" style="color: #fff7f8;" id="closed_eye2"></i>
                                 <input name="senha" type="password" class="form-control" id="cad_senha" placeholder="senha" onchange="alertaPreenchimento('#cad_senha', '#label_cad_senha');">
                                 <label for="cad_senha" class="custom-label" id="label_cad_senha">Senha</label>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 form-floating">
+                        <div class="row mt-4vw">
+                            <div class="col-12 p-0 form-floating">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="termos" onchange="alertaPreenchimento('#termos', '#label_termos');">
                                     <label class="form-check-label" for="termos" id="label_termos">Declaro que li e aceito
@@ -114,8 +114,8 @@ $_SESSION = array(); // Limpa a session
                             </div>
                         </div>
                         <div class="spacer"></div>
-                        <div class="row fixed-bottom w-90 m-auto mb-5">
-                            <div class="col-12">
+                        <div class="row m-auto mb-4vw">
+                            <div class="col-12 p-0">
                                 <button type="submit" class="btn btn-primary" id="prosseguir_btn" disabled>Prosseguir</button>
                             </div>
                         </div>
@@ -136,7 +136,6 @@ $_SESSION = array(); // Limpa a session
 
     <script>
         $(document).ready(function() {
-
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('paginaAnterior');
 
@@ -149,6 +148,8 @@ $_SESSION = array(); // Limpa a session
             // Máscara dos campos
             $("#cpf").mask("000.000.000-00");
             $("#nascimento").mask("00/00/0000");
+
+
 
         });
 

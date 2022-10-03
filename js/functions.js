@@ -2,7 +2,7 @@
 function load(page) {
 
     var html = '<div class="div-center" style="text-align: center; z-index: 5000;" id="load_spinner">' +
-        '<div class="spinner-border" role="status" style="width: 150px; height: 150px;color: #e30b5c;">' +
+        '<div class="spinner-border" role="status" style="width: 15vw; height: 15vw;color: #e30b5c;">' +
         '<span class="visually-hidden">Loading...</span>' +
         '</div >' +
         '</div >' +
@@ -60,4 +60,22 @@ function testaCpf(documento) {
     } else {
         return false;
     }
+}
+
+function tipModal(texto) {
+    Swal.fire({
+        title: 'Dica',
+        text: texto,
+        icon: 'info',
+        confirmButtonText: 'Entendi',
+        width: '90%',
+        background: '#191919',
+        position: 'center',
+        customClass: {
+            confirmButton: 'btn btn-primary-swal-2',
+            title: 'title-swal',
+            popup: 'pop-up-swal',
+            container: 'container-swal-html'
+        }
+    });
 }

@@ -12,3 +12,4 @@ $sql = "UPDATE
         WHERE 
             cpf = '" .  $_SESSION["cpf"] . "'";
 mysqli_query($mysqli, $sql);
+$mysqli->close();

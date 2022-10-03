@@ -25,6 +25,8 @@ $sql = "SELECT
 if (mysqli_fetch_assoc(mysqli_query($mysqli, $sql))["email"] == null)
     $emailValido = true;
 
+$mysqli->close();
+
 // Se o email ou o cpf já estiver cadastrado, retorna false
 if ($cpfValido != true || $emailValido != true)
     echo 'invalido';
