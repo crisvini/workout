@@ -69,7 +69,7 @@ $_SESSION = array(); // Limpa a session
                     </div>
                 </div>
                 <div class="container">
-                    <form method="post" action="./cadastroDadosPagamento.php" id="cadastro_usuario">
+                    <form method="post" action="./objetivo.php" id="cadastro_usuario">
                         <div class="row">
                             <div class="col-12 p-0 form-floating">
                                 <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" onchange="alertaPreenchimento('#nome', '#label_nome');">

@@ -11,11 +11,10 @@ $fotoPerfilPadrao = fotoPerfilPadrao();
 // Cria o usuário na tabela usuarios
 $sql =
     "INSERT INTO 
-        usuarios (nome, email, cpf, nascimento, senha, plano, numero_cartao, titular_cartao, vencimento, cvv, cpf_titular, _id_treino, ultima_ficha_completa, foto_perfil, _id_perfil) 
+        usuarios (nome, email, cpf, nascimento, senha, _id_treino, ultima_ficha_completa, foto_perfil, _id_perfil) 
     VALUES 
         ('" . $_SESSION['nome'] . "', '" . $_SESSION['email'] . "', '" . $_SESSION['cpf'] . "', '" . $_SESSION['nascimento'] . "', MD5('" . $_SESSION['senha'] . "'),
-         '" . $_SESSION['plano'] . "', MD5('" . $_SESSION['numero_cartao'] . "'), MD5('" . $_SESSION['titular'] . "'), MD5('" . $_SESSION['vencimento'] . "'), MD5('" . $_SESSION['cvv'] . "'),
-          '" . $_SESSION['cpf_titular'] . "',  '" . $_SESSION['_id_treino'] . "', '" . explode("|", $_POST["objetivo"])[1] . "', '" . $fotoPerfilPadrao . "', 1)";
+         '" . $_SESSION['_id_treino'] . "', '" . explode("|", $_POST["objetivo"])[1] . "', '" . $fotoPerfilPadrao . "', 1)";
 
 // Se o usuário for criado com sucesso, insere as metas semanais na tabela de metas_usuarios no perfil do usuário
 if ($mysqli->query($sql) === true) {

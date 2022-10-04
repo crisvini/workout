@@ -4,14 +4,11 @@ session_start();
 
 // Insere os dados na session do php
 if (!isset($_GET["paginaAnterior"])) {
-    if (!isset($_POST["cpf_titular"]))
-        header('Location: ./');
-    $_SESSION["plano"] = $_POST["plano"];
-    $_SESSION["numero_cartao"] = $_POST["numero_cartao"];
-    $_SESSION["titular"] = $_POST["titular"];
-    $_SESSION["vencimento"] = $_POST["vencimento"];
-    $_SESSION["cvv"] = $_POST["cvv"];
-    $_SESSION["cpf_titular"] = $_POST["cpf_titular"];
+    $_SESSION["nome"] = $_POST["nome"];
+    $_SESSION["cpf"] = $_POST["cpf"];
+    $_SESSION["nascimento"] = $_POST["nascimento"];
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["senha"] = $_POST["senha"];
 } else
     include("./verificaLogin.php");
 
