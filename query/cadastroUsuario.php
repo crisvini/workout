@@ -33,7 +33,9 @@ if ($mysqli->query($sql) === true) {
         "SELECT
             *
         FROM 
-            metas";
+            metas
+        WHERE
+            _id_treino = " . $_SESSION['_id_treino'];
     $result = $mysqli->query($sql);
     // Insere as metas semanais na tabela de metas_usuarios no perfil do usuário
     if ($result->num_rows > 0) {
