@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("./navbar.php");
 include("./header.php");
 include("./verificaLogin.php");

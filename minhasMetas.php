@@ -1,9 +1,9 @@
 <?php
+session_start();
 include("./navbar.php");
 include("./header.php");
 include("./mysql/conexao.php");
 include("./verificaLogin.php");
-session_start();
 
 // Seleciona as pontuações do usuário
 $sql = "SELECT 
